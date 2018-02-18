@@ -21,11 +21,11 @@ package lq;
  */
 public class Lucas
 {
-    private long hp;
-    private long ap;
+    private final long hp;
+    private final long ap;
     private long xp;
     
-    public void setStat(long hp, long ap)
+    Lucas(long hp, long ap)
     {
         this.hp = hp;
         this.ap = ap;
