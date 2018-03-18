@@ -24,6 +24,8 @@ public class Lucas
     private final long hp;
     private final long ap;
     private long xp;
+    private Sword weapon = new mortifer(); // temporary field
+    public long position;
     
     Lucas(long hp, long ap)
     {
@@ -44,5 +46,9 @@ public class Lucas
     public long getXP()
     {
         return this.xp;
+    }
+    public long slash(Sword i_sword, long ene_hp, long i_ap)
+    {
+        return i_sword.slash(ene_hp);
     }
 }
