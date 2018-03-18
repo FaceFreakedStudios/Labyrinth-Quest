@@ -19,9 +19,37 @@ package lq;
  *
  * @author gavin17
  */
-public interface Sword
+public class Sword
 {
-   long thrust(long strength, long sw_thrust);
-   long slash(long strength, long sw_slash);
-   long special(long strength, long sw_special);
+   long thrust(long strength)
+   {
+       return strength;
+   }
+   long slash(long strength)
+   {
+       return strength;
+   }
+   long special(long strength, long sw_special)
+   {
+       return strength + sw_special;
+   }
+}
+
+class mortifer extends Sword
+{
+    @Override
+   long slash(long strength)
+   {
+       return strength + 12;
+   }
+   @Override
+   long thrust(long strength)
+   {
+       return strength + 12;
+   }
+   @Override
+   long special(long strength, long sw_special)
+   {
+       return strength + sw_special;
+   }
 }
