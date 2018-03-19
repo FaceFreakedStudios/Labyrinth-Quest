@@ -21,8 +21,8 @@ package lq;
  */
 public class Lucas
 {
-    private final long hp;
-    private final long ap;
+    private long hp;
+    private long ap;
     private long xp;
     private Sword weapon = new mortifer(); // temporary field
     public long position;
@@ -33,6 +33,10 @@ public class Lucas
         this.ap = ap;
     }
     
+    public void setHP(long hp)
+    {
+        this.hp = hp;
+    }
     public long getHP()
     {
         return this.hp;
