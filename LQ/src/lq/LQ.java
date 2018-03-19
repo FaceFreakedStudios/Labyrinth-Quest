@@ -27,7 +27,9 @@ public class LQ
      */
     public static void main(String[] args)
     {
-        // TODO code application logic here
+        Lucas lucas = new Lucas(50, 60); // testing
+        Rotter rotter1 = new Rotter(15); // testing
+        
     }
     
 }
