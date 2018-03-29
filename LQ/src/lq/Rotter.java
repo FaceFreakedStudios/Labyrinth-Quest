@@ -20,15 +20,35 @@ package lq;
  * @author gavin17
  */
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Rotter
 {
-    public long hp;
+    
+    private long hp;
+    private final Map<String, Long> moveSetDMG = new HashMap<>();;
+    private final String[] moveSet = {"Bite", "Gnaw"};
+    
+    Rotter()
+    {
+        moveSetDMG.put("Bite", 4L);
+        moveSetDMG.put("Gnaw", ThreadLocalRandom.current().nextLong(4, 8 + 1));
+    }
     
     Rotter(long hp)
     {
         this.hp = hp;
+    }
+    
+    public boolean ifDead()
+    {
+        if(this.hp <= 0)
+        {
+           return true; 
+        }
+        return false;
     }
     
     public void setHP(long hp)
@@ -39,13 +59,10 @@ public class Rotter
     {
         return this.hp;
     }
-    public long bite()
+    
+    public long attack(long protagonist)
     {
-        return 4;
-    }
-    public long gnaw()
-    {
-        long randomDamage = ThreadLocalRandom.current().nextLong(4, 8 + 1);
-        return randomDamage;
+        return protagonist - moveSetDMG.get(moveSet[ThreadLocalRandom.current()
+            .nextInt(0, moveSet.length + 1)]);
     }
 }
