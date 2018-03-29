@@ -29,6 +29,8 @@ public class LQ
     {
         Lucas lucas = new Lucas(50, 60); // testing
         Rotter rotter1 = new Rotter(15); // testing
+        lucas.setHP(rotter1.attack(lucas.getHP()));
+        System.out.print(lucas.getHP());
         
     }
     
