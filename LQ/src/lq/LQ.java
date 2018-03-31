@@ -25,11 +25,21 @@ public class LQ
     /**
      * @param args the command line arguments
      */
+    public static String dmg_name;
+    public static long dmg;
+    public static void convert(String dmgWithName)
+    {
+        String[] dmg_seper = dmgWithName.split("_");
+        dmg_name = dmg_seper[0];
+        dmg = Long.parseLong(dmg_seper[1]);
+    }
+    
     public static void main(String[] args)
     {
         Lucas lucas = new Lucas(50, 60); // testing
         Rotter rotter1 = new Rotter(15); // testing
-        lucas.setHP(rotter1.attack(lucas.getHP()));
+        convert(rotter1.attack());
+        lucas.setHP(lucas.getHP() - dmg);
         System.out.print(lucas.getHP());
         
     }
