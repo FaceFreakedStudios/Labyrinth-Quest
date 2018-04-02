@@ -34,6 +34,24 @@ public class Lucas
         this.ap = ap;
     }
     
+    public boolean isDead()
+    {
+        if(this.hp <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean noAP()
+    {
+        if(this.ap <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     public void setHP(long hp)
     {
         this.hp = hp;
@@ -52,9 +70,13 @@ public class Lucas
     {
         return this.xp;
     }
-    public long slash(long ene_hp)
+    public long slash()
     {
         this.ap -= 8;
-        return ene_hp - weapon.slash(this.strength);
+        if(noAP())
+        {
+            return 0;
+        }
+        return weapon.slash(this.strength);
     }
 }
