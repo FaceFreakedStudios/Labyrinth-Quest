@@ -28,10 +28,14 @@ public class LQ_CLI
     char ground = '.';
     char npc = '?';
     char empty = ' ';
-    char water = '~'; // yet to be determined
-    char store = '^';
-    char trap = 'T'; // yet to be determined
-    // acid, fire, lava, animal???
+    char water = '~';
+    char store = '$';
+    char building = '^';
+    char trap = ','; // yet to be determined
+    char lava = '-';
+    char sign = '=';
+    char labyrinth = 'L';
+    // Maps can only be 60 by 80
 }
 
 
