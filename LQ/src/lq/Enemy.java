@@ -24,7 +24,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Enemy
 {
     long hp;
-    //String[] move_set;
+    long xp_drop;
+    String[] move_set;
     
     public void setHP(long hp)
     {
@@ -34,23 +35,42 @@ public class Enemy
     {
         return this.hp;
     }
+    public long getXPDrop()
+    {
+        return this.xp_drop;
+    }
+    public String[] getMoveSet()
+    {
+        return this.move_set;
+    }
     
     boolean isDead()
     {
-        if(hp <= 0)
+        if(getHP() <= 0)
         {
             return true;
         }
         return false;
     }
-    String attack(String[] move_set)
+    String attack()
     {
-        return move_set[ThreadLocalRandom.current().nextInt(0, move_set.length)];
+        
+        return getMoveSet()[ThreadLocalRandom.current().nextInt(0, getMoveSet()
+            .length)];
+    }
+    long dropXP()
+    {
+        if(isDead())
+        {
+            return getXPDrop();
+        }
+    return 0;
     }
 }
 
 class Rotter extends Enemy
 {
+    long xp_drop = 11; // default xp_drop
     String[] move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
@@ -58,9 +78,26 @@ class Rotter extends Enemy
     {
         this.hp = hp;
     }
-    
-    String attack() // Hacky solution
+    Rotter(long hp, long xp_drop)
     {
-        return super.attack(move_set);
+        this.hp = hp;
+        this.xp_drop = xp_drop;
+    }
+    
+    @Override
+    public long getHP()
+    {
+        return this.hp;
+    }
+    
+    @Override
+    public long getXPDrop()
+    {
+        return this.xp_drop;
+    }
+    @Override
+    public String[] getMoveSet()
+    {
+        return this.move_set;
     }
 }
