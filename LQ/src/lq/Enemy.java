@@ -25,6 +25,7 @@ public class Enemy
 {
     long hp;
     long xp_drop;
+    String name;
     String[] move_set;
     
     public void setHP(long hp)
@@ -43,6 +44,10 @@ public class Enemy
     {
         return this.move_set;
     }
+    public String getName()
+    {
+        return this.name;
+    }
     
     boolean isDead()
     {
@@ -54,9 +59,13 @@ public class Enemy
     }
     String attack()
     {
-        
-        return getMoveSet()[ThreadLocalRandom.current().nextInt(0, getMoveSet()
-            .length)];
+        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
+           getMoveSet().length)];
+       String[] dmg_seper = dmgWithName.split("_");
+       String dmg_name = dmg_seper[0];
+       long dmg = Long.parseLong(dmg_seper[1]);
+       LQOS.outDMG(getName(), dmg_name, dmg);
+       return dmgWithName;
     }
     long dropXP()
     {
@@ -71,15 +80,18 @@ public class Enemy
 class Rotter extends Enemy
 {
     long xp_drop = 11; // default xp_drop
+    String name = "Rotter ";
     String[] move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
-    Rotter(long hp)
+    Rotter(long count, long hp)
     {
+        this.name = name + count;
         this.hp = hp;
     }
-    Rotter(long hp, long xp_drop)
+    Rotter(long count, long hp, long xp_drop)
     {
+        this.name = name + count;
         this.hp = hp;
         this.xp_drop = xp_drop;
     }
@@ -99,5 +111,10 @@ class Rotter extends Enemy
     public String[] getMoveSet()
     {
         return this.move_set;
+    }
+    @Override
+    public String getName()
+    {
+        return this.name;
     }
 }
