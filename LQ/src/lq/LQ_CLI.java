@@ -35,7 +35,8 @@ public class LQ_CLI
     char lava = '-';
     char sign = '=';
     char labyrinth = 'L';
-    // Maps can only be 60 by 80
+    char item = 'i';
+    // Maps can only be 60 by 46
 }
 
 
