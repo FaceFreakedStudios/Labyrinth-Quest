@@ -26,6 +26,14 @@ public class Lucas
     private long xp;
     private Sword weapon = new mortifer(); // temp field
     private long strength = 0; // temp field
+    private long persuasion = 0; // temp field
+    private long ingenuity = 0; // temp field
+    private long luck = 0; // temp field
+    private long vitality = 0; // temp field
+    private long wisdom = 0; // temp field
+    private long endurance = 0; // temp field
+    private long immunity = 0; // temp field
+    
     public long position;
     
     Lucas(long hp, long ap)
