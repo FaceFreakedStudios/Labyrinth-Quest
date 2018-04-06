@@ -37,10 +37,12 @@ public class LQ
     public static void main(String[] args)
     {
         Lucas lucas = new Lucas(50, 60); // testing
-        Rotter rotter1 = new Rotter(15); // testing
+        Rotter rotter1 = new Rotter(0, 15); // testing
         convert(rotter1.attack());
         lucas.setHP(lucas.getHP() - dmg);
-        System.out.print(lucas.getHP());
+        LQOS.outDia("Old Man Jenkins", "Would you like to buy some gold?");
+//        System.out.println(lucas.getHP());
+//        System.out.print(rotter1.getHP());
         
     }
     
