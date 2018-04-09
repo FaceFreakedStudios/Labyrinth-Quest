@@ -22,12 +22,28 @@ package lq;
  */
 public class LQOS // Labyrinth Quest Output System
 {
+    
     public static void outDMG(String name, String dmg_name, long dmg)
     {
-        System.out.printf("\n%s: used %s, %d damage dealt", name, dmg_name, dmg);
+        System.out.printf("\n\u001B[1m%s\u001B[0m: used %s, "
+            + "\u001B[31m%d damage dealt\u001B[0m\n---", name, dmg_name, dmg);
     }
+    
     public static void outDia(String name, String dialog)
     {
-        System.out.printf("\n%s: %s", name, dialog);
+        System.out.printf("\n\u001B[1m%s\u001B[0m: %s"
+            + "\u001B[0m\n---", name, dialog);
+    }
+    
+    public static void outStat(String name, long stat_num, String stat_name)
+    {
+        System.out.printf("\n\u001B[1m%s\u001B[0m: now has "
+            + "\033[0;34m%d %s\u001B[0m\n---", name, stat_num, stat_name);
+    }
+    
+    public static void outGain(String name,long stat_num, String stat_name)
+    {
+        System.out.printf("\n\u001B[1m%s\u001B[0m: gained"
+            + " \033[0;34m%d %s\u001B[0m\n---", name, stat_num, stat_name);
     }
 }
