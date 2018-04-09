@@ -25,6 +25,7 @@ public class LQ
     /**
      * @param args the command line arguments
      */
+    
     public static String dmg_name;
     public static long dmg;
     public static void convert(String dmgWithName)
@@ -40,10 +41,7 @@ public class LQ
         Rotter rotter1 = new Rotter(0, 15); // testing
         convert(rotter1.attack());
         lucas.setHP(lucas.getHP() - dmg);
-        LQOS.outDia("Old Man Jenkins", "Would you like to buy some gold?");
-//        System.out.println(lucas.getHP());
-//        System.out.print(rotter1.getHP());
-        
+        rotter1.getHP();
     }
     
 }
