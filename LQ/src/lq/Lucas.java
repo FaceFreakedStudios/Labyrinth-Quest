@@ -15,6 +15,9 @@
  */
 package lq;
 
+import java.util.Map;
+import java.util.HashMap;
+
 /**
  *
  * @author gavin17
@@ -25,19 +28,20 @@ public class Lucas
     private long ap;
     private long xp;
     private Sword weapon = new mortifer(); // temp field
-    private long strength = 0; // temp field
-    private long persuasion = 0; // temp field
-    private long ingenuity = 0; // temp field
-    private long luck = 0; // temp field
-    private long vitality = 0; // temp field
-    private long wisdom = 0; // temp field
-    private long endurance = 0; // temp field
-    private long immunity = 0; // temp field
+    final private Map<String, Long> skills = new HashMap<>();
     
     public long position;
     
     Lucas(long hp, long ap)
     {
+        skills.put("Strength", 0L);
+        skills.put("Persuasion", 0L);
+        skills.put("Ingenuity", 0L);
+        skills.put("Luck", 0L);
+        skills.put("Vitality", 0L);
+        skills.put("Wisdom", 0L);
+        skills.put("Stamina", 0L);
+        skills.put("Immunity", 0L);
         this.hp = hp;
         this.ap = ap;
     }
@@ -85,6 +89,6 @@ public class Lucas
         {
             return 0;
         }
-        return weapon.slash(this.strength);
+        return weapon.slash(this.skills.get("Strength"));
     }
 }
