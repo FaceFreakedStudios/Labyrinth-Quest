@@ -34,6 +34,7 @@ public class Enemy
     }
     public long getHP()
     {
+        LQOS.outStat(name, hp, "HP");
         return this.hp;
     }
     public long getXPDrop()
@@ -59,7 +60,7 @@ public class Enemy
     }
     String attack()
     {
-        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
+       String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
            getMoveSet().length)];
        String[] dmg_seper = dmgWithName.split("_");
        String dmg_name = dmg_seper[0];
@@ -99,6 +100,7 @@ class Rotter extends Enemy
     @Override
     public long getHP()
     {
+        LQOS.outStat(name, hp, "HP");
         return this.hp;
     }
     
