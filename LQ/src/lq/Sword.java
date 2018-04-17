@@ -19,37 +19,71 @@ package lq;
  *
  * @author gavin17
  */
+
+
+
 public class Sword
-{
-   long thrust(long strength)
+{   
+   String[] move_names;
+   String sword_name;
+   
+   String getMoveName(int move_num)
    {
-       return strength;
+    
+       return move_names[move_num];
    }
-   long slash(long strength)
+   
+   String move0(long strength)
    {
-       return strength;
+       String dmg_apdrain = strength + "_0";
+       return dmg_apdrain;
    }
-   long special(long strength, long sw_special)
+   String move1(long strength)
    {
-       return strength + sw_special;
+       String dmg_apdrain = strength + "_0";
+       return dmg_apdrain;
+   }
+   String move2(long strength, long sw_special)
+   {
+       String dmg_apdrain = (strength + sw_special) + "_0";
+       return dmg_apdrain;
    }
 }
 
 class mortifer extends Sword
 {
-    @Override
-   long slash(long strength)
+   String[] move_names = {"Slash", "Thrust", "Special"};
+   String sword_name = "Mortifer";
+   
+   @Override
+   String getMoveName(int move_num)
    {
-       return strength + 12;
+       return move_names[move_num];
    }
    @Override
-   long thrust(long strength)
+   String move0(long strength)
    {
-       return strength + 12;
+       long dmg = strength + 4;
+       LQOS.outDMG("Lucas", move_names[0], dmg);
+       String dmg_apdrain = dmg + "_8";
+       return dmg_apdrain;
    }
+   
    @Override
-   long special(long strength, long sw_special)
+   String move1(long strength)
    {
-       return strength + sw_special;
+       long dmg = strength + 5;
+       LQOS.outDMG("Lucas", move_names[1], dmg);
+       String dmg_apdrain = dmg + "_8";
+       return dmg_apdrain;
+   }
+   
+   @Override
+   String move2(long strength, long sw_special)
+   {
+       long dmg = strength + sw_special;
+       LQOS.outDMG("Lucas", move_names[2], dmg);
+       String dmg_apdrain = dmg + "_10";
+       return dmg_apdrain;
    }
 }
