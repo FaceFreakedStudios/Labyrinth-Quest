@@ -40,10 +40,10 @@ public class LQOS // Labyrinth Quest Output System
         System.out.printf("\n\u001B[1m%s\u001B[0m: now has "
             + "\033[0;34m%d %s\u001B[0m\n---", name, stat_num, stat_name);
     }
-    
-    public static void outGain(String name,long stat_num, String stat_name)
+    public static void outDie(String name, long xp_drop)
     {
-        System.out.printf("\n\u001B[1m%s\u001B[0m: gained"
-            + " \033[0;34m%d %s\u001B[0m\n---", name, stat_num, stat_name);
+        System.out.printf("\n\u001B[1m%s\u001B[0m: died, \033[0;34m%d XP"
+            + "\u001B[0m dropped\n---", name, xp_drop);
     }
 }
+
