@@ -24,11 +24,23 @@ import java.util.HashMap;
  */
 public class Lucas
 {
-    private long hp;
-    private long ap;
-    private long xp;
+    
+    private long dmg, ap_drain, dmg_inflict;
+    
+    public void convertInfo(String infoWithName) // Seperates array info
+    {
+        String[] info_seper = infoWithName.split("_");
+        dmg = Long.parseLong(info_seper[0]);
+        ap_drain = Long.parseLong(info_seper[1]);
+    }
+    
+    private long hp, ap, xp;
+    private long positX, positY;
+    private long lvl_cap = 10;
+    private long xp_point = 0;
     private Sword weapon = new mortifer(); // temp field
-    final private Map<String, Long> skills = new HashMap<>();
+    public String name = "Lucas";
+    final private Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     public long position;
     
@@ -59,6 +71,7 @@ public class Lucas
     {
         if(this.ap <= 0)
         {
+            this.ap = 0; // So you don't have negative AP
             return true;
         }
         return false;
@@ -66,8 +79,26 @@ public class Lucas
     
     public void setHP(long hp)
     {
+        LQOS.outStat(name, hp, "HP");
         this.hp = hp;
     }
+    public void setXP(long xp)
+    {
+        LQOS.outStat(name, xp, "XP");
+        this.xp = xp;
+        if(this.xp < lvl_cap)
+        {
+            ++xp_point;
+            lvl_cap += 10;
+            LQOS.outStat("Lucas", xp_point, "XP point");
+        }
+    }
+    public void setAP(long ap)
+    {
+        LQOS.outStat(name, ap, "AP");
+        this.ap = ap;
+    }
+    
     public long getHP()
     {
         return this.hp;
@@ -82,13 +113,29 @@ public class Lucas
     {
         return this.xp;
     }
-    public long slash()
+    public long weapon(int attack)
     {
         this.ap -= 8;
-        if(noAP())
+        if(noAP()) // return no damage if no AP
         {
             return 0;
         }
-        return weapon.slash(this.skills.get("Strength"));
+        switch(attack)
+        {
+            case 0:
+                convertInfo(weapon.move0(skills.get("Strength"))); 
+                setAP(this.ap - ap_drain);
+                return dmg;
+            case 1:
+                convertInfo(weapon.move1(skills.get("Strength"))); 
+                setAP(this.ap - ap_drain);
+                return dmg;
+            case 2:
+                convertInfo(weapon.move2(skills.get("Strength"), 0)); 
+                setAP(this.ap - ap_drain);
+                return dmg;
+            case 3:
+            default: return 0;
+        }
     }
 }
