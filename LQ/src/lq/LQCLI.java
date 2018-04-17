@@ -52,7 +52,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
     {
         File map_file = new File(map_name); // Map to load
         Scanner map_scan = new Scanner(map_file);
-        char[][] map = new char[32][60]; // Map size limit
+        char[][] map = new char[31][59]; // Map size limit
         String map_row_temp = ""; 
         int row_count = 0, column_count = 0;
         while(map_scan.hasNextLine())
