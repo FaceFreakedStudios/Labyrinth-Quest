@@ -19,6 +19,10 @@ package lq;
  *
  * @author gavin17
  */
+
+import java.util.Scanner;
+import java.io.IOException;
+
 public class LQ
 {
 
@@ -28,20 +32,27 @@ public class LQ
     
     public static String dmg_name;
     public static long dmg;
-    public static void convert(String dmgWithName)
+    public static long ap_drain;
+    public static void convertEneDMG(String dmgWithName) // Seper. dmg and dmg name
     {
         String[] dmg_seper = dmgWithName.split("_");
         dmg_name = dmg_seper[0];
         dmg = Long.parseLong(dmg_seper[1]);
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         Lucas lucas = new Lucas(50, 60); // testing
-        Rotter rotter1 = new Rotter(0, 15); // testing
-        convert(rotter1.attack());
-        lucas.setHP(lucas.getHP() - dmg);
-        rotter1.getHP();
+        Rotter rotter1 = new Rotter(15); // testing
+        Scanner user_input = new Scanner(System.in);
+        while(!lucas.isDead())
+        {
+            System.out.println("");
+            int input = user_input.nextInt();
+            rotter1.setHP(lucas.weapon(input));
+            convertEneDMG(rotter1.attack());
+            lucas.setHP(lucas.getHP() - dmg);
+        }
     }
     
 }
