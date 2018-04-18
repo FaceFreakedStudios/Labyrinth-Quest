@@ -51,7 +51,7 @@ public class LQOS // Labyrinth Quest Output System (with sound)
             + "\u001B[0m dropped\n---", name, xp_drop);
     }
     
-    public static void outSound(String file_path, long flag) throws // only .wav
+    public static void outSound(String file_path, boolean flag) throws // only .wav
         UnsupportedAudioFileException, IOException,LineUnavailableException
     {
         File file = new File(file_path);
@@ -61,11 +61,11 @@ public class LQOS // Labyrinth Quest Output System (with sound)
         DataLine.Info info = new DataLine.Info(Clip.class, format);
         clip = (Clip) AudioSystem.getLine(info);
         clip.open(stream);
-        if(flag == 1) // on flag
+        if(flag) // on flag
         {
             clip.start();
         }
-        else if(flag == 0) // off flag
+        else // off flag
         {
             clip.close();
         }
