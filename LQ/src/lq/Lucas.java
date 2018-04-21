@@ -35,14 +35,12 @@ public class Lucas
     }
     
     private long hp, ap, xp;
-    private long positX, positY;
+    private int positX, positY;
     private long lvl_cap = 10;
     private long xp_point = 0;
     private Sword weapon = new mortifer(); // temp field
     public String name = "Lucas";
     final private Map<String, Long> skills = new HashMap<>(); // Skill tree
-    
-    public long position;
     
     Lucas(long hp, long ap)
     {
@@ -56,6 +54,17 @@ public class Lucas
         skills.put("Immunity", 0L);
         this.hp = hp;
         this.ap = ap;
+    }
+    
+    public boolean canMove(String[][] map, int x, int y)
+    {
+        switch(map[positX + x][positY + y])
+        {
+            case "#": return false;
+            case "~": return false;
+            case "-": return false;
+            default: return true;
+        }
     }
     
     public boolean isDead()
@@ -77,6 +86,14 @@ public class Lucas
         return false;
     }
     
+    public void move(String[][] map, int x, int y)
+    {
+        if(canMove(map, x, y))
+        {
+            this.positX += x;
+            this.positY += y;
+        }
+    }
     public void setHP(long hp)
     {
         LQOS.outStat(name, hp, "HP");
@@ -97,6 +114,17 @@ public class Lucas
     {
         LQOS.outStat(name, ap, "AP");
         this.ap = ap;
+    }
+    
+    public void upgradeSkill(String skill, long xp_points)
+    {
+        if(xp_points < xp_point)
+        {
+            LQOS.outError("Invalid number of XP points");
+        }
+        long upgraded = this.skills.get(skill);
+        this.skills.put(skill, upgraded);
+        LQOS.outStat("Lucas", this.skills.get(skill), skill);
     }
     
     public long getHP()
