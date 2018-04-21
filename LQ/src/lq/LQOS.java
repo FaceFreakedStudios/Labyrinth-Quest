@@ -50,6 +50,14 @@ public class LQOS // Labyrinth Quest Output System (with sound)
         System.out.printf("\n\u001B[1m%s\u001B[0m: died, \033[0;34m%d XP"
             + "\u001B[0m dropped\n---", name, xp_drop);
     }
+    public static void outError(String error)
+    {
+        System.out.printf("\n\\u001B[31m!!! %s !!!\\u001B[0m\n---", error);
+    }
+    public static void outAny(String anything)
+    {
+        System.out.printf("\n%s\n---", anything);
+    }
     
     public static void outSound(String file_path, boolean flag) throws // only .wav
         UnsupportedAudioFileException, IOException,LineUnavailableException
