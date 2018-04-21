@@ -48,23 +48,18 @@ class map_objects
 
 public class LQCLI // Labyrinth Quest Command Line Interface
 {
-    static char[][] fetchMap(String map_name) throws IOException
+    static String[][] fetchMap(String map_name) throws IOException
     {
         File map_file = new File(map_name); // Map to load
         Scanner map_scan = new Scanner(map_file);
-        char[][] map = new char[31][59]; // Map size limit
+        String[][] map = new String[31][59]; // Map size limit
         String map_row_temp = ""; 
         int row_count = 0, column_count = 0;
         while(map_scan.hasNextLine())
         {
             String line = map_scan.nextLine();
-            String[] map_row_str = line.split("!?^"); // Splits line by character
-            for(String map_square: map_row_str)
-            {
-                map_row_temp += map_square;
-            }
-            char[] map_row = map_row_temp.toCharArray(); // char array of row
-            for(char map_square: map_row) // Assigns map to char array
+            String[] map_row = line.split("!?^"); // Splits line by character
+            for(String map_square: map_row) // Assigns map to char array
             {
                 map[column_count][row_count] = map_square;
                 ++row_count;
