@@ -48,17 +48,23 @@ class map_objects
 
 public class LQCLI // Labyrinth Quest Command Line Interface
 {
-    static String[][] fetchMap(String map_name) throws IOException
+    public static void clearTerm() // Clears the terminal
+    {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
+    
+    // VVV fetchs a .map file and loads it as a 2d string array
+    public static String[][] fetchMap(String map_name) throws IOException
     {
         File map_file = new File(map_name); // Map to load
         Scanner map_scan = new Scanner(map_file);
-        String[][] map = new String[31][59]; // Map size limit
-        String map_row_temp = ""; 
+        String[][] map = new String[32][60]; // Map size limit
         int row_count = 0, column_count = 0;
         while(map_scan.hasNextLine())
         {
             String line = map_scan.nextLine();
-            String[] map_row = line.split("!?^"); // Splits line by character
+            String[] map_row = line.split("(?!^)"); // Splits line by character
             for(String map_square: map_row) // Assigns map to char array
             {
                 map[column_count][row_count] = map_square;
@@ -66,8 +72,30 @@ public class LQCLI // Labyrinth Quest Command Line Interface
             }
             ++column_count;
             row_count = 0;
-            map_row_temp = "";
         }
         return map;
+    }
+    
+    // VVV updates the map for character movement
+    public static String[][] updateMap(String[][] map, int positX, int positY)
+    {
+        map[positX][positY] = "@";
+        return map;
+    }
+    
+    // VVV converts 2d string array of map into a string representation
+    public static String stringMap(String[][] map)
+    {
+        LQCLI.clearTerm(); // Clears previous map
+        String map_str = "";
+        for(String[] map_row: map)
+        {
+            for(String map_sqaure: map_row)
+            {
+                map_str += map_sqaure;
+            }
+            map_str += "\n";
+        }
+        return map_str;
     }
 }
