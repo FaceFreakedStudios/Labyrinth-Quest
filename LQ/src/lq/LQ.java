@@ -22,6 +22,8 @@ package lq;
 
 import java.util.Scanner;
 import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class LQ
 {
@@ -43,15 +45,16 @@ public class LQ
     public static void main(String[] args) throws IOException
     {
         Lucas lucas = new Lucas(50, 60); // testing
-        Rotter rotter1 = new Rotter(15); // testing
+        String[][] temp_map;
         Scanner user_input = new Scanner(System.in);
         while(!lucas.isDead())
         {
-            System.out.println("");
-            int input = user_input.nextInt();
-            rotter1.setHP(lucas.weapon(input));
-            convertEneDMG(rotter1.attack());
-            lucas.setHP(lucas.getHP() - dmg);
+            String[][] map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/LQ/src/Maps/Town.map");
+            System.out.println("X: ");
+            int x = user_input.nextInt();
+            System.out.println("Y: ");
+            int y = user_input.nextInt();
+            System.out.print(LQCLI.stringMap(lucas.move(map, x, y)));
         }
     }
     
