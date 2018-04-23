@@ -86,13 +86,14 @@ public class Lucas
         return false;
     }
     
-    public void move(String[][] map, int x, int y)
+    public String[][] move(String[][] map,int x, int y)
     {
         if(canMove(map, x, y))
         {
             this.positX += x;
             this.positY += y;
         }
+        return LQCLI.updateMap(map, this.positX, this.positY);
     }
     public void setHP(long hp)
     {
