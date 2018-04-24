@@ -1,29 +1,10 @@
 TODO:
 * Save states as json
-* Stats, Damage, etc as just longs
-* Make gui framework using ASCII
-* Add creature superclass for basic hp etc?
-* Bare enemy class\
-* Message feed system with string formatting
-* Determine standard temrinal length/width
 * Make instances delete themselves if dead
-* independent enemy type count
-* Maybe give name option to constructor?
 * Colorize
 * Item drops for enemies???
 * Add map size exception?
 * Make --- green?
 * Make @ green?
 * Make sure no array Out of bounds index for movement
-
-
-How weapon attack works:
-
-Enemy_HP - (strength + weapon)
-
-specials are still being thought out
-
-just output a number instead of health - number
-
-
- 
+* Make github site
