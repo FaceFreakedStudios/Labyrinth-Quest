@@ -13,24 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lq;
+package com.freakfacestudios.app.lq;
 
 /**
  *
  * @author gavin17
  */
 
+
 import java.util.Scanner;
 import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import com.googlecode.lanterna.terminal.*;
 
 public class LQ
 {
-
-    /**
-     * @param args the command line arguments
-     */
     
     public static String dmg_name;
     public static long dmg;
@@ -42,19 +38,22 @@ public class LQ
         dmg = Long.parseLong(dmg_seper[1]);
     }
     
+    
     public static void main(String[] args) throws IOException
     {
+        DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
         Lucas lucas = new Lucas(50, 60); // testing
         String[][] temp_map;
         Scanner user_input = new Scanner(System.in);
         while(!lucas.isDead())
         {
-            String[][] map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/LQ/src/Maps/Town.map");
-            System.out.println("X: ");
-            int x = user_input.nextInt();
-            System.out.println("Y: ");
-            int y = user_input.nextInt();
-            System.out.print(LQCLI.stringMap(lucas.move(map, x, y)));
+            
+//            String[][] map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/LQ/src/Maps/Town.map");
+//            System.out.println("X: ");
+//            int x = user_input.nextInt();
+//            System.out.println("Y: ");
+//            int y = user_input.nextInt();
+//            System.out.print(LQCLI.stringMap(lucas.move(map, x, y)));
         }
     }
     

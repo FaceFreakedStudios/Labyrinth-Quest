@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lq;
+package com.freakfacestudios.app.lq;
 
 import java.util.concurrent.ThreadLocalRandom;
 
