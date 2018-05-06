@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.freakfacestudios.app.lq;
+package com.facefreakedstudios.app.lq;
 
 /**
  *
@@ -27,9 +27,9 @@ import java.io.File;
 
 public class LQOS // Labyrinth Quest Output System (with sound)
 {
-    
     public static void outDMG(String name, String dmg_name, long dmg)
     {
+        
         System.out.printf("\n\u001B[1m%s\u001B[0m: used %s, "
             + "\u001B[31m%d damage dealt\u001B[0m\n---", name, dmg_name, dmg);
     }
@@ -60,7 +60,7 @@ public class LQOS // Labyrinth Quest Output System (with sound)
     }
     
     public static void outSound(String file_path, boolean flag) throws // only .wav
-        UnsupportedAudioFileException, IOException,LineUnavailableException
+        UnsupportedAudioFileException, IOException, LineUnavailableException
     {
         File file = new File(file_path);
         Clip clip;
