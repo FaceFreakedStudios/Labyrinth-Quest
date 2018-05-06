@@ -52,7 +52,7 @@ public class LQOS // Labyrinth Quest Output System (with sound)
     }
     public static void outError(String error)
     {
-        System.out.printf("\n\\u001B[31m!!! %s !!!\\u001B[0m\n---", error);
+        System.out.printf("\n\u001B[31m!!! %s !!!\u001B[0m\n---", error);
     }
     public static void outAny(String anything)
     {
