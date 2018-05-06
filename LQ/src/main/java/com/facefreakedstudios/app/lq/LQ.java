@@ -15,6 +15,9 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import java.util.Scanner;
+import java.io.IOException;
+
 /**
  *
  * @author gavin17
@@ -35,8 +38,32 @@ public class LQ
     }
     
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
-        
+        Lucas lucas = new Lucas(50,50);
+        String[][] map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/LQ/src/main/resources/Maps/Town.map");
+        String updated_map;
+        while(true)
+        {
+            Scanner input = new Scanner(System.in);
+            String move = input.next();
+            switch(move)
+            {
+                case "w":
+                    updated_map = lucas.move(map, 0, +1);
+                    break;
+                case "s":
+                    updated_map = lucas.move(map, 0, -1);
+                    break;
+                case "d":
+                    updated_map = lucas.move(map, +1, 0);
+                    break;
+                case "a":
+                    updated_map = lucas.move(map, -1, 0);
+                    break;
+                default: break;
+            }
+            System.out.print(updated_map);
+        }
     }
 }
