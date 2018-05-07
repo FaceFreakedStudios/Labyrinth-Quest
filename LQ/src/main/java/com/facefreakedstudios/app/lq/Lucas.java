@@ -30,7 +30,7 @@ public class Lucas
     private int positX, positY;
     private long lvl_cap = 10;
     private long xp_point = 0;
-    private Sword weapon = new mortifer(); // temp field
+    private Sword weap = new mortifer(); // temp field
     public String name = "Lucas";
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
@@ -64,7 +64,6 @@ public class Lucas
         }
         return true;
     }
-    
     public boolean isDead()
     {
         if(this.hp <= 0)
@@ -73,7 +72,6 @@ public class Lucas
         }
         return false;
     }
-    
     public boolean noAP()
     {
         if(this.ap <= 0)
@@ -84,15 +82,6 @@ public class Lucas
         return false;
     }
     
-    public String move(String[][] map,int x, int y)
-    {
-        if(canMove(map, x, y))
-        {
-            this.positX += x;
-            this.positY += y;
-        }
-        return LQCLI.stringMap(LQCLI.updateMap(map, this.positX, this.positY));
-    }
     public void setHP(long hp)
     {
         LQOS.outStat(name, hp, "HP");
@@ -115,6 +104,35 @@ public class Lucas
         this.ap = ap;
     }
     
+    public void equipWeap(Sword weap)
+    {
+            this.weap = weap;
+    }
+    public void equipGuant(Gauntlets gaunt)
+    {
+        this.gaunt = gaunt;
+    }
+    public void equipHelm(Helmet helm)
+    {
+        this.helm = helm;
+    }
+    public void equipChest(ChestPlate chest)
+    {
+        this.helm = chest;
+    }
+    public void equipLeg(Leggings leg)
+    {
+        this.leg = leg;
+    }
+    public void equipGamb(Gambeson gamb)
+    {
+        this.gamb = gamb;
+    }
+    public void equipRing(Ring ring)
+    {
+        this.ring = ring;
+    }
+    
     public void upgradeSkill(String skill, long xp_points)
     {
         if(xp_points < xp_point)
@@ -130,17 +148,16 @@ public class Lucas
     {
         return this.hp;
     }
-    
     public long getAP()
     {
         return this.hp;
     }
-    
     public long getXP()
     {
         return this.xp;
     }
-    public long weapon(int attack)
+    
+    public long weap(int attack)
     {
         this.ap -= 8;
         if(noAP()) // return no damage if no AP
@@ -150,19 +167,29 @@ public class Lucas
         switch(attack)
         {
             case 0:
-                dmg_apdrain = weapon.move0(this); 
+                dmg_apdrain = weap.move0(this); 
                 setAP(this.ap - dmg_apdrain[1]); // 1 is the ap_drain
-                return dmg_apdrain[0]; // 0 is the weapon's damage
+                return dmg_apdrain[0]; // 0 is the weap's damage
             case 1:
-                dmg_apdrain = weapon.move1(this); 
+                dmg_apdrain = weap.move1(this); 
                 setAP(this.ap - dmg_apdrain[1]);
                 return dmg_apdrain[0];
             case 2:
-                dmg_apdrain = weapon.move2(this); 
+                dmg_apdrain = weap.move2(this); 
                 setAP(this.ap - dmg_apdrain[1]);
                 return dmg_apdrain[0];
             case 3:
             default: return 0;
         }
+    }
+    
+    public String move(String[][] map,int x, int y)
+    {
+        if(canMove(map, x, y))
+        {
+            this.positX += x;
+            this.positY += y;
+        }
+        return LQCLI.stringMap(LQCLI.updateMap(map, this.positX, this.positY));
     }
 }
