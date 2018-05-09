@@ -21,41 +21,56 @@ package com.facefreakedstudios.app.lq;
  */
 public class Equipment
 {
-    public class equipment
+    long condition = 200; // Starting condition       
+
+    public void setCondition(long condition)
     {
-        protected long condition = 200; // Starting condition
-        
-        equipment(long starting_condition)
+        if(broken())
         {
-            this.condition = starting_condition;
+            this.condition = -999;
         }
-        
-        public void setCondition(long condition)
+        else
         {
-            if(broken())
+            if(condition > 200)
             {
-                this.condition = -999;
+                this.condition = 200; // equip condition doesn't exceed 200
             }
             else
             {
-                if(condition > 200)
-                {
-                    this.condition = 200; // equip condition doesn't exceed 200
-                }
-                else
-                {
-                    this.condition = condition;
-                }
+                this.condition = condition;
             }
         }
-        
-        public boolean broken()
+    }
+
+    public boolean broken()
+    {
+        if(this.condition <= 0)
         {
-            if(this.condition <= 0)
-            {
-                return true;
-            }
-            return false;
+            return true;
         }
+        return false;
+    }
+}
+
+
+abstract class Helmet extends Equipment
+{
+    String type = "Helmet";
+}
+
+abstract class Ring extends Equipment
+{
+    String type = "Ring";
+}
+
+class wooden_helm extends Helmet
+{
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    public long getDefense()
+    {
+        return 5;
     }
 }
