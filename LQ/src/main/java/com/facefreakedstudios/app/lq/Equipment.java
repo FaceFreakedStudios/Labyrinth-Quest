@@ -74,3 +74,15 @@ class wooden_helm extends Helmet
         return 5;
     }
 }
+
+class bulk_ring extends Equipment
+{
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    public long getAbility() // Simple defense ring for testing
+    {
+        return 4;
+    }
+}
