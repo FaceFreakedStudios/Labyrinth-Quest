@@ -32,18 +32,33 @@ public class Lucas
     private long xp_point = 0;
     private Sword weap = new mortifer(); // temp field
     public String name = "Lucas";
+    final protected Map<String, Object> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap)
     { // Skills also have in game special effects (like lifting boulders)
         skills.put("Strength", 0L); // Attack power, Inventory weight
         skills.put("Persuasion", 0L); // Barter, Dialogue 
-        skills.put("Ingenuity", 0L); // Repair, Crafting, Brewing
+        skills.put("Ingenuity", 0L); // Repair, Crafting, Brewingname
         skills.put("Luck", 0L); // XP drops, Item pickups, Gambling
         skills.put("Vitality", 0L); // HP, HP regen
         skills.put("Wisdom", 0L); // Magic use, Magic strength, Potion effect
-        skills.put("Stamina", 0L); // AP, Walk dist, Run dist
+        skills.put("Endurance", 0L); // AP, Walk dist, Run dist
         skills.put("Immunity", 0L); // Poi, Fre, Drk, Frst, Phy and Bld damage
+        equipped.put("Ring0", null);
+        equipped.put("Ring1", null);
+        equipped.put("Helm", null);
+        equipped.put("Legs", null);
+        equipped.put("Gaunts", null);
+        equipped.put("Chest", null);
+        equipped.put("Weapon", null);
+        equipped.put("Weapon", null);
+        equipped.put("Sheild", null);
+        equipped.put("QI0", null); // QI stands for Quick Item
+        equipped.put("QI1", null);
+        equipped.put("QI2", null);
+        equipped.put("QI3", null);
+        equipped.put("QI4", null);
         this.hp = hp;
         this.ap = ap;
     }
@@ -103,36 +118,12 @@ public class Lucas
         LQOS.outStat(name, ap, "AP");
         this.ap = ap;
     }
-    
-    public void equipWeap(Sword weap)
+  
+    public void equip(String type, Object equipment)
     {
-            this.weap = weap;
+        equipped.put(type, equipment);
     }
-    public void equipGuant(Gauntlets gaunt)
-    {
-        this.gaunt = gaunt;
-    }
-    public void equipHelm(Helmet helm)
-    {
-        this.helm = helm;
-    }
-    public void equipChest(ChestPlate chest)
-    {
-        this.helm = chest;
-    }
-    public void equipLeg(Leggings leg)
-    {
-        this.leg = leg;
-    }
-    public void equipGamb(Gambeson gamb)
-    {
-        this.gamb = gamb;
-    }
-    public void equipRing(Ring ring)
-    {
-        this.ring = ring;
-    }
-    
+
     public void upgradeSkill(String skill, long xp_points)
     {
         if(xp_points < xp_point)
