@@ -28,22 +28,26 @@ import java.util.Scanner;
 class map_objects
 {
     // Dynamic:
-    char protag = '@';
-    char enemy = '!';
-    char npc = '?';
+    String protag = "@";
+    String enemy = "!";
+    String npc = "?";
     // Static:
-    char wall = '#';
-    char hole = 'o';
-    char ground = '.';
-    char empty = ' ';
-    char water = '~';
-    char store = '$';
-    char building = '^';
-    char trap = ',';
-    char lava = '-';
-    char sign = '=';
-    char labyrinth = 'L';
-    char item = 'i';
+    String hole = "o";
+    String ground = ".";
+    String empty = " ";
+    String store = "$";
+    String building = "^";
+    String trap = ",";
+    String sign = "=";
+    String labyrinth = "L";
+    String item = "i";
+    // Static Immovable:
+    String wall = "#";
+    String water = "~";
+    String lava = "-";
+    
+    
+    
 }
 
 public class LQCLI // Labyrinth Quest Command Line Interface
@@ -78,7 +82,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         while(map_scan.hasNextLine())
         {
             String[] map_row = map_scan.nextLine().trim().split("(?!^)");
-            for(String map_square: map_row) // Assigns map to char array
+            for(String map_square: map_row) // Assigns map to String array
             {
                 map[column_count][row_count] = map_square;
                 ++row_count;
@@ -89,7 +93,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         return map;
     }
     
-    // VVV updates the map for character movement
+    // VVV updates the map for Stringacter movement
     public static String[][] updateMap(String[][] map, int positX, int positY)
     {
         String[][] temp_map = map;
