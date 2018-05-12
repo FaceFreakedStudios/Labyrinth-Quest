@@ -54,6 +54,20 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         System.out.flush();  
     }
     
+    public static String[][] fetchMapData(String map_name) throws IOException
+    {
+        File data_file = new File(map_name);
+        Scanner data_scan = new Scanner(data_file);
+        String[][] map_data = new String[32][60];
+        String[] data;
+        while(data_scan.hasNextLine())
+        {
+            data = data_scan.nextLine().trim().split(":");
+            map_data[Integer.parseInt(data[0])][Integer.parseInt(data[1])] = data[2];
+        }
+        return map_data;
+    }
+    
     // VVV fetchs a .map file and loads it as a 2d string array
     public static String[][] fetchMap(String map_name) throws IOException
     {
@@ -63,8 +77,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         int row_count = 0, column_count = 0;
         while(map_scan.hasNextLine())
         {
-            String line = map_scan.nextLine();
-            String[] map_row = line.split("(?!^)"); // Splits line by character
+            String[] map_row = map_scan.nextLine().trim().split("(?!^)");
             for(String map_square: map_row) // Assigns map to char array
             {
                 map[column_count][row_count] = map_square;
