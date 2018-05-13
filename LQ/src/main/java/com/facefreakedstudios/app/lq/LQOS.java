@@ -24,6 +24,7 @@ package com.facefreakedstudios.app.lq;
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.File;
+import java.util.Scanner;
 
 public class LQOS // Labyrinth Quest Output System (with sound)
 {
@@ -77,6 +78,13 @@ public class LQOS // Labyrinth Quest Output System (with sound)
         {
             clip.close();
         }
+    }
+    
+    public static String outAsk(String question)
+    {
+        Scanner usr_in = new Scanner(System.in);
+        System.out.printf("\n\033[2;33m%s\n---", question);
+        return usr_in.nextLine();
     }
 }
 
