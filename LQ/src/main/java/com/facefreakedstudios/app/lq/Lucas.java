@@ -15,27 +15,29 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
-/**
+/*
  *
  * @author gavin17
  */
 public class Lucas
 {
-    
     private long[] dmg_apdrain;
     private long hp, ap, xp;
     private int positX, positY;
     private long lvl_cap = 10;
     private long xp_point = 0;
     private Sword weap = new mortifer(); // temp field
+    private String[][] map, map_data;
+    private String current_blk, current_blk_dat; // Current position on map
     public String name = "Lucas";
     final protected Map<String, Object> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
-    Lucas(long hp, long ap)
+    Lucas(long hp, long ap) throws IOException
     { // Skills also have in game special effects (like lifting boulders)
         skills.put("Strength", 0L); // Attack power, Inventory weight
         skills.put("Persuasion", 0L); // Barter, Dialogue 
@@ -59,6 +61,10 @@ public class Lucas
         equipped.put("QI2", null);
         equipped.put("QI3", null);
         equipped.put("QI4", null);
+        this.map_data = LQCLI.fetchMapData("/home/gavin17/Scripts/Java/"
+            + "Labyrinth-Quest/LQ/src/main/resources/Maps/Empty Grave.dat");
+        this.map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/"
+            + "LQ/src/main/resources/Maps/Empty Grave.map"); // starting map
         this.hp = hp;
         this.ap = ap;
     }
@@ -95,6 +101,17 @@ public class Lucas
             return true;
         }
         return false;
+    }
+    public boolean canEnter()
+    {
+        switch(current_blk)
+        {
+            case "o": return true;
+            case "L": return true;
+            case "^": return true;
+            case "$": return true;
+            default: return false;
+        }
     }
     
     public void setHP(long hp)
@@ -133,6 +150,21 @@ public class Lucas
         long upgraded = this.skills.get(skill);
         this.skills.put(skill, upgraded);
         LQOS.outStat("Lucas", this.skills.get(skill), skill);
+    }
+    
+    public void updateMapPosit()
+    {
+        current_blk = map[positX][positY];
+        current_blk_dat = map_data[positX][positY];
+    }
+  
+    public void enter() throws IOException
+    {
+        if(canEnter())
+        {
+            map = LQCLI.fetchMap(current_blk_dat);
+            map_data = LQCLI.fetchMapData(current_blk_dat);
+        }
     }
     
     public long getHP()
@@ -181,6 +213,7 @@ public class Lucas
             this.positX += x;
             this.positY += y;
         }
+        updateMapPosit(); // Map position updates with every movement
         return LQCLI.stringMap(LQCLI.updateMap(map, this.positX, this.positY));
     }
 }
