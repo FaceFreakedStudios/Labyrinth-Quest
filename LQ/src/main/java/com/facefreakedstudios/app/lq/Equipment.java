@@ -52,15 +52,29 @@ public class Equipment
     }
 }
 
-
+abstract class Weapon extends Equipment
+{
+    String type = "Weapon";
+}
 abstract class Helmet extends Equipment
 {
     String type = "Helmet";
 }
-
 abstract class Ring extends Equipment
 {
     String type = "Ring";
+}
+abstract class Leggings extends Equipment
+{
+    String type = "Leggings";
+}
+abstract class Gauntlets extends Equipment
+{
+    String type = "Gauntlets";
+}
+abstract class Chestplate extends Equipment
+{
+    String type = "Chestplate";
 }
 
 class wooden_helm extends Helmet
