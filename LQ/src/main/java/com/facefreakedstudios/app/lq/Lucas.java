@@ -113,6 +113,17 @@ public class Lucas
             default: return false;
         }
     }
+    public boolean canRead()
+    {
+        if(current_blk == "=")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     
     public void setHP(long hp)
     {
@@ -164,6 +175,22 @@ public class Lucas
         {
             map = LQCLI.fetchMap(current_blk_dat);
             map_data = LQCLI.fetchMapData(current_blk_dat);
+        }
+        else
+        {
+            LQOS.outError("Not an enterable block");
+        }
+    }
+    
+    public void read()
+    {
+        if(canRead())
+        {
+            LQOS.outAny(current_blk_dat);
+        }
+        else
+        {
+            LQOS.outError("Not a readable block");
         }
     }
     
