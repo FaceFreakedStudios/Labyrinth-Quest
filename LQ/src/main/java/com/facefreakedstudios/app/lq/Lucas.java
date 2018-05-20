@@ -30,7 +30,7 @@ public class Lucas
     private int positX, positY;
     private long lvl_cap = 10;
     private long xp_point = 0;
-    private Sword weap = new mortifer(); // temp field
+    private Weapon weap = new mortifer(); // temp field
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     public String name = "Lucas";
@@ -115,7 +115,7 @@ public class Lucas
     }
     public boolean canRead()
     {
-        if(current_blk == "=")
+        if(current_blk.equals("="))
         {
             return true;
         }
