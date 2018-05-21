@@ -217,7 +217,7 @@ public class Lucas
         switch(attack)
         {
             case 0:
-                dmg_apdrain = weap.move0(this); 
+                dmg_apdrain = weap.move0(this);
                 setAP(this.ap - dmg_apdrain[1]); // 1 is the ap_drain
                 return dmg_apdrain[0]; // 0 is the weap's damage
             case 1:
