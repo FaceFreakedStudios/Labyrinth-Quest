@@ -55,30 +55,67 @@ public class Equipment
 abstract class Weapon extends Equipment
 {
     String type = "Weapon";
+    
+    
+    Long getCondition()
+    {
+        return null;
+    }
+    String getName()
+    {
+        return null;
+    }
+    
+    String getMoveName(int move_num)
+   {
+       return null;
+   }
+ 
+   long[] move0(Lucas lucas)
+   {
+       return null;
+   }
+   
+   long[] move1(Lucas lucas)
+   {
+       return null;
+   }
+   
+   long[] move2(Lucas lucas)
+   {
+       return null;
+   }
 }
 abstract class Helmet extends Equipment
 {
     String type = "Helmet";
+    
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    public Long getDefense()
+    {
+        return null;
+    }
 }
 abstract class Ring extends Equipment
 {
     String type = "Ring";
+    
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    public long getAbility()
+    {
+        return 5;
+    }
 }
 abstract class Leggings extends Equipment
 {
     String type = "Leggings";
-}
-abstract class Gauntlets extends Equipment
-{
-    String type = "Gauntlets";
-}
-abstract class Chestplate extends Equipment
-{
-    String type = "Chestplate";
-}
-
-class wooden_helm extends Helmet
-{
+    
     public long getCondition()
     {
         return this.condition;
@@ -88,15 +125,108 @@ class wooden_helm extends Helmet
         return 5;
     }
 }
-
-class bulk_ring extends Equipment
+abstract class Gauntlets extends Equipment
 {
+    String type = "Gauntlets";
+    
     public long getCondition()
     {
         return this.condition;
     }
+    public long getDefense()
+    {
+        return 5;
+    }
+}
+abstract class Chestplate extends Equipment
+{
+    String type = "Chestplate";
+    
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    
+    public long getDefense()
+    {
+        return 5;
+    }
+}
+
+class wooden_helm extends Helmet
+{
+    @Override
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    @Override
+    public Long getDefense()
+    {
+        return 5L;
+    }
+}
+
+class bulk_ring extends Ring
+{
+    @Override
+    public long getCondition()
+    {
+        return this.condition;
+    }
+    @Override
     public long getAbility() // Simple defense ring for testing
     {
         return 4;
     }
+}
+
+class mortifer extends Weapon
+{
+   String[] move_names = {"Slash", "Thrust", "Special"};
+   String name = "Mortifer";
+   
+   @Override
+    Long getCondition()
+    {
+        return this.condition;
+    }
+   @Override
+   String getName()
+   {
+       return this.name;
+   }
+   
+   @Override
+   String getMoveName(int move_num)
+   {
+       return this.move_names[move_num];
+   }
+ 
+   @Override
+   long[] move0(Lucas lucas)
+   {
+       long dmg = lucas.skills.get("Strength") + 4;
+       LQOS.outDMG("Lucas", move_names[0], dmg);
+       long[] dmg_apdrain = {dmg ,8L};
+       return dmg_apdrain;
+   }
+   
+   @Override
+   long[] move1(Lucas lucas)
+   {
+       long dmg =  lucas.skills.get("Strength") + 5;
+       LQOS.outDMG("Lucas", move_names[1], dmg);
+       long[] dmg_apdrain = {dmg, 8L};
+       return dmg_apdrain;
+   }
+   
+   @Override
+   long[] move2(Lucas lucas)
+   {
+       long dmg = lucas.skills.get("Strength") + 0L;
+       LQOS.outDMG("Lucas", move_names[2], dmg);
+       long[] dmg_apdrain = {dmg, 10};
+       return dmg_apdrain;
+   }
 }
