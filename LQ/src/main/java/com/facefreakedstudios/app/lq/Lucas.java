@@ -33,6 +33,7 @@ public class Lucas
     private Weapon weap = new mortifer(); // temp field
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
+    private Enemy targ;
     public String name = "Lucas";
     final protected Map<String, Object> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
@@ -146,6 +147,10 @@ public class Lucas
         LQOS.outStat(name, ap, "AP");
         this.ap = ap;
     }
+    public void setTarg(Enemy ene)
+    {
+        this.targ = ene;
+    }
   
     public void equip(String type, Object equipment)
     {
@@ -206,30 +211,34 @@ public class Lucas
     {
         return this.xp;
     }
+    public Enemy getTarg()
+    {
+        return this.targ;
+    }
     
-    public long weap(int attack)
+    public void attack(int atk)
     {
         this.ap -= 8;
         if(noAP()) // return no damage if no AP
         {
-            return 0;
+            targ.setHP(targ.getHP() - 0);
         }
-        switch(attack)
+        switch(atk)
         {
             case 0:
                 dmg_apdrain = weap.move0(this);
                 setAP(this.ap - dmg_apdrain[1]); // 1 is the ap_drain
-                return dmg_apdrain[0]; // 0 is the weap's damage
+                targ.setHP(targ.getHP() - dmg_apdrain[0]); // 0 is the weap's damage
             case 1:
                 dmg_apdrain = weap.move1(this); 
                 setAP(this.ap - dmg_apdrain[1]);
-                return dmg_apdrain[0];
+                targ.setHP(targ.getHP() - dmg_apdrain[0]);
             case 2:
                 dmg_apdrain = weap.move2(this); 
                 setAP(this.ap - dmg_apdrain[1]);
-                return dmg_apdrain[0];
+                targ.setHP(targ.getHP() - dmg_apdrain[0]);
             case 3:
-            default: return 0;
+            default: targ.setHP(targ.getHP() - 0);
         }
     }
     
