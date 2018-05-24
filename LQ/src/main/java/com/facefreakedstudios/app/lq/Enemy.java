@@ -58,7 +58,7 @@ public class Enemy
         }
         return false;
     }
-    String attack()
+    void attack(Lucas lucas)
     {
        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
            getMoveSet().length)]; // Call a random move
@@ -66,7 +66,7 @@ public class Enemy
        String dmg_name = dmg_seper[0];
        long dmg = Long.parseLong(dmg_seper[1]);
        LQOS.outDMG(getName(), dmg_name, dmg);
-       return dmgWithName;
+       lucas.setHP(lucas.getHP() - dmg);
     }
     long dropXP()
     {
