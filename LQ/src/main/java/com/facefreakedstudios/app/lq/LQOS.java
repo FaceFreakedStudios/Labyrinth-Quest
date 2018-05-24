@@ -86,5 +86,17 @@ public class LQOS // Labyrinth Quest Output System (with sound)
         System.out.printf("\n\033[2;33m%s\n---", question);
         return usr_in.nextLine();
     }
+    public static void outLucas(Lucas lucas) throws IOException
+    {
+       Scanner usr_in = new Scanner(System.in);
+       switch(usr_in.nextLine())
+       {
+           case "read": lucas.read();
+           case "attack":
+               lucas.attack(usr_in.nextInt());
+           case "enter": lucas.enter();
+           case "equip":
+       }
+    }
 }
 
