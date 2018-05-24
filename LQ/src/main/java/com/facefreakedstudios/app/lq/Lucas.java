@@ -18,6 +18,7 @@ package com.facefreakedstudios.app.lq;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /*
  *
@@ -35,6 +36,7 @@ public class Lucas
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
     public String name = "Lucas";
+    final protected ArrayList<Object> inventory = new ArrayList<>();
     final protected Map<String, Object> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
@@ -150,6 +152,10 @@ public class Lucas
     public void setTarg(Enemy ene)
     {
         this.targ = ene;
+    }
+    public void addInventory(Object object)
+    {
+        this.inventory.add(object);
     }
   
     public void equip(String type, Object equipment)
