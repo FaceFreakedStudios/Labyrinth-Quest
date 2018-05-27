@@ -72,7 +72,7 @@ public class Lucas
         this.ap = ap;
     }
     
-    public boolean canMove(String[][] map, int x, int y)
+    public boolean canMove(int x, int y)
     {
         switch(map[positX + x][positY + y])
         {
@@ -248,9 +248,9 @@ public class Lucas
         }
     }
     
-    public String move(String[][] map,int x, int y)
+    public String move(int x, int y)
     {
-        if(canMove(map, x, y))
+        if(canMove(x, y))
         {
             this.positX += x;
             this.positY += y;
