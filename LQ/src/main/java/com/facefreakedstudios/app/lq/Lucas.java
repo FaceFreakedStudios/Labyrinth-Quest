@@ -35,6 +35,7 @@ public class Lucas
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
+    private long inv_weight = 20;
     public String name = "Lucas";
     final protected ArrayList<Object> inventory = new ArrayList<>();
     final protected Map<String, Object> equipped = new HashMap<>();
@@ -60,7 +61,7 @@ public class Lucas
         equipped.put("Weapon", null);
         equipped.put("Sheild", null);
         equipped.put("QI0", null); // QI stands for Quick Item
-        equipped.put("QI1", null);
+        equipped.put("QI1", null); // QIs are mapped to the keyboard
         equipped.put("QI2", null);
         equipped.put("QI3", null);
         equipped.put("QI4", null);
@@ -172,8 +173,13 @@ public class Lucas
         long upgraded = this.skills.get(skill);
         this.skills.put(skill, upgraded);
         LQOS.outStat("Lucas", this.skills.get(skill), skill);
+        updateSkills();
     }
     
+    public void updateSkills()
+    {
+        this.inv_weight += skills.get("Strength") * 2 % 2; // revist system
+    }
     public void updateMapPosit()
     {
         current_blk = map[positX][positY];
