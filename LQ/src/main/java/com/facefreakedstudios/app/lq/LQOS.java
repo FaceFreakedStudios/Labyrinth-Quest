@@ -97,7 +97,10 @@ public class LQOS // Labyrinth Quest Output System (with sound)
            case "enter": lucas.enter();
            case "upgrade": lucas.upgradeSkill(usr_in.nextLine(), usr_in.nextInt());
            case "move": lucas.move(usr_in.nextInt(), usr_in.nextInt());
-//           case "equip": lucas.equip(usr_in.nextLine(), );
+           case "equip": 
+               equipment_map equip_map = new equipment_map();
+               String to_equip = usr_in.nextLine();
+               lucas.equip(to_equip, equip_map.emap.get(to_equip));
 //           case "bag":
        }
     }
