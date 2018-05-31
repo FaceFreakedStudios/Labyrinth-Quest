@@ -45,25 +45,7 @@ public class LQ
         String updated_map;
         while(true)
         {
-            Scanner input = new Scanner(System.in);
-            String move = input.next();
-            switch(move)
-            {
-                case "w":
-                    updated_map = lucas.move(map, 0, +1);
-                    break;
-                case "s":
-                    updated_map = lucas.move(map, 0, -1);
-                    break;
-                case "d":
-                    updated_map = lucas.move(map, +1, 0);
-                    break;
-                case "a":
-                    updated_map = lucas.move(map, -1, 0);
-                    break;
-                default: break;
-            }
-            System.out.print(updated_map);
+            LQOS.outLucas(lucas);
         }
     }
 }
