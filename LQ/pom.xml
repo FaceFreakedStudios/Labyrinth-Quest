@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>facefreakedstudios</groupId>
-  <artifactId>Labyrinth-Quest_v0_2.jar</artifactId>
+  <artifactId>Labyrinth-Quest_v0_3.jar</artifactId>
   <packaging>jar</packaging>
-  <version>0.2-SNAPSHOT</version>
+  <version>0.3-SNAPSHOT</version>
   <name>Labyrinth-Quest</name>
   <url>https://github.com/GavinDes/Labyrinth-Quest</url>
   <description> Work in progress rouge-like for the terminal. </description>
