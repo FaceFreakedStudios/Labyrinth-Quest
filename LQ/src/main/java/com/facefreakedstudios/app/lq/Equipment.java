@@ -44,7 +44,12 @@ public class Equipment extends Weighted
             }
         }
     }
-
+    
+    public Long getCondition()
+    {
+        return null;
+    }
+    
     public boolean broken()
     {
         if(this.condition <= 0)
@@ -58,15 +63,6 @@ public class Equipment extends Weighted
 abstract class Weapon extends Equipment
 {
     String type = "Weapon";
-    
-    Long getCondition()
-    {
-        return null;
-    }
-    String getName()
-    {
-        return null;
-    }
     
     String getMoveName(int move_num)
    {
@@ -91,11 +87,7 @@ abstract class Weapon extends Equipment
 abstract class Helmet extends Equipment
 {
     String type = "Helmet";
-    
-    public long getCondition()
-    {
-        return this.condition;
-    }
+
     public Long getDefense()
     {
         return null;
@@ -105,10 +97,6 @@ abstract class Ring extends Equipment
 {
     String type = "Ring";
     
-    public long getCondition()
-    {
-        return this.condition;
-    }
     public Long Ability()
     {
         return null;
@@ -118,10 +106,6 @@ abstract class Leggings extends Equipment
 {
     String type = "Leggings";
     
-    public long getCondition()
-    {
-        return this.condition;
-    }
     public Long getDefense()
     {
         return null;
@@ -131,10 +115,6 @@ abstract class Gauntlets extends Equipment
 {
     String type = "Gauntlets";
     
-    public long getCondition()
-    {
-        return this.condition;
-    }
     public Long getDefense()
     {
         return null;
@@ -144,10 +124,6 @@ abstract class Chestplate extends Equipment
 {
     String type = "Chestplate";
     
-    public long getCondition()
-    {
-        return this.condition;
-    }
     public Long getDefense()
     {
         return null;
@@ -165,7 +141,7 @@ class wooden_helm extends Helmet
         return this.weight;
     }
     @Override
-    public long getCondition()
+    public Long getCondition()
     {
         return this.condition;
     }
@@ -187,7 +163,7 @@ class bulk_ring extends Ring
         return this.weight;
     }
     @Override
-    public long getCondition()
+    public Long getCondition()
     {
         return this.condition;
     }
@@ -209,16 +185,11 @@ class mortifer extends Weapon
     {
         return this.weight;
     }
-   @Override
+    @Override
     public Long getCondition()
     {
         return this.condition;
     }
-   @Override
-   public String getName()
-   {
-       return this.name;
-   }
    
    @Override
    public String getMoveName(int move_num)
