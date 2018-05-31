@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author gavin17
  */
-public class Equipment
+public class Equipment extends Weighted
 {
     long condition = 200; // Starting condition       
 
@@ -59,10 +59,6 @@ abstract class Weapon extends Equipment
 {
     String type = "Weapon";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     Long getCondition()
     {
         return null;
@@ -96,10 +92,6 @@ abstract class Helmet extends Equipment
 {
     String type = "Helmet";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     public long getCondition()
     {
         return this.condition;
@@ -113,10 +105,6 @@ abstract class Ring extends Equipment
 {
     String type = "Ring";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     public long getCondition()
     {
         return this.condition;
@@ -130,10 +118,6 @@ abstract class Leggings extends Equipment
 {
     String type = "Leggings";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     public long getCondition()
     {
         return this.condition;
@@ -147,10 +131,6 @@ abstract class Gauntlets extends Equipment
 {
     String type = "Gauntlets";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     public long getCondition()
     {
         return this.condition;
@@ -164,10 +144,6 @@ abstract class Chestplate extends Equipment
 {
     String type = "Chestplate";
     
-    public Long getWeight()
-    {
-        return null;
-    }
     public long getCondition()
     {
         return this.condition;
