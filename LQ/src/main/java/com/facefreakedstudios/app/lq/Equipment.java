@@ -59,7 +59,10 @@ abstract class Weapon extends Equipment
 {
     String type = "Weapon";
     
-    
+    public Long getWeight()
+    {
+        return null;
+    }
     Long getCondition()
     {
         return null;
@@ -93,6 +96,10 @@ abstract class Helmet extends Equipment
 {
     String type = "Helmet";
     
+    public Long getWeight()
+    {
+        return null;
+    }
     public long getCondition()
     {
         return this.condition;
@@ -106,60 +113,81 @@ abstract class Ring extends Equipment
 {
     String type = "Ring";
     
+    public Long getWeight()
+    {
+        return null;
+    }
     public long getCondition()
     {
         return this.condition;
     }
-    public long getAbility()
+    public Long Ability()
     {
-        return 5;
+        return null;
     }
 }
 abstract class Leggings extends Equipment
 {
     String type = "Leggings";
     
+    public Long getWeight()
+    {
+        return null;
+    }
     public long getCondition()
     {
         return this.condition;
     }
-    public long getDefense()
+    public Long getDefense()
     {
-        return 5;
+        return null;
     }
 }
 abstract class Gauntlets extends Equipment
 {
     String type = "Gauntlets";
     
+    public Long getWeight()
+    {
+        return null;
+    }
     public long getCondition()
     {
         return this.condition;
     }
-    public long getDefense()
+    public Long getDefense()
     {
-        return 5;
+        return null;
     }
 }
 abstract class Chestplate extends Equipment
 {
     String type = "Chestplate";
     
+    public Long getWeight()
+    {
+        return null;
+    }
     public long getCondition()
     {
         return this.condition;
     }
-    
-    public long getDefense()
+    public Long getDefense()
     {
-        return 5;
+        return null;
     }
 }
 
 class wooden_helm extends Helmet
 {
     String name = "Wooden Helmet";
+    long weight = 4;
     
+    @Override
+    public Long getWeight()
+    {
+        return this.weight;
+    }
     @Override
     public long getCondition()
     {
@@ -175,16 +203,22 @@ class wooden_helm extends Helmet
 class bulk_ring extends Ring
 {
     String name = "Bulk Ring";
+    long weight = 1;
     
+    @Override
+    public Long getWeight()
+    {
+        return this.weight;
+    }
     @Override
     public long getCondition()
     {
         return this.condition;
     }
     @Override
-    public long getAbility() // Simple defense ring for testing
+    public Long Ability() // Simple defense ring for testing
     {
-        return 4;
+        return 4L;
     }
 }
 
@@ -192,20 +226,26 @@ class mortifer extends Weapon
 {
    String[] move_names = {"Slash", "Thrust", "Special"};
    String name = "Mortifer";
+   long weight = 8;
    
    @Override
-    Long getCondition()
+    public Long getWeight()
+    {
+        return this.weight;
+    }
+   @Override
+    public Long getCondition()
     {
         return this.condition;
     }
    @Override
-   String getName()
+   public String getName()
    {
        return this.name;
    }
    
    @Override
-   String getMoveName(int move_num)
+   public String getMoveName(int move_num)
    {
        return this.move_names[move_num];
    }
