@@ -37,7 +37,7 @@ public class Lucas
     private Enemy targ;
     private long inv_weight = 20;
     public String name = "Lucas";
-    final protected ArrayList<Object> inventory = new ArrayList<>();
+    final protected ArrayList<Weighted> inventory = new ArrayList<>();
     final protected Map<String, Object> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
@@ -154,9 +154,16 @@ public class Lucas
     {
         this.targ = ene;
     }
-    public void addInventory(Object object)
+    public void addInventory(Weighted object)
     {
-        this.inventory.add(object);
+        if(findInventoryWeight() < inv_weight)
+        {
+            this.inventory.add(object);
+        }
+        else
+        {
+            LQOS.outError("Reached max inventory weight");
+        }
     }
   
     public void equip(String type, Object equipment)
@@ -223,6 +230,17 @@ public class Lucas
     {
         return this.xp;
     }
+    
+    public long findInventoryWeight()
+    {
+        long total_weight = 0;
+        for(Weighted obj: inventory)
+        {
+            total_weight += obj.getWeight();
+        }
+        return total_weight;
+    }
+    
     public Enemy getTarg()
     {
         return this.targ;
