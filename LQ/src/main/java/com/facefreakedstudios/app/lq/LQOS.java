@@ -28,6 +28,12 @@ import java.util.Scanner;
 
 public class LQOS // Labyrinth Quest Output System (with sound)
 {
+    
+    public static void outPrompt(String prompt)
+    {
+        System.out.printf("\u001B[32m%s: ", prompt);
+    }
+    
     public static void outDMG(String name, String dmg_name, long dmg)
     {
         
@@ -93,12 +99,24 @@ public class LQOS // Labyrinth Quest Output System (with sound)
        {
            case "read": lucas.read();
            case "attack":
+               LQOS.outPrompt("Attack");
                lucas.attack(usr_in.nextInt());
            case "enter": lucas.enter();
-           case "upgrade": lucas.upgradeSkill(usr_in.nextLine(), usr_in.nextInt());
-           case "move": lucas.move(usr_in.nextInt(), usr_in.nextInt());
+           case "upgrade":
+               LQOS.outPrompt("Skill");
+               String skill = usr_in.nextLine();
+               LQOS.outPrompt("Points");
+               long points = usr_in.nextLong();
+               lucas.upgradeSkill(skill, points);
+           case "move":
+               LQOS.outPrompt("X");
+               int x = usr_in.nextInt();
+               LQOS.outPrompt("Y");
+               int y = usr_in.nextInt();
+               lucas.move(x, y);
            case "equip": 
                equipment_map equip_map = new equipment_map();
+               LQOS.outPrompt("Equip");
                String to_equip = usr_in.nextLine();
                lucas.equip(to_equip, equip_map.emap.get(to_equip));
 //           case "bag":
