@@ -15,9 +15,6 @@
  */
 package com.facefreakedstudios.app.lq;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author gavin17
@@ -223,20 +220,4 @@ class mortifer extends Weapon
        long[] dmg_apdrain = {dmg, 10};
        return dmg_apdrain;
    }
-}
-
-class equipment_map
-{
-    // Initializing equipment
-    wooden_helm helm0 = new wooden_helm();
-    bulk_ring ring0 = new bulk_ring();
-    mortifer weap0 = new mortifer();
-    
-    final Map<String, Equipment> emap = new HashMap<>();
-    equipment_map()
-    {
-        emap.put(helm0.name, helm0);
-        emap.put(ring0.name, ring0);
-        emap.put(weap0.name, weap0);
-    }
 }
