@@ -58,7 +58,9 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         System.out.flush();  
     }
     
-    public static String[][] fetchMapData(String map_name) throws IOException
+    // VVV fetchs a map's .dat file and maps its data to its .map file
+    public static String[][] fetchMapData(Lucas lucas, String map_name) 
+        throws IOException
     {
         File data_file = new File(map_name);
         Scanner data_scan = new Scanner(data_file);
@@ -67,7 +69,13 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         while(data_scan.hasNextLine())
         {
             data = data_scan.nextLine().trim().split(":");
-            map_data[Integer.parseInt(data[0])][Integer.parseInt(data[1])] = data[2];
+            map_data[Integer.parseInt(data[0])]
+                [Integer.parseInt(data[1])] = data[2]; // Maps data to 2D array
+            if(data[2].equals("*")) // Searchs for spawn point if one
+            {
+                lucas.move(Integer.parseInt(data[0]),
+                    Integer.parseInt(data[1])); // sets spawn point
+            }
         }
         return map_data;
     }
