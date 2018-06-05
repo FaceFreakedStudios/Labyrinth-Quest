@@ -18,7 +18,6 @@ package com.facefreakedstudios.app.lq;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.ArrayList;
 
 /*
  *
@@ -31,14 +30,14 @@ public class Lucas
     private int positX, positY;
     private long lvl_cap = 10;
     private long xp_point = 0;
-    private Weapon weap = new mortifer(); // temp field
+    private final Weapon weap = new mortifer(); // temp field
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
     private long inv_weight = 20;
     public String name = "Lucas";
-    final protected ArrayList<Weighted> inventory = new ArrayList<>();
-    final protected Map<String, Object> equipped = new HashMap<>();
+    final protected Map<String, Weighted> inventory = new HashMap<>();
+    final protected Map<String, Weighted> equipped = new HashMap<>();
     final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap) throws IOException
@@ -154,11 +153,11 @@ public class Lucas
     {
         this.targ = ene;
     }
-    public void addInventory(Weighted object)
+    public void addInventory(Weighted obj)
     {
         if(findInventoryWeight() < inv_weight)
         {
-            this.inventory.add(object);
+            this.inventory.put(obj.getName(),obj);
         }
         else
         {
@@ -166,7 +165,7 @@ public class Lucas
         }
     }
   
-    public void equip(String type, Object equipment)
+    public void equip(String type, Weighted equipment)
     {
         equipped.put(type, equipment);
     }
@@ -234,8 +233,9 @@ public class Lucas
     public long findInventoryWeight()
     {
         long total_weight = 0;
-        for(Weighted obj: inventory)
+        for(Map.Entry<String, Weighted> entry : inventory.entrySet()) 
         {
+            Weighted obj = entry.getValue();
             total_weight += obj.getWeight();
         }
         return total_weight;
