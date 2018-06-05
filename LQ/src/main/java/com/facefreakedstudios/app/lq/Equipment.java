@@ -27,7 +27,7 @@ public class Equipment extends Weighted
     {
         if(broken())
         {
-            this.condition = -999;
+            this.condition = 0;
         }
         else
         {
