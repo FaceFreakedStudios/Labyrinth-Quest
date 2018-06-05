@@ -57,17 +57,12 @@ public class Lucas
         equipped.put("Gaunts", null);
         equipped.put("Chest", null);
         equipped.put("Weapon", null);
-        equipped.put("Weapon", null);
         equipped.put("Sheild", null);
         equipped.put("QI0", null); // QI stands for Quick Item
         equipped.put("QI1", null); // QIs are mapped to the keyboard
         equipped.put("QI2", null);
         equipped.put("QI3", null);
         equipped.put("QI4", null);
-        this.map_data = LQCLI.fetchMapData("/home/gavin17/Scripts/Java/"
-            + "Labyrinth-Quest/LQ/src/main/resources/Maps/Empty Grave.dat");
-        this.map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/"
-            + "LQ/src/main/resources/Maps/Empty Grave.map"); // starting map
         this.hp = hp;
         this.ap = ap;
     }
@@ -197,7 +192,7 @@ public class Lucas
         if(canEnter())
         {
             map = LQCLI.fetchMap(current_blk_dat);
-            map_data = LQCLI.fetchMapData(current_blk_dat);
+            map_data = LQCLI.fetchMapData(this, current_blk_dat);
         }
         else
         {
