@@ -29,6 +29,8 @@ import java.util.Scanner;
 public class LQOS // Labyrinth Quest Output System (with sound)
 {
     
+    static Item_Map item_map = new Item_Map();
+    
     public static void outPrompt(String prompt)
     {
         System.out.printf("\u001B[32m%s: ", prompt);
@@ -115,11 +117,17 @@ public class LQOS // Labyrinth Quest Output System (with sound)
                int y = usr_in.nextInt();
                lucas.move(x, y);
            case "equip": 
-               equipment_map equip_map = new equipment_map();
                LQOS.outPrompt("Equip");
                String to_equip = usr_in.nextLine();
-               lucas.equip(to_equip, equip_map.emap.get(to_equip));
-//           case "bag":
+               Weighted to_equip_obj = item_map.imap.get(to_equip);
+               if(lucas.inventory.containsValue(to_equip_obj))
+               {
+                   lucas.equip(to_equip, to_equip_obj);
+               }
+               else
+               {
+                   LQOS.outError("Item not in inventory");
+               }
        }
     }
 }
