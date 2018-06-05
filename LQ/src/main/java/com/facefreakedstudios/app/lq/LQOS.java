@@ -40,32 +40,32 @@ public class LQOS // Labyrinth Quest Output System (with sound)
     {
         
         System.out.printf("\n\u001B[1m%s\u001B[0m: used %s, "
-            + "\u001B[31m%d damage dealt\u001B[0m\n---", name, dmg_name, dmg);
+            + "\u001B[31m%d damage dealt\u001B[0m\n\u001B[32m---", name, dmg_name, dmg);
     }
     
     public static void outDia(String name, String dialog)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: %s"
-            + "\u001B[0m\n---", name, dialog);
+            + "\u001B[0m\n\u001B[32m---", name, dialog);
     }
     
     public static void outStat(String name, long stat_num, String stat_name)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: now has "
-            + "\033[0;34m%d %s\u001B[0m\n---", name, stat_num, stat_name);
+            + "\033[0;34m%d %s\u001B[0m\n\u001B[32m---", name, stat_num, stat_name);
     }
     public static void outDie(String name, long xp_drop)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: died, \033[0;34m%d XP"
-            + "\u001B[0m dropped\n---", name, xp_drop);
+            + "\u001B[0m dropped\n\u001B[32m---", name, xp_drop);
     }
     public static void outError(String error)
     {
-        System.out.printf("\n\u001B[31m!!! %s !!!\u001B[0m\n---", error);
+        System.out.printf("\n\u001B[31m!!! %s !!!\u001B[0m\n\u001B[32m---", error);
     }
     public static void outAny(String anything)
     {
-        System.out.printf("\n%s\n---", anything);
+        System.out.printf("\n%s\n\u001B[32m---", anything);
     }
     
     public static void outSound(String file_path, boolean flag) throws // only .wav
