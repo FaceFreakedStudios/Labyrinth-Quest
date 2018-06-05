@@ -133,6 +133,12 @@ class wooden_helm extends Helmet
     long weight = 4;
     
     @Override
+    public String getName()
+    {
+        return this.name;
+    }
+    
+    @Override
     public Long getWeight()
     {
         return this.weight;
@@ -153,6 +159,12 @@ class bulk_ring extends Ring
 {
     String name = "Bulk Ring";
     long weight = 1;
+    
+    @Override
+    public String getName()
+    {
+        return this.name;
+    }
     
     @Override
     public Long getWeight()
@@ -177,6 +189,12 @@ class mortifer extends Weapon
    String name = "Mortifer";
    long weight = 8;
    
+   @Override
+    public String getName()
+    {
+        return this.name;
+    }
+    
    @Override
     public Long getWeight()
     {
