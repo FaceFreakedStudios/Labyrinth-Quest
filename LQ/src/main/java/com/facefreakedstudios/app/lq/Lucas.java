@@ -25,16 +25,17 @@ import java.util.HashMap;
  */
 public class Lucas
 {
+    private long xp_point = 0; // used for upgrading skills
+    private long lvl_cap = 10; // the amount of xp needed for an upgrade
+    private long atk_pow = 0; // the dmg bonus, strength
+    private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
     private long hp, ap, xp;
     private int positX, positY;
-    private long lvl_cap = 10;
-    private long xp_point = 0;
     private final Weapon weap = new mortifer(); // temp field
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
-    private long inv_weight = 20;
     public String name = "Lucas";
     final protected Map<String, Weighted> inventory = new HashMap<>();
     final protected Map<String, Weighted> equipped = new HashMap<>();
@@ -132,10 +133,11 @@ public class Lucas
     {
         LQOS.outStat(name, xp, "XP");
         this.xp = xp;
-        if(this.xp < lvl_cap)
+        if(this.xp > lvl_cap)
         {
-            ++xp_point;
-            lvl_cap += 10;
+            ++this.xp_point; // gains one xp point
+            this.xp -= lvl_cap; // removes xp from lvl_cap
+            this.lvl_cap += 10; // revist
             LQOS.outStat("Lucas", xp_point, "XP point");
         }
     }
@@ -179,7 +181,7 @@ public class Lucas
     
     public void updateSkills()
     {
-        this.inv_weight += skills.get("Strength") * 2 % 2; // revist system
+        
     }
     public void updateMapPosit()
     {
@@ -253,15 +255,16 @@ public class Lucas
             case 0:
                 dmg_apdrain = weap.move0(this);
                 setAP(this.ap - dmg_apdrain[1]); // 1 is the ap_drain
-                targ.setHP(targ.getHP() - dmg_apdrain[0]); // 0 is the weap's damage
+                targ.setHP(targ.getHP() - 
+                    (dmg_apdrain[0] + atk_pow)); // 0 is the weap's damage
             case 1:
                 dmg_apdrain = weap.move1(this); 
                 setAP(this.ap - dmg_apdrain[1]);
-                targ.setHP(targ.getHP() - dmg_apdrain[0]);
+                targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 2:
                 dmg_apdrain = weap.move2(this); 
                 setAP(this.ap - dmg_apdrain[1]);
-                targ.setHP(targ.getHP() - dmg_apdrain[0]);
+                targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 3:
             default: targ.setHP(targ.getHP() - 0);
         }
