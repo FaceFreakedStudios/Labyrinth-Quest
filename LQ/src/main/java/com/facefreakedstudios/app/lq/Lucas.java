@@ -23,29 +23,29 @@ import java.util.HashMap;
  *
  * @author gavin17
  */
-public class Lucas
+class Lucas
 {
+    final static String NAME = "Lucas";
+    private long hp, ap, xp;
     private long xp_point = 0; // used for upgrading skills
     private long lvl_cap = 10; // the amount of xp needed for an upgrade
     private long atk_pow = 0; // the dmg bonus, strength
     private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
-    private long hp, ap, xp;
     private int positX, positY;
     private final Weapon weap = new mortifer(); // temp field
     private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
-    public String name = "Lucas";
-    final protected Map<String, Weighted> inventory = new HashMap<>();
-    final protected Map<String, Weighted> equipped = new HashMap<>();
-    final protected Map<String, Long> skills = new HashMap<>(); // Skill tree
+    final public Map<String, Weighted> inventory = new HashMap<>();
+    final public Map<String, Weighted> equipped = new HashMap<>();
+    final public Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap) throws IOException
     { // Skills also have in game special effects (like lifting boulders)
         skills.put("Strength", 0L); // Attack power, Inventory weight
         skills.put("Persuasion", 0L); // Barter, Dialogue 
-        skills.put("Ingenuity", 0L); // Repair, Crafting, Brewingname
+        skills.put("Ingenuity", 0L); // Repair, Crafting, BrewingNAME
         skills.put("Luck", 0L); // XP drops, Item pickups, Gambling
         skills.put("Vitality", 0L); // HP, HP regen
         skills.put("Wisdom", 0L); // Magic use, Magic strength, Potion effect
@@ -68,7 +68,7 @@ public class Lucas
         this.ap = ap;
     }
     
-    public boolean canMove(int x, int y)
+    private boolean canMove(int x, int y)
     {
         switch(map[positX + x][positY + y])
         {
@@ -84,24 +84,24 @@ public class Lucas
         }
         return true;
     }
-    public boolean isDead()
+    boolean isDead()
     {
-        if(this.hp <= 0)
+        if(hp <= 0)
         {
             return true;
         }
         return false;
     }
-    public boolean noAP()
+    boolean noAP()
     {
-        if(this.ap <= 0)
+        if(ap <= 0)
         {
-            this.ap = 0; // So you don't have negative AP
+            ap = 0; // So you don't have negative AP
             return true;
         }
         return false;
     }
-    public boolean canEnter()
+    private boolean canEnter()
     {
         switch(current_blk)
         {
@@ -112,7 +112,7 @@ public class Lucas
             default: return false;
         }
     }
-    public boolean canRead()
+    private boolean canRead()
     {
         if(current_blk.equals("="))
         {
@@ -124,37 +124,37 @@ public class Lucas
         }
     }
     
-    public void setHP(long hp)
+    void setHP(long hp)
     {
-        LQOS.outStat(name, hp, "HP");
+        LQOS.outStat(NAME, hp, "HP");
         this.hp = hp;
     }
-    public void setXP(long xp)
+    void setXP(long xp)
     {
-        LQOS.outStat(name, xp, "XP");
+        LQOS.outStat(NAME, xp, "XP");
         this.xp = xp;
         if(this.xp > lvl_cap)
         {
-            ++this.xp_point; // gains one xp point
+            ++xp_point; // gains one xp point
             this.xp -= lvl_cap; // removes xp from lvl_cap
-            this.lvl_cap += 10; // revist
-            LQOS.outStat("Lucas", xp_point, "XP point");
+            lvl_cap += 10; // revist
+            LQOS.outStat(NAME, xp_point, "XP point");
         }
     }
-    public void setAP(long ap)
+    void setAP(long ap)
     {
-        LQOS.outStat(name, ap, "AP");
+        LQOS.outStat(NAME, ap, "AP");
         this.ap = ap;
     }
-    public void setTarg(Enemy ene)
+    void setTarg(Enemy ene)
     {
         this.targ = ene;
     }
-    public void addInventory(Weighted obj)
+    void addInventory(Weighted obj)
     {
         if(findInventoryWeight() < inv_weight)
         {
-            this.inventory.put(obj.getName(),obj);
+            inventory.put(obj.getName(),obj);
         }
         else
         {
@@ -162,34 +162,34 @@ public class Lucas
         }
     }
   
-    public void equip(String type, Weighted equipment)
+    void equip(String type, Weighted equipment)
     {
         equipped.put(type, equipment);
     }
 
-    public void upgradeSkill(String skill, long xp_points)
+    void upgradeSkill(String skill, long xp_points)
     {
         if(xp_points < xp_point)
         {
             LQOS.outError("Invalid number of XP points");
         }
-        long upgraded = this.skills.get(skill);
-        this.skills.put(skill, upgraded);
-        LQOS.outStat("Lucas", this.skills.get(skill), skill);
+        long upgraded = skills.get(skill);
+        skills.put(skill, upgraded);
+        LQOS.outStat("Lucas", skills.get(skill), skill);
         updateSkills();
     }
     
-    public void updateSkills()
+    private void updateSkills()
     {
         
     }
-    public void updateMapPosit()
+    private void updateMapPosit()
     {
         current_blk = map[positX][positY];
         current_blk_dat = map_data[positX][positY];
     }
   
-    public void enter() throws IOException
+    void enter() throws IOException
     {
         if(canEnter())
         {
@@ -202,7 +202,7 @@ public class Lucas
         }
     }
     
-    public void read()
+    void read()
     {
         if(canRead())
         {
@@ -214,20 +214,20 @@ public class Lucas
         }
     }
     
-    public long getHP()
+    long getHP()
     {
-        return this.hp;
+        return hp;
     }
-    public long getAP()
+    long getAP()
     {
-        return this.hp;
+        return ap;
     }
-    public long getXP()
+    long getXP()
     {
-        return this.xp;
+        return xp;
     }
     
-    public long findInventoryWeight()
+    private long findInventoryWeight()
     {
         long total_weight = 0;
         for(Map.Entry<String, Weighted> entry : inventory.entrySet()) 
@@ -238,14 +238,14 @@ public class Lucas
         return total_weight;
     }
     
-    public Enemy getTarg()
+    Enemy getTarg()
     {
-        return this.targ;
+        return targ;
     }
     
-    public void attack(int atk)
+    void attack(int atk)
     {
-        this.ap -= 8;
+        ap -= 8;
         if(noAP()) // return no damage if no AP
         {
             targ.setHP(targ.getHP() - 0);
@@ -254,30 +254,30 @@ public class Lucas
         {
             case 0:
                 dmg_apdrain = weap.move0(this);
-                setAP(this.ap - dmg_apdrain[1]); // 1 is the ap_drain
+                setAP(ap - dmg_apdrain[1]); // 1 is the ap_drain
                 targ.setHP(targ.getHP() - 
                     (dmg_apdrain[0] + atk_pow)); // 0 is the weap's damage
             case 1:
                 dmg_apdrain = weap.move1(this); 
-                setAP(this.ap - dmg_apdrain[1]);
+                setAP(ap - dmg_apdrain[1]);
                 targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 2:
                 dmg_apdrain = weap.move2(this); 
-                setAP(this.ap - dmg_apdrain[1]);
+                setAP(ap - dmg_apdrain[1]);
                 targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 3:
             default: targ.setHP(targ.getHP() - 0);
         }
     }
     
-    public String move(int x, int y)
+    String move(int x, int y)
     {
         if(canMove(x, y))
         {
-            this.positX += x;
-            this.positY += y;
+            positX += x;
+            positY += y;
         }
         updateMapPosit(); // Map position updates with every movement
-        return LQCLI.stringMap(LQCLI.updateMap(map, this.positX, this.positY));
+        return LQCLI.stringMap(LQCLI.updateMap(map, positX, positY));
     }
 }

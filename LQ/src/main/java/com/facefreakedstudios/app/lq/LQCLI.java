@@ -50,16 +50,16 @@ class map_objects
     
 }
 
-public class LQCLI // Labyrinth Quest Command Line Interface
+class LQCLI // Labyrinth Quest Command Line Interface
 {
-    public static void clearTerm() // Clears the terminal
+    static void clearTerm() // Clears the terminal
     {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
     
     // VVV fetchs a map's .dat file and maps its data to its .map file
-    public static String[][] fetchMapData(Lucas lucas, String map_name) 
+    static String[][] fetchMapData(Lucas lucas, String map_name) 
         throws IOException
     {
         File data_file = new File(map_name);
@@ -81,7 +81,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV fetchs a .map file and loads it as a 2d string array
-    public static String[][] fetchMap(String map_name) throws IOException
+    static String[][] fetchMap(String map_name) throws IOException
     {
         File map_file = new File(map_name); // Map to load
         Scanner map_scan = new Scanner(map_file);
@@ -101,8 +101,8 @@ public class LQCLI // Labyrinth Quest Command Line Interface
         return map;
     }
     
-    // VVV updates the map for Stringacter movement
-    public static String[][] updateMap(String[][] map, int positX, int positY)
+    // VVV updates the map from Lucas movement
+    static String[][] updateMap(String[][] map, int positX, int positY)
     {
         String[][] temp_map = map;
         temp_map[positX][positY] = "@";
@@ -110,7 +110,7 @@ public class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV converts 2d string array of map into a string representation
-    public static String stringMap(String[][] map)
+    static String stringMap(String[][] map)
     {
         LQCLI.clearTerm(); // Clears previous map
         String map_str = "";

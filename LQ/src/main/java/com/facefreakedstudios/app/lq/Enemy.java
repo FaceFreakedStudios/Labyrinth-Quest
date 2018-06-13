@@ -21,31 +21,31 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author gavin17
  */
-public class Enemy
+class Enemy
 {
     long hp;
     long xp_drop;
     String name;
     String[] move_set;
     
-    public void setHP(long hp)
+    void setHP(long hp)
     {
         LQOS.outStat(getName(), getHP(), "HP");
         this.hp = hp;
     }
-    public long getHP()
+    long getHP()
     {
         return this.hp;
     }
-    public long getXPDrop()
+    long getXPDrop()
     {
         return this.xp_drop;
     }
-    public String[] getMoveSet()
+    String[] getMoveSet()
     {
         return this.move_set;
     }
-    public String getName()
+    String getName()
     {
         return this.name;
     }
@@ -80,10 +80,10 @@ public class Enemy
 
 class Rotter extends Enemy
 {
-    long xp_drop = 11; // default xp_drop
     static long rotter_pop;
-    String name = "Rotter " + rotter_pop;
-    String[] move_set = {"Bite_4", "Gnaw_" +
+    private long xp_drop = 11; // default xp_drop
+    private String name = "Rotter " + rotter_pop;
+    private String[] move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
     Rotter(long hp)
@@ -100,23 +100,23 @@ class Rotter extends Enemy
     }
     
     @Override
-    public long getHP()
+    long getHP()
     {
         return this.hp;
     }
     
     @Override
-    public long getXPDrop()
+    long getXPDrop()
     {
         return this.xp_drop;
     }
     @Override
-    public String[] getMoveSet()
+    String[] getMoveSet()
     {
         return this.move_set;
     }
     @Override
-    public String getName()
+    String getName()
     {
         return this.name;
     }

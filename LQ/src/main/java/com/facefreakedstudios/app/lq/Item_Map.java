@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 // This class initializes various game equipment
-public class Item_Map
+class Item_Map
 {
     wooden_helm helm0 = new wooden_helm();
     bulk_ring ring0 = new bulk_ring();

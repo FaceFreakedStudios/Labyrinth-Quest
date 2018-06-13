@@ -10,9 +10,9 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-public class Art
+class Art
 {
-    public static void title() // created with http://www.figlet.org/
+    static void title() // created with http://www.figlet.org/
     {
         String ascii_title = " _          _                _       _   _        ___                  _\n" +
 "| |    __ _| |__  _   _ _ __(_)_ __ | |_| |__    / _ \\ _   _  ___  ___| |_\n" +

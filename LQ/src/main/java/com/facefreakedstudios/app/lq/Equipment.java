@@ -19,11 +19,11 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-public class Equipment extends Weighted
+class Equipment extends Weighted
 {
-    long condition = 200; // Starting condition       
+    protected long condition = 200; // Starting condition       
 
-    public void setCondition(long condition)
+    void setCondition(long condition)
     {
         if(broken())
         {
@@ -42,14 +42,14 @@ public class Equipment extends Weighted
         }
     }
     
-    public Long getCondition()
+    Long getCondition()
     {
         return null;
     }
     
-    public boolean broken()
+    boolean broken()
     {
-        if(this.condition <= 0)
+        if(condition <= 0)
         {
             return true;
         }
@@ -59,9 +59,9 @@ public class Equipment extends Weighted
 
 abstract class Weapon extends Equipment
 {
-    String type = "Weapon";
+   String type = "Weapon";
     
-    String getMoveName(int move_num)
+   String getMoveName(int move_num)
    {
        return null;
    }
@@ -83,9 +83,9 @@ abstract class Weapon extends Equipment
 }
 abstract class Helmet extends Equipment
 {
-    String type = "Helmet";
+   String type = "Helmet";
 
-    public Long getDefense()
+    Long getDefense()
     {
         return null;
     }
@@ -94,7 +94,7 @@ abstract class Ring extends Equipment
 {
     String type = "Ring";
     
-    public Long Ability()
+    Long Ability()
     {
         return null;
     }
@@ -103,7 +103,7 @@ abstract class Leggings extends Equipment
 {
     String type = "Leggings";
     
-    public Long getDefense()
+    Long getDefense()
     {
         return null;
     }
@@ -112,7 +112,7 @@ abstract class Gauntlets extends Equipment
 {
     String type = "Gauntlets";
     
-    public Long getDefense()
+    Long getDefense()
     {
         return null;
     }
@@ -121,7 +121,7 @@ abstract class Chestplate extends Equipment
 {
     String type = "Chestplate";
     
-    public Long getDefense()
+    Long getDefense()
     {
         return null;
     }
@@ -133,23 +133,23 @@ class wooden_helm extends Helmet
     long weight = 4;
     
     @Override
-    public String getName()
+    String getName()
     {
         return this.name;
     }
     
     @Override
-    public Long getWeight()
+    Long getWeight()
     {
         return this.weight;
     }
     @Override
-    public Long getCondition()
+    Long getCondition()
     {
         return this.condition;
     }
     @Override
-    public Long getDefense()
+    Long getDefense()
     {
         return 5L;
     }
@@ -161,23 +161,23 @@ class bulk_ring extends Ring
     long weight = 1;
     
     @Override
-    public String getName()
+    String getName()
     {
         return this.name;
     }
     
     @Override
-    public Long getWeight()
+    Long getWeight()
     {
         return this.weight;
     }
     @Override
-    public Long getCondition()
+    Long getCondition()
     {
         return this.condition;
     }
     @Override
-    public Long Ability() // Simple defense ring for testing
+    Long Ability() // Simple defense ring for testing
     {
         return 4L;
     }
@@ -190,24 +190,24 @@ class mortifer extends Weapon
    long weight = 8;
    
    @Override
-    public String getName()
+    String getName()
     {
         return this.name;
     }
     
    @Override
-    public Long getWeight()
+    Long getWeight()
     {
         return this.weight;
     }
     @Override
-    public Long getCondition()
+    Long getCondition()
     {
         return this.condition;
     }
    
    @Override
-   public String getMoveName(int move_num)
+   String getMoveName(int move_num)
    {
        return this.move_names[move_num];
    }
@@ -216,7 +216,7 @@ class mortifer extends Weapon
    long[] move0(Lucas lucas)
    {
        long dmg = lucas.skills.get("Strength") + 4;
-       LQOS.outDMG("Lucas", move_names[0], dmg);
+       LQOS.outDMG(lucas.NAME, move_names[0], dmg);
        long[] dmg_apdrain = {dmg ,8L};
        return dmg_apdrain;
    }
@@ -225,7 +225,7 @@ class mortifer extends Weapon
    long[] move1(Lucas lucas)
    {
        long dmg =  lucas.skills.get("Strength") + 5;
-       LQOS.outDMG("Lucas", move_names[1], dmg);
+       LQOS.outDMG(lucas.NAME, move_names[1], dmg);
        long[] dmg_apdrain = {dmg, 8L};
        return dmg_apdrain;
    }
@@ -234,7 +234,7 @@ class mortifer extends Weapon
    long[] move2(Lucas lucas)
    {
        long dmg = lucas.skills.get("Strength") + 0L;
-       LQOS.outDMG("Lucas", move_names[2], dmg);
+       LQOS.outDMG(lucas.NAME, move_names[2], dmg);
        long[] dmg_apdrain = {dmg, 10};
        return dmg_apdrain;
    }

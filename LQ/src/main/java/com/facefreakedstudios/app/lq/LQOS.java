@@ -26,49 +26,49 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
 
-public class LQOS // Labyrinth Quest Output System (with sound)
+class LQOS // Labyrinth Quest Output System (with sound)
 {
     
     static Item_Map item_map = new Item_Map();
     
-    public static void outPrompt(String prompt)
+    static void outPrompt(String prompt)
     {
         System.out.printf("\u001B[32m%s: ", prompt);
     }
     
-    public static void outDMG(String name, String dmg_name, long dmg)
+    static void outDMG(String name, String dmg_name, long dmg)
     {
         
         System.out.printf("\n\u001B[1m%s\u001B[0m: used %s, "
             + "\u001B[31m%d damage dealt\u001B[0m\n\u001B[32m---", name, dmg_name, dmg);
     }
     
-    public static void outDia(String name, String dialog)
+    static void outDia(String name, String dialog)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: %s"
             + "\u001B[0m\n\u001B[32m---", name, dialog);
     }
     
-    public static void outStat(String name, long stat_num, String stat_name)
+    static void outStat(String name, long stat_num, String stat_name)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: now has "
             + "\033[0;34m%d %s\u001B[0m\n\u001B[32m---", name, stat_num, stat_name);
     }
-    public static void outDie(String name, long xp_drop)
+    static void outDie(String name, long xp_drop)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: died, \033[0;34m%d XP"
             + "\u001B[0m dropped\n\u001B[32m---", name, xp_drop);
     }
-    public static void outError(String error)
+    static void outError(String error)
     {
         System.out.printf("\n\u001B[31m!!! %s !!!\u001B[0m\n\u001B[32m---", error);
     }
-    public static void outAny(String anything)
+    static void outAny(String anything)
     {
         System.out.printf("\n%s\n\u001B[32m---", anything);
     }
     
-    public static void outSound(String file_path, boolean flag) throws // only .wav
+    static void outSound(String file_path, boolean flag) throws // only .wav
         UnsupportedAudioFileException, IOException, LineUnavailableException
     {
         File file = new File(file_path);
@@ -88,13 +88,13 @@ public class LQOS // Labyrinth Quest Output System (with sound)
         }
     }
     
-    public static String outAsk(String question)
+    static String outAsk(String question)
     {
         Scanner usr_in = new Scanner(System.in);
         System.out.printf("\n\033[2;33m%s\n---", question);
         return usr_in.nextLine();
     }
-    public static void outLucas(Lucas lucas) throws IOException
+    static void outLucas(Lucas lucas) throws IOException
     {
        Scanner usr_in = new Scanner(System.in);
        switch(usr_in.nextLine())
