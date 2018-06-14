@@ -23,8 +23,8 @@ class Item_Map
     final Map<String, Equipment> imap = new HashMap<>();
     Item_Map()
     {
-        imap.put(helm0.name, helm0);
-        imap.put(ring0.name, ring0);
-        imap.put(weap0.name, weap0);
+        imap.put(helm0.getName(), helm0);
+        imap.put(ring0.getName(), ring0);
+        imap.put(weap0.getName(), weap0);
     }
 }
