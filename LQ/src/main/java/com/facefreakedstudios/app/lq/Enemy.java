@@ -23,10 +23,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 class Enemy
 {
-    long hp;
-    long xp_drop;
-    String name;
-    String[] move_set;
+    protected long hp, xp_drop, pop;
+    protected String name, name_id;
+    protected String[] move_set;
     
     void setHP(long hp)
     {
@@ -49,11 +48,21 @@ class Enemy
     {
         return this.name;
     }
+    String getNameID()
+    {
+        return this.name_id;
+    }
+    
+    void decrementPop()
+    {
+        --this.pop;
+    }
     
     boolean isDead()
     {
         if(getHP() <= 0)
         {
+            decrementPop();
             return true;
         }
         return false;
@@ -80,23 +89,16 @@ class Enemy
 
 class Rotter extends Enemy
 {
-    static long rotter_pop;
-    private long xp_drop = 11; // default xp_drop
-    private String name = "Rotter " + rotter_pop;
+    static long pop; // The population of enemy type in current map
+    private long xp_drop = 11, hp = 8;
+    private final String name = "Rotter", name_id;
     private String[] move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
-    Rotter(long hp)
+    Rotter()
     {
-        ++rotter_pop;
-        this.hp = hp;
-    }
-    Rotter(long count, long hp, long xp_drop)
-    {
-        ++rotter_pop;
-        this.name = name + count;
-        this.hp = hp;
-        this.xp_drop = xp_drop;
+        ++pop;
+        this.name_id = name + pop;
     }
     
     @Override
@@ -119,5 +121,10 @@ class Rotter extends Enemy
     String getName()
     {
         return this.name;
+    }
+    @Override
+    String getNameID()
+    {
+        return this.name_id;
     }
 }
