@@ -27,6 +27,7 @@ class Lucas
 {
     final static String NAME = "Lucas";
     private long hp, ap, xp;
+    private long cash = 5; // Starting value
     private long xp_point = 0; // used for upgrading skills
     private long lvl_cap = 10; // the amount of xp needed for an upgrade
     private long atk_pow = 0; // the dmg bonus, strength
@@ -145,6 +146,10 @@ class Lucas
         LQOS.outStat(NAME, ap, "AP");
         this.ap = ap;
     }
+    void setCash(long cash)
+    {
+        this.cash = cash;
+    }
     void setTarg(Enemy ene)
     {
         this.targ = ene;
@@ -225,6 +230,10 @@ class Lucas
     long getXP()
     {
         return xp;
+    }
+    long getCash()
+    {
+        return cash;
     }
     
     private long findInventoryWeight()
