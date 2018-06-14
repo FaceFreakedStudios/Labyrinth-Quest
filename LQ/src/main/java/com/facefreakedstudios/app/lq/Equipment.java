@@ -59,7 +59,7 @@ class Equipment extends Weighted
 
 abstract class Weapon extends Equipment
 {
-   final static String TYPE = "Weapon";
+   protected final static String TYPE = "Weapon";
     
    @Override
    String getType()
@@ -89,7 +89,7 @@ abstract class Weapon extends Equipment
 }
 abstract class Helmet extends Equipment
 {
-    final static String TYPE = "Helmet";
+    protected final static String TYPE = "Helmet";
 
     @Override
     String getType()
@@ -104,7 +104,7 @@ abstract class Helmet extends Equipment
 }
 abstract class Ring extends Equipment
 {
-   final static String TYPE = "Ring";
+   protected final static String TYPE = "Ring";
     
    @Override
    String getType()
@@ -119,7 +119,7 @@ abstract class Ring extends Equipment
 }
 abstract class Leggings extends Equipment
 {
-   final static String TYPE = "Leggings";
+   protected final static String TYPE = "Leggings";
    
    @Override
    String getType()
@@ -134,8 +134,7 @@ abstract class Leggings extends Equipment
 }
 abstract class Gauntlets extends Equipment
 {
-
-    final static String TYPE = "Gauntlets";
+    protected final static String TYPE = "Gauntlets";
    
     @Override
     String getType()
@@ -150,7 +149,7 @@ abstract class Gauntlets extends Equipment
 }
 abstract class Chestplate extends Equipment
 {
-    final static String TYPE = "Chestplate";
+    protected final static String TYPE = "Chestplate";
     
     @Override
     String getType()
@@ -166,8 +165,8 @@ abstract class Chestplate extends Equipment
 
 class wooden_helm extends Helmet
 {
-    String name = "Wooden Helmet";
-    long weight = 4;
+    private String name = "Wooden Helmet";
+    private final long weight = 4, value = 3, defense = 5;
     
     @Override
     String getName()
@@ -188,14 +187,19 @@ class wooden_helm extends Helmet
     @Override
     Long getDefense()
     {
-        return 5L;
+        return this.defense;
+    }
+    @Override
+    Long getValue()
+    {
+        return this.value;
     }
 }
 
 class bulk_ring extends Ring
 {
-    String name = "Bulk Ring";
-    long weight = 1;
+    private String name = "Bulk Ring";
+    private final long weight = 1, value = 5;
     
     @Override
     String getName()
@@ -218,13 +222,18 @@ class bulk_ring extends Ring
     {
         return 4L;
     }
+    @Override
+    Long getValue()
+    {
+        return this.value;
+    }
 }
 
 class mortifer extends Weapon
 {
-   String[] move_names = {"Slash", "Thrust", "Special"};
-   String name = "Mortifer";
-   long weight = 8;
+   private final String[] move_names = {"Slash", "Thrust", "Special"};
+   private final String name = "Mortifer";
+   private final long weight = 8, value = 9;
    
    @Override
     String getName()
@@ -241,6 +250,11 @@ class mortifer extends Weapon
     Long getCondition()
     {
         return this.condition;
+    }
+    @Override
+    Long getValue()
+    {
+        return this.value;
     }
    
    @Override

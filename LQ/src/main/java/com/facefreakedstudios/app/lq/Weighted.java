@@ -25,4 +25,9 @@ public abstract class Weighted
     {
         return null;
     }
+    
+    Long getValue()
+    {
+        return null;
+    }
 }
