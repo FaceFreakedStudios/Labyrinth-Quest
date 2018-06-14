@@ -9,7 +9,7 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-public abstract class Weighted
+abstract class Weighted
 {
     String getType()
     {
