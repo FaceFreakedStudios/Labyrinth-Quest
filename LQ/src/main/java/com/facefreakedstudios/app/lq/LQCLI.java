@@ -90,9 +90,9 @@ class LQCLI // Labyrinth Quest Command Line Interface
         while(map_scan.hasNextLine())
         {
             String[] map_row = map_scan.nextLine().trim().split("(?!^)");
-            for(String map_square: map_row) // Assigns map to String array
+            for(String map_sq: map_row) // Assigns map to String array
             {
-                map[column_count][row_count] = map_square;
+                map[column_count][row_count] = map_sq;
                 ++row_count;
             }
             ++column_count;
@@ -104,8 +104,8 @@ class LQCLI // Labyrinth Quest Command Line Interface
     // VVV updates the map from Lucas movement
     static String[][] updateMap(String[][] map, int positX, int positY)
     {
-        String[][] temp_map = map;
-        temp_map[positX][positY] = "@";
+        String[][] temp_map = map; // implement npc and enemy movement here?
+        temp_map[positX][positY] = "\033[0;32m@\033[0m";
         return temp_map;
     }
     
@@ -116,9 +116,36 @@ class LQCLI // Labyrinth Quest Command Line Interface
         String map_str = "";
         for(String[] map_row: map)
         {
-            for(String map_sqaure: map_row)
+            for(String map_sq: map_row)
             {
-                map_str += map_sqaure;
+                switch(map_sq) // adds color to map
+                {
+                    case "#": 
+                        map_sq = "\033[0;31m" + map_sq + "\033[0m";
+                        break;
+                    case "~":
+                        map_sq = "\033[0;34m" + map_sq + "\033[0m";
+                        break;
+                    case "$":
+                        map_sq = "\033[0;33m" + map_sq + "\033[0m";
+                        break;
+                    case "^":
+                        map_sq = "\033[0;33m" + map_sq + "\033[0m";
+                        break;
+                    case "L":
+                        map_sq = "\033[0;33m" + map_sq + "\033[0m";
+                        break;
+                    case "o":
+                        map_sq = "\033[0;33m" + map_sq + "\033[0m";
+                        break;
+                    case "i":
+                        map_sq = "\033[0;36m" + map_sq + "\033[0m";
+                        break;
+                    case "-":
+                        map_sq = "\033[0;31m" + map_sq + "\033[0m";
+                        break;
+                }
+                map_str += map_sq;
             }
             map_str += "\n";
         }
