@@ -59,8 +59,14 @@ class Equipment extends Weighted
 
 abstract class Weapon extends Equipment
 {
-   String type = "Weapon";
+   final static String TYPE = "Weapon";
     
+   @Override
+   String getType()
+   {
+       return TYPE;
+   }
+   
    String getMoveName(int move_num)
    {
        return null;
@@ -83,8 +89,14 @@ abstract class Weapon extends Equipment
 }
 abstract class Helmet extends Equipment
 {
-   String type = "Helmet";
+    final static String TYPE = "Helmet";
 
+    @Override
+    String getType()
+    {
+        return TYPE;
+    }
+   
     Long getDefense()
     {
         return null;
@@ -92,7 +104,13 @@ abstract class Helmet extends Equipment
 }
 abstract class Ring extends Equipment
 {
-    String type = "Ring";
+   final static String TYPE = "Ring";
+    
+   @Override
+   String getType()
+   {
+       return TYPE;
+   }
     
     Long Ability()
     {
@@ -101,7 +119,13 @@ abstract class Ring extends Equipment
 }
 abstract class Leggings extends Equipment
 {
-    String type = "Leggings";
+   final static String TYPE = "Leggings";
+   
+   @Override
+   String getType()
+   {
+       return TYPE;
+   }
     
     Long getDefense()
     {
@@ -110,7 +134,14 @@ abstract class Leggings extends Equipment
 }
 abstract class Gauntlets extends Equipment
 {
-    String type = "Gauntlets";
+
+    final static String TYPE = "Gauntlets";
+   
+    @Override
+    String getType()
+    {
+        return TYPE;
+    }
     
     Long getDefense()
     {
@@ -119,7 +150,13 @@ abstract class Gauntlets extends Equipment
 }
 abstract class Chestplate extends Equipment
 {
-    String type = "Chestplate";
+    final static String TYPE = "Chestplate";
+    
+    @Override
+    String getType()
+    {
+        return TYPE;
+    }
     
     Long getDefense()
     {

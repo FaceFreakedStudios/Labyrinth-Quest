@@ -11,6 +11,11 @@ package com.facefreakedstudios.app.lq;
  */
 public abstract class Weighted
 {
+    String getType()
+    {
+        return null;
+    }
+    
     String getName()
     {
         return null;

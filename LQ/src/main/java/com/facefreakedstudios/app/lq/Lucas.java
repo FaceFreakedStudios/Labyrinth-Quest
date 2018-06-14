@@ -51,8 +51,7 @@ class Lucas
         skills.put("Wisdom", 0L); // Magic use, Magic strength, Potion effect
         skills.put("Endurance", 0L); // AP, Walk dist, Run dist
         skills.put("Immunity", 0L); // Poi, Fre, Drk, Frst, Phy and Bld damage
-        equipped.put("Ring0", null);
-        equipped.put("Ring1", null);
+        equipped.put("Ring", null);
         equipped.put("Helm", null);
         equipped.put("Legs", null);
         equipped.put("Gaunts", null);
@@ -162,9 +161,10 @@ class Lucas
         }
     }
   
-    void equip(String type, Weighted equipment)
+    void equip(Weighted equipment)
     {
-        equipped.put(type, equipment);
+        equipped.put(equipment.getType(), equipment);
+        LQOS.outAny("%s equipped".format(equipment.getName()));
     }
 
     void upgradeSkill(String skill, long xp_points)

@@ -122,7 +122,7 @@ class LQOS // Labyrinth Quest Output System (with sound)
                Weighted to_equip_obj = item_map.imap.get(to_equip);
                if(lucas.inventory.containsValue(to_equip_obj))
                {
-                   lucas.equip(to_equip, to_equip_obj);
+                   lucas.equip(to_equip_obj);
                }
                else
                {
