@@ -102,10 +102,10 @@ class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV updates the map from Lucas movement
-    static String[][] updateMap(String[][] map, int positX, int positY)
+    static String[][] updateMap(String[][] map, Lucas lucas)
     {
         String[][] temp_map = map; // implement npc and enemy movement here?
-        temp_map[positX][positY] = "\033[0;32m@\033[0m";
+        temp_map[lucas.getPositX()][lucas.getPositY()] = "\033[0;32m@\033[0m";
         return temp_map;
     }
     

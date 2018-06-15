@@ -236,6 +236,15 @@ class Lucas
         return cash;
     }
     
+    int getPositX()
+    {
+        return positX;
+    }
+    int getPositY()
+    {
+        return positY;
+    }
+    
     private long findInventoryWeight()
     {
         long total_weight = 0;
@@ -287,6 +296,6 @@ class Lucas
             positY += y;
         }
         updateMapPosit(); // Map position updates with every movement
-        return LQCLI.stringMap(LQCLI.updateMap(map, positX, positY));
+        return LQCLI.stringMap(LQCLI.updateMap(map, this));
     }
 }
