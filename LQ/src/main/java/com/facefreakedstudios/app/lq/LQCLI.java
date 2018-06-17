@@ -52,6 +52,7 @@ class map_objects
 
 class LQCLI // Labyrinth Quest Command Line Interface
 {
+    
     static void clearTerm() // Clears the terminal
     {
         System.out.print("\033[H\033[2J");  
@@ -73,7 +74,7 @@ class LQCLI // Labyrinth Quest Command Line Interface
                 [Integer.parseInt(data[1])] = data[2]; // Maps data to 2D array
             if(data[2].equals("*")) // Searchs for spawn point if one
             {
-                lucas.move(Integer.parseInt(data[0]),
+                lucas.move("@", Integer.parseInt(data[0]),
                     Integer.parseInt(data[1])); // sets spawn point
             }
         }
@@ -102,11 +103,13 @@ class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV updates the map from Lucas movement
-    static String[][] updateMap(String[][] map, Lucas lucas)
+    static String[][] updateMap(String[][] cur_map, String[][] orig_map ,int x, int y,
+        int last_x, int last_y, String symbol) throws IOException
     {
-        String[][] temp_map = map; // implement npc and enemy movement here?
-        temp_map[lucas.getPositX()][lucas.getPositY()] = "\033[0;32m@\033[0m";
-        return temp_map;
+        cur_map[last_x][last_y] =
+            orig_map[last_x][last_y]; // Replaces character symbol with map
+        cur_map[x][y] = "\033[0;32m" + symbol + "\033[0m";
+        return cur_map;
     }
     
     // VVV converts 2d string array of map into a string representation

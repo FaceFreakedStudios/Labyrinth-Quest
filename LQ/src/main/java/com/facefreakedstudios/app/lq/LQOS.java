@@ -115,7 +115,7 @@ class LQOS // Labyrinth Quest Output System (with sound)
                int x = usr_in.nextInt();
                LQOS.outPrompt("Y");
                int y = usr_in.nextInt();
-               lucas.move(x, y);
+               lucas.move("@", x, y);
            case "equip": 
                LQOS.outPrompt("Equip");
                String to_equip = usr_in.nextLine();

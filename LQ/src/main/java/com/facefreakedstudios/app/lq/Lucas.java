@@ -23,7 +23,7 @@ import java.util.HashMap;
  *
  * @author gavin17
  */
-class Lucas
+class Lucas extends Movement
 {
     final static String NAME = "Lucas";
     private long hp, ap, xp;
@@ -35,12 +35,12 @@ class Lucas
     private long[] dmg_apdrain;
     private int positX, positY;
     private final Weapon weap = new mortifer(); // temp field
-    private String[][] map, map_data;
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
-    final public Map<String, Weighted> inventory = new HashMap<>();
-    final public Map<String, Weighted> equipped = new HashMap<>();
-    final public Map<String, Long> skills = new HashMap<>(); // Skill tree
+    String[][] map, map_data;
+    final Map<String, Weighted> inventory = new HashMap<>();
+    final Map<String, Weighted> equipped = new HashMap<>();
+    final Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap) throws IOException
     { // Skills also have in game special effects (like lifting boulders)
@@ -68,7 +68,8 @@ class Lucas
         this.ap = ap;
     }
     
-    private boolean canMove(int x, int y)
+    @Override
+    protected boolean canMove(int x, int y)
     {
         switch(map[positX + x][positY + y])
         {
@@ -188,11 +189,6 @@ class Lucas
     {
         
     }
-    private void updateMapPosit()
-    {
-        current_blk = map[positX][positY];
-        current_blk_dat = map_data[positX][positY];
-    }
   
     void enter() throws IOException
     {
@@ -286,16 +282,5 @@ class Lucas
             case 3:
             default: targ.setHP(targ.getHP() - 0);
         }
-    }
-    
-    String move(int x, int y)
-    {
-        if(canMove(x, y))
-        {
-            positX += x;
-            positY += y;
-        }
-        updateMapPosit(); // Map position updates with every movement
-        return LQCLI.stringMap(LQCLI.updateMap(map, this));
     }
 }
