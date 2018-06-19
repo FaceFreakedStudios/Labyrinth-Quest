@@ -87,11 +87,7 @@ class Lucas extends Movement
     }
     boolean isDead()
     {
-        if(hp <= 0)
-        {
-            return true;
-        }
-        return false;
+        return hp <= 0;
     }
     boolean noAP()
     {
@@ -115,14 +111,7 @@ class Lucas extends Movement
     }
     private boolean canRead()
     {
-        if(current_blk.equals("="))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return current_blk.equals("=");
     }
     
     void setHP(long hp)

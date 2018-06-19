@@ -70,12 +70,7 @@ class Enemy extends Movement
         int[] l_posit = lucas.getPosit();
         long distance = Math.round(Math.sqrt(Math.pow(
             i_posit[0] - l_posit[0], 2) + Math.pow(i_posit[1] - l_posit[1], 2)));
-        
-        if(distance <= 5)
-        {
-            return true;
-        }
-        return false;
+        return distance <= 5;
     }
     
     boolean isDead()
@@ -106,7 +101,7 @@ class Enemy extends Movement
         {
             this.posit_y += -1;
         }
-        else if(i_posit[1] < l_posit[1])
+        else if(i_posit[1] < l_posit[1]) // Enemy is south of Lucas
         {
             this.posit_y += 1;
         }

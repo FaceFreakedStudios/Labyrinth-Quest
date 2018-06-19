@@ -49,11 +49,7 @@ class Equipment extends Weighted
     
     boolean broken()
     {
-        if(condition <= 0)
-        {
-            return true;
-        }
-        return false;
+        return condition <= 0;
     }
 }
 
