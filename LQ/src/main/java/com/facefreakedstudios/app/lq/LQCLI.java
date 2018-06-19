@@ -50,7 +50,7 @@ class map_objects
     
 }
 
-class LQCLI // Labyrinth Quest Command Line Interface
+abstract class LQCLI // Labyrinth Quest Command Line Interface
 {
     
     static void clearTerm() // Clears the terminal

@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
 
-class LQOS // Labyrinth Quest Output System (with sound)
+abstract class LQOS // Labyrinth Quest Output System (with sound)
 {
     
     static Item_Map item_map = new Item_Map();

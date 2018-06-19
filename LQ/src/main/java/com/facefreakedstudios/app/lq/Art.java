@@ -10,7 +10,7 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-class Art
+abstract class Art
 {
     static void title() // created with http://www.figlet.org/
     {
