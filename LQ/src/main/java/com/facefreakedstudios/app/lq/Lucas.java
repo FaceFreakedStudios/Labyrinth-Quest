@@ -114,15 +114,15 @@ class Lucas extends Movement
         return current_blk.equals("=");
     }
     
-    void setHP(long hp)
+    void addHP(long hp)
     {
         LQOS.outStat(NAME, hp, "HP");
         this.hp = hp;
     }
-    void setXP(long xp)
+    void addXP(long xp)
     {
         LQOS.outStat(NAME, xp, "XP");
-        this.xp = xp;
+        this.xp += xp;
         if(this.xp > lvl_cap)
         {
             ++xp_point; // gains one xp point
@@ -131,14 +131,14 @@ class Lucas extends Movement
             LQOS.outStat(NAME, xp_point, "XP point");
         }
     }
-    void setAP(long ap)
+    void addAP(long ap)
     {
         LQOS.outStat(NAME, ap, "AP");
-        this.ap = ap;
+        this.ap += ap;
     }
-    void setCash(long cash)
+    void addCash(long cash)
     {
-        this.cash = cash;
+        this.cash += cash;
     }
     void setTarg(Enemy ene)
     {
@@ -246,25 +246,25 @@ class Lucas extends Movement
         ap -= 8;
         if(noAP()) // return no damage if no AP
         {
-            targ.setHP(targ.getHP() - 0);
+            targ.addHP(targ.getHP() - 0);
         }
         switch(atk)
         {
             case 0:
                 dmg_apdrain = weap.move0(this);
-                setAP(ap - dmg_apdrain[1]); // 1 is the ap_drain
-                targ.setHP(targ.getHP() - 
+                addAP(-dmg_apdrain[1]); // 1 is the ap_drain
+                targ.addHP(targ.getHP() - 
                     (dmg_apdrain[0] + atk_pow)); // 0 is the weap's damage
             case 1:
                 dmg_apdrain = weap.move1(this); 
-                setAP(ap - dmg_apdrain[1]);
-                targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
+                addAP(-dmg_apdrain[1]);
+                targ.addHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 2:
                 dmg_apdrain = weap.move2(this); 
-                setAP(ap - dmg_apdrain[1]);
-                targ.setHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
+                addAP(dmg_apdrain[1]);
+                targ.addHP(targ.getHP() - (dmg_apdrain[0] + atk_pow));
             case 3:
-            default: targ.setHP(targ.getHP() - 0);
+            default: targ.addHP(0);
         }
     }
 }

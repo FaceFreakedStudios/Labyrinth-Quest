@@ -19,6 +19,8 @@ class Item_Map
     wooden_helm helm0 = new wooden_helm();
     bulk_ring ring0 = new bulk_ring();
     mortifer weap0 = new mortifer();
+    dull_thrw_knife throw0 = new dull_thrw_knife();
+    pot_of_healing potion0 = new pot_of_healing();
     
     final Map<String, Equipment> imap = new HashMap<>();
     Item_Map()

@@ -29,10 +29,10 @@ class Enemy extends Movement
     protected String name, name_id;
     protected String[] move_set;
     
-    void setHP(long hp)
+    void addHP(long hp)
     {
         LQOS.outStat(getName(), getHP(), "HP");
-        this.hp = hp;
+        this.hp += hp;
     }
     int[] getPosit()
     {
@@ -115,7 +115,7 @@ class Enemy extends Movement
        String dmg_name = dmg_seper[0];
        long dmg = Long.parseLong(dmg_seper[1]);
        LQOS.outDMG(getName(), dmg_name, dmg);
-       lucas.setHP(lucas.getHP() - dmg);
+       lucas.addHP(-dmg);
     }
     
     long dropXP()

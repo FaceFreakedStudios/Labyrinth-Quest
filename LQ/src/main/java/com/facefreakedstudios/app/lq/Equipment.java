@@ -194,7 +194,7 @@ class wooden_helm extends Helmet
 
 class bulk_ring extends Ring
 {
-    private String name = "Bulk Ring";
+    private final String name = "Bulk Ring";
     private final long weight = 1, value = 5;
     
     @Override
@@ -231,13 +231,13 @@ class mortifer extends Weapon
    private final String name = "Mortifer";
    private final long weight = 8, value = 9;
    
-   @Override
+    @Override
     String getName()
     {
         return this.name;
     }
     
-   @Override
+    @Override
     Long getWeight()
     {
         return this.weight;
