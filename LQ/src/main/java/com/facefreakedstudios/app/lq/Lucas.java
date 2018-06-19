@@ -33,7 +33,7 @@ class Lucas extends Movement
     private long atk_pow = 0; // the dmg bonus, strength
     private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
-    private int positX, positY;
+    private int[] position = {this.posit_x, this.posit_y};
     private final Weapon weap = new mortifer(); // temp field
     private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
@@ -71,7 +71,7 @@ class Lucas extends Movement
     @Override
     protected boolean canMove(int x, int y)
     {
-        switch(map[positX + x][positY + y])
+        switch(map[this.posit_x + x][this.posit_y + y])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
@@ -231,14 +231,9 @@ class Lucas extends Movement
     {
         return cash;
     }
-    
-    int getPositX()
+    int[] getPosit()
     {
-        return positX;
-    }
-    int getPositY()
-    {
-        return positY;
+        return position;
     }
     
     private long findInventoryWeight()

@@ -46,8 +46,8 @@ abstract class Movement
     {
         if(canMove(x, y))
         {
-            posit_x += x;
-            posit_y += y;
+            this.posit_x += x;
+            this.posit_y += y;
         }
         updateMapPosit(); // Map position updates with every movement
         cur_map = LQCLI.updateMap(cur_map, orig_map, posit_x, posit_y, 

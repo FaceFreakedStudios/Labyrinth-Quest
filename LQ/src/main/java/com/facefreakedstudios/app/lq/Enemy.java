@@ -15,14 +15,16 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
  * @author gavin17
  */
-class Enemy
+class Enemy extends Movement
 {
+    protected int[] position = {this.posit_x, this.posit_y};
     protected long hp, xp_drop, pop;
     protected String name, name_id;
     protected String[] move_set;
@@ -31,6 +33,10 @@ class Enemy
     {
         LQOS.outStat(getName(), getHP(), "HP");
         this.hp = hp;
+    }
+    int[] getPosit()
+    {
+        return this.position;
     }
     long getHP()
     {
@@ -58,6 +64,20 @@ class Enemy
         --this.pop;
     }
     
+    boolean nearLucas(Lucas lucas)
+    {
+        int[] i_posit = this.getPosit();
+        int[] l_posit = lucas.getPosit();
+        long distance = Math.round(Math.sqrt(Math.pow(
+            i_posit[0] - l_posit[0], 2) + Math.pow(i_posit[1] - l_posit[1], 2)));
+        
+        if(distance <= 5)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     boolean isDead()
     {
         if(getHP() <= 0)
@@ -67,6 +87,31 @@ class Enemy
         }
         return false;
     }
+    
+    void follow(Lucas lucas)
+    {
+        int[] i_posit = this.getPosit();
+        int[] l_posit = lucas.getPosit();
+        
+        if(i_posit[0] > l_posit[0]) // Enemy is east of Lucas
+        {
+            this.posit_x +=  -1;
+        }
+        else if(i_posit[0] < l_posit[0]) // Enemy is west of Lucas
+        {
+            this.posit_x += -1;
+        }
+        
+        if(i_posit[1] > l_posit[1]) // Enemy is north of Lucas
+        {
+            this.posit_y += -1;
+        }
+        else if(i_posit[1] < l_posit[1])
+        {
+            this.posit_y += 1;
+        }
+    }
+    
     void attack(Lucas lucas)
     {
        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
@@ -77,6 +122,7 @@ class Enemy
        LQOS.outDMG(getName(), dmg_name, dmg);
        lucas.setHP(lucas.getHP() - dmg);
     }
+    
     long dropXP()
     {
         if(isDead())
@@ -99,6 +145,27 @@ class Rotter extends Enemy
     {
         ++pop;
         this.name_id = name + pop;
+    }
+    
+    // Overloads Movement.java
+    protected String move(Lucas lucas, String symbol, int x, int y) throws IOException
+    {
+        if(canMove(x, y))
+        {
+            if(nearLucas(lucas))
+            {
+                follow(lucas); // Follows Lucas if near
+            }
+            else
+            {
+                this.posit_x += ThreadLocalRandom.current().nextInt(-1,1);
+                this.posit_y += ThreadLocalRandom.current().nextInt(-1,1);
+            }
+        }
+        updateMapPosit(); // Map position updates with every movement
+        cur_map = LQCLI.updateMap(cur_map, orig_map, posit_x, posit_y, 
+            last_posit_x, last_posit_y, symbol); // updates the current map
+        return LQCLI.stringMap(cur_map);
     }
     
     @Override
