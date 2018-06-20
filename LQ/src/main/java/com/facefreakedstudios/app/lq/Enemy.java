@@ -59,7 +59,7 @@ class Enemy extends Movement
         return this.name_id;
     }
     
-    void decrementPop()
+    private void decrementPop()
     {
         --this.pop;
     }
@@ -143,7 +143,7 @@ class Rotter extends Enemy
     }
     
     // Overloads Movement.java
-    protected String move(Lucas lucas, String symbol, int x, int y) throws IOException
+    String move(Lucas lucas, String symbol, int x, int y) throws IOException
     {
         if(canMove(x, y))
         {

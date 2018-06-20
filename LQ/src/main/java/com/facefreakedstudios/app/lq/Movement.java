@@ -18,13 +18,13 @@ abstract class Movement
     protected String[][] orig_map, cur_map, map_data;
     protected int posit_x, posit_y, last_posit_x, last_posit_y;
     
-    protected void setMap(String map) throws IOException
+    private void setMap(String map) throws IOException
     {
         this.orig_map = LQCLI.fetchMap(map);
         this.cur_map = this.orig_map;
     }
     
-    protected void updateMapPosit()
+    private void updateMapPosit()
     {
         this.current_blk = orig_map[posit_x][posit_y];
         this.current_blk_dat = map_data[posit_x][posit_y];

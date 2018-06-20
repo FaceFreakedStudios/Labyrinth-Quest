@@ -89,7 +89,7 @@ class Lucas extends Movement
     {
         return hp <= 0;
     }
-    boolean noAP()
+    private boolean noAP()
     {
         if(ap <= 0)
         {

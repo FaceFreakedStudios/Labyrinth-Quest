@@ -47,7 +47,7 @@ class Equipment extends Weighted
         return null;
     }
     
-    boolean broken()
+    protected boolean broken()
     {
         return condition <= 0;
     }
