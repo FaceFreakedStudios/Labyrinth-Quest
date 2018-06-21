@@ -24,7 +24,7 @@ abstract class Movement
         this.cur_map = this.orig_map;
     }
     
-    private void updateMapPosit()
+    protected void updateMapPosit()
     {
         this.current_blk = orig_map[posit_x][posit_y];
         this.current_blk_dat = map_data[posit_x][posit_y];
