@@ -40,12 +40,14 @@ public class LQ
     
     public static void main(String[] args) throws IOException
     {
-        Lucas lucas = new Lucas(50,50);
-        String[][] map = LQCLI.fetchMap("/home/gavin17/Scripts/Java/Labyrinth-Quest/LQ/src/main/resources/Maps/Town.map");
-        String updated_map;
         while(true)
         {
+            Lucas lucas = new Lucas(60,60);
+            lucas.setMap(lucas, 
+                "/home/gavin17/Scripts/Java/Labyrinth-Quest"
+                    + "/LQ/src/main/resources/Maps/Town");
             LQOS.outLucas(lucas);
+            System.out.println(LQCLI.stringMap(lucas.orig_map));
         }
     }
 }
