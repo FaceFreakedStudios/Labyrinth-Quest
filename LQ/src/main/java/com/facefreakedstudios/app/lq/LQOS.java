@@ -99,23 +99,30 @@ abstract class LQOS // Labyrinth Quest Output System (with sound)
        Scanner usr_in = new Scanner(System.in);
        switch(usr_in.nextLine())
        {
-           case "read": lucas.read();
+           case "read": 
+               lucas.read();
+               break;
            case "attack":
                LQOS.outPrompt("Attack");
                lucas.attack(usr_in.nextInt());
-           case "enter": lucas.enter();
+               break;
+           case "enter": 
+               lucas.enter();
+               break;
            case "upgrade":
                LQOS.outPrompt("Skill");
                String skill = usr_in.nextLine();
                LQOS.outPrompt("Points");
                long points = usr_in.nextLong();
                lucas.upgradeSkill(skill, points);
+               break;
            case "move":
                LQOS.outPrompt("X");
                int x = usr_in.nextInt();
                LQOS.outPrompt("Y");
                int y = usr_in.nextInt();
-               lucas.move("@", x, y);
+               lucas.move(Lucas.SYMBOL, x, y);
+               break;
            case "equip": 
                LQOS.outPrompt("Equip");
                String to_equip = usr_in.nextLine();
@@ -128,6 +135,7 @@ abstract class LQOS // Labyrinth Quest Output System (with sound)
                {
                    LQOS.outError("Item not in inventory");
                }
+               break;
        }
     }
 }
