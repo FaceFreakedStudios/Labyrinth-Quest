@@ -25,6 +25,7 @@ import java.util.HashMap;
  */
 class Lucas extends Movement
 {
+    final static String SYMBOL = "@";
     final static String NAME = "Lucas";
     private long hp, ap, xp;
     private long cash = 5; // Starting value
@@ -33,11 +34,9 @@ class Lucas extends Movement
     private long atk_pow = 0; // the dmg bonus, strength
     private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
-    private int[] position = {this.posit_x, this.posit_y};
+    private final int[] position = {this.posit_x, this.posit_y};
     private final Weapon weap = new mortifer(); // temp field
-    private String current_blk, current_blk_dat; // Current position on map
     private Enemy targ;
-    String[][] map, map_data;
     final Map<String, Weighted> inventory = new HashMap<>();
     final Map<String, Weighted> equipped = new HashMap<>();
     final Map<String, Long> skills = new HashMap<>(); // Skill tree
@@ -52,6 +51,7 @@ class Lucas extends Movement
         skills.put("Wisdom", 0L); // Magic use, Magic strength, Potion effect
         skills.put("Endurance", 0L); // AP, Walk dist, Run dist
         skills.put("Immunity", 0L); // Poi, Fre, Drk, Frst, Phy and Bld damage
+        skills.put("Stamina", 0L); // AP, AP regen, movement speed, attack first
         equipped.put("Ring", null);
         equipped.put("Helm", null);
         equipped.put("Legs", null);
@@ -71,7 +71,7 @@ class Lucas extends Movement
     @Override
     protected boolean canMove(int x, int y)
     {
-        switch(map[this.posit_x + x][this.posit_y + y])
+        switch(this.orig_map[this.posit_x + x][this.posit_y + y])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
@@ -183,8 +183,7 @@ class Lucas extends Movement
     {
         if(canEnter())
         {
-            map = LQCLI.fetchMap(current_blk_dat);
-            map_data = LQCLI.fetchMapData(this, current_blk_dat);
+            setMap(this, current_blk_dat);
         }
         else
         {

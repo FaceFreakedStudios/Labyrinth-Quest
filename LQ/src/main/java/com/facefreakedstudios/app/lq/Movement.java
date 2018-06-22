@@ -14,16 +14,17 @@ import java.io.IOException;
  */
 abstract class Movement
 {
-    protected String current_blk, current_blk_dat;
+    protected String current_blk, current_blk_dat, symbol;
     protected String[][] orig_map, cur_map, map_data;
-    protected int posit_x, posit_y, last_posit_x, last_posit_y;
+    protected int posit_x = 0, posit_y = 0, last_posit_x = 0, last_posit_y = 0;
     
-    private void setMap(String map) throws IOException
+    protected void setMap(Lucas lucas, String map) throws IOException // without extensions
     {
-        this.orig_map = LQCLI.fetchMap(map);
+        this.orig_map = LQCLI.fetchMap(map + ".map");
         this.cur_map = this.orig_map;
+        this.map_data = LQCLI.fetchMapData(lucas, map + ".dat");
     }
-    
+        
     protected void updateMapPosit()
     {
         this.current_blk = orig_map[posit_x][posit_y];
@@ -32,7 +33,7 @@ abstract class Movement
     
     protected boolean canMove(int x, int y)
     {
-        switch(orig_map[posit_x + x][posit_y + y])
+        switch(orig_map[this.posit_x + x][this.posit_y + y])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
@@ -50,8 +51,9 @@ abstract class Movement
             this.posit_y += y;
         }
         updateMapPosit(); // Map position updates with every movement
-        cur_map = LQCLI.updateMap(cur_map, orig_map, posit_x, posit_y, 
-            last_posit_x, last_posit_y, symbol); // updates the current map
+        this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
+            this.posit_x, this.posit_y, this.last_posit_x, 
+            this.last_posit_y, this.symbol); // updates the current map
         return LQCLI.stringMap(cur_map);
     }
 }

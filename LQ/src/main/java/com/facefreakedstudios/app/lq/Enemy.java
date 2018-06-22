@@ -24,6 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 class Enemy extends Movement
 {
+    protected final String SYMBOL = "!";
     protected int[] position = {this.posit_x, this.posit_y};
     protected long hp, xp_drop, pop;
     protected String name, name_id;
