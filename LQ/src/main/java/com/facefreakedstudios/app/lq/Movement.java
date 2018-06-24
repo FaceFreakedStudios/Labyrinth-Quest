@@ -21,39 +21,59 @@ abstract class Movement
     protected void setMap(Lucas lucas, String map) throws IOException // without extensions
     {
         this.orig_map = LQCLI.fetchMap(map + ".map");
-        this.cur_map = this.orig_map;
+        this.cur_map = LQCLI.fetchMap(map + ".map");
         this.map_data = LQCLI.fetchMapData(lucas, map + ".dat");
     }
         
     protected void updateMapPosit()
     {
-        this.current_blk = orig_map[posit_x][posit_y];
-        this.current_blk_dat = map_data[posit_x][posit_y];
+        this.current_blk = orig_map[posit_y][posit_x];
+        this.current_blk_dat = map_data[posit_y][posit_x];
     }
     
     protected boolean canMove(int x, int y)
     {
-        switch(orig_map[this.posit_x + x][this.posit_y + y])
+        switch(orig_map[this.posit_y + y][this.posit_x + x])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
             case "-": LQOS.outError("Cannot walk on lava"); return false;
             default: break;
         }
+        
+        if(this.posit_x  + x < 0 || this.posit_x + x > 60 
+            || this.posit_y + y < 0 || this.posit_y + y > 32) // to stay within the array
+        {
+            LQOS.outError("Cannot leave the map");
+            return false;
+        }
         return true;
+    }
+    
+    protected String spawn(String symbol, int x, int y) throws IOException
+    {
+        this.posit_x = x; this.last_posit_x = x;
+        this.posit_y = y; this.last_posit_y = y;
+        updateMapPosit();
+        this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
+            this.posit_x, this.posit_y, this.last_posit_x, 
+            this.last_posit_y, symbol);
+        return LQCLI.stringMap(cur_map);
     }
     
     protected String move(String symbol, int x, int y) throws IOException
     {
-        if(canMove(x, y))
+        if(this.canMove(x, -y))
         {
+            this.last_posit_x = posit_x;
+            this.last_posit_y = posit_y;
             this.posit_x += x;
-            this.posit_y += y;
+            this.posit_y += -y;
         }
         updateMapPosit(); // Map position updates with every movement
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
             this.posit_x, this.posit_y, this.last_posit_x, 
-            this.last_posit_y, this.symbol); // updates the current map
+            this.last_posit_y, symbol); // updates the current map
         return LQCLI.stringMap(cur_map);
     }
 }

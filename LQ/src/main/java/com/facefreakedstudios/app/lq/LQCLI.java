@@ -106,9 +106,9 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     static String[][] updateMap(String[][] cur_map, String[][] orig_map ,int x, int y,
         int last_x, int last_y, String symbol) throws IOException
     {
-        cur_map[last_x][last_y] =
-            orig_map[last_x][last_y]; // Replaces character symbol with map
-        cur_map[x][y] = "\033[0;32m" + symbol + "\033[0m";
+        cur_map[last_y][last_x] =
+            orig_map[last_y][last_x]; // Replaces character symbol with map
+        cur_map[y][x] = "\033[0;32m" + symbol + "\033[0m";
         return cur_map;
     }
     

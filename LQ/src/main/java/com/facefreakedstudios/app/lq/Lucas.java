@@ -71,13 +71,20 @@ class Lucas extends Movement
     @Override
     protected boolean canMove(int x, int y)
     {
-        switch(this.orig_map[this.posit_x + x][this.posit_y + y])
+        switch(this.orig_map[this.posit_y + y][this.posit_x + x])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
             case "-": LQOS.outError("Cannot walk on lava"); return false;
             default: break;
         }
+        if(this.posit_x  + x < 0 || this.posit_x + x > 32 
+            || this.posit_y + y < 0 || this.posit_y + y > 60) // to stay within the array
+        {
+            LQOS.outError("Cannot leave the map");
+            return false;
+        }
+        
         if(y > skills.get("Stamina") + 1 || x > skills.get("Stamina") + 1)
         {
             LQOS.outError("Too far of a distance");
