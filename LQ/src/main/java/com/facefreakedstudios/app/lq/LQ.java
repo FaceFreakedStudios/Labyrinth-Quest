@@ -40,14 +40,20 @@ public class LQ
     
     public static void main(String[] args) throws IOException
     {
-        while(true)
-        {
-            Lucas lucas = new Lucas(60,60);
-            lucas.setMap(lucas, 
+        Lucas lucas = new Lucas(60,60);
+        lucas.setMap(lucas, 
                 "/home/gavin17/Scripts/Java/Labyrinth-Quest"
                     + "/LQ/src/main/resources/Maps/Town");
+        lucas.spawn(lucas.SYMBOL, 4, 3);
+        while(true)
+        {
+//            System.out.println("NOW posit_x: " + lucas.posit_x);
+//            System.out.println("LAST posit_x: " + lucas.last_posit_x);
+            
             LQOS.outLucas(lucas);
-            System.out.println(LQCLI.stringMap(lucas.orig_map));
+            System.out.println(LQCLI.stringMap(lucas.cur_map));
+//            System.out.println(LQCLI.stringMap(lucas.orig_map));
+//            break;
         }
     }
 }
