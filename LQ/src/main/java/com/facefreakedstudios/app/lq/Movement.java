@@ -15,14 +15,14 @@ import java.io.IOException;
 abstract class Movement
 {
     protected String current_blk, current_blk_dat, symbol;
-    protected String[][] orig_map, cur_map, map_data;
+    static protected String[][] orig_map, cur_map, map_data;
     protected int posit_x = 0, posit_y = 0, last_posit_x = 0, last_posit_y = 0;
     
     protected void setMap(Lucas lucas, String map) throws IOException // without extensions
     {
-        this.orig_map = LQCLI.fetchMap(map + ".map");
-        this.cur_map = LQCLI.fetchMap(map + ".map");
-        this.map_data = LQCLI.fetchMapData(lucas, map + ".dat");
+        orig_map = LQCLI.fetchMap(map + ".map");
+        cur_map = LQCLI.fetchMap(map + ".map");
+        map_data = LQCLI.fetchMapData(lucas, map + ".dat");
     }
         
     protected void updateMapPosit()
@@ -33,19 +33,19 @@ abstract class Movement
     
     protected boolean canMove(int x, int y)
     {
+        if(this.posit_x  + x < 0 // to stay within the array
+            || this.posit_x + x > 60 
+            || this.posit_y + y < 0 
+            || this.posit_y + y > 32)
+        { 
+            return false;
+        }
         switch(orig_map[this.posit_y + y][this.posit_x + x])
         {
-            case "#": LQOS.outError("Cannot walk on walls"); return false;
-            case "~": LQOS.outError("Cannot walk on water"); return false;
-            case "-": LQOS.outError("Cannot walk on lava"); return false;
+            case "#": return false;
+            case "~": return false;
+            case "-": return false;
             default: break;
-        }
-        
-        if(this.posit_x  + x < 0 || this.posit_x + x > 60 
-            || this.posit_y + y < 0 || this.posit_y + y > 32) // to stay within the array
-        {
-            LQOS.outError("Cannot leave the map");
-            return false;
         }
         return true;
     }
