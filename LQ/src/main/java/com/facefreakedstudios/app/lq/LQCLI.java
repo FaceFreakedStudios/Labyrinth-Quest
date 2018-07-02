@@ -74,7 +74,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
                 [Integer.parseInt(data[1])] = data[2]; // Maps data to 2D array
             if(data[2].equals("*")) // Searchs for spawn point if one
             {
-                lucas.move("@", Integer.parseInt(data[0]),
+                lucas.spawn("@", Integer.parseInt(data[0]),
                     Integer.parseInt(data[1])); // sets spawn point
             }
         }
