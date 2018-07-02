@@ -17,6 +17,11 @@ abstract class LQIS // Labyrinth Quest Input System
     
     static Item_Map item_map = new Item_Map();
     
+    static void outPrompt(String prompt)
+    {
+        System.out.printf("\u001B[32m%s: \n", prompt);
+    }
+    
     static String outAsk(String question)
     {
         Scanner usr_in = new Scanner(System.in);
@@ -33,28 +38,28 @@ abstract class LQIS // Labyrinth Quest Input System
                lucas.read();
                break;
            case "attack":
-               LQOS.outPrompt("Attack");
+               outPrompt("Attack");
                lucas.attack(usr_in.nextInt());
                break;
            case "enter": 
                lucas.enter();
                break;
            case "upgrade":
-               LQOS.outPrompt("Skill");
+               outPrompt("Skill");
                String skill = usr_in.nextLine();
-               LQOS.outPrompt("Points");
+               outPrompt("Points");
                long points = usr_in.nextLong();
                lucas.upgradeSkill(skill, points);
                break;
            case "move":
-               LQOS.outPrompt("X");
+               outPrompt("X");
                int x = usr_in.nextInt();
-               LQOS.outPrompt("Y");
+               outPrompt("Y");
                int y = usr_in.nextInt();
                lucas.move(Lucas.SYMBOL, x, y);
                break;
            case "equip": 
-               LQOS.outPrompt("Equip");
+               outPrompt("Equip");
                String to_equip = usr_in.nextLine();
                Weighted to_equip_obj = item_map.imap.get(to_equip);
                if(lucas.inventory.containsValue(to_equip_obj))

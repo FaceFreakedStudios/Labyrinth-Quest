@@ -28,11 +28,6 @@ import java.io.File;
 abstract class LQOS // Labyrinth Quest Output System (with sound)
 {
     
-    static void outPrompt(String prompt)
-    {
-        System.out.printf("\u001B[32m%s: \n", prompt);
-    }
-    
     static void outDMG(String name, String dmg_name, long dmg)
     {
         
