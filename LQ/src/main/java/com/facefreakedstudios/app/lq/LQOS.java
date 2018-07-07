@@ -59,6 +59,16 @@ abstract class LQOS // Labyrinth Quest Output System (with sound)
     {
         System.out.printf("\n%s\n\u001B[32m---", anything);
     }
+    static void outSign(String sign)
+    {
+        String sign_symbols = "";
+        long char_count = sign.length(); // sign scales with message
+        for(long count = 0; count < (char_count + 6); ++count)
+        {
+            sign_symbols += "=";
+        }
+        System.out.printf("\n%s\n=  %s  =\n%1$s\n", sign_symbols, sign);
+    }
     
     static void outSound(String file_path, boolean flag) throws // only .wav
         UnsupportedAudioFileException, IOException, LineUnavailableException

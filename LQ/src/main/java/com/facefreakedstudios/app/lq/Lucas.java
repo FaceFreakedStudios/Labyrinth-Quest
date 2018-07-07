@@ -203,7 +203,7 @@ class Lucas extends Movement
     {
         if(canRead())
         {
-            LQOS.outAny(current_blk_dat);
+            LQOS.outSign(current_blk_dat);
         }
         else
         {
