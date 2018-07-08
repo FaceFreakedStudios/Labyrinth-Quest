@@ -17,6 +17,7 @@ abstract class Movement
     protected String current_blk, current_blk_dat, symbol;
     static protected String[][] orig_map, cur_map, map_data;
     protected int posit_x = 0, posit_y = 0, last_posit_x = 0, last_posit_y = 0;
+    protected int[] position = {this.posit_x, this.posit_y};
     
     protected void setMap(Lucas lucas, String map) throws IOException // without extensions
     {

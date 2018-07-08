@@ -34,7 +34,6 @@ class Lucas extends Movement
     private long atk_pow = 0; // the dmg bonus, strength
     private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
-    private final int[] position = {this.posit_x, this.posit_y};
     private final Weapon weap = new mortifer(); // temp field
     private Enemy targ;
     final Map<String, Weighted> inventory = new HashMap<>();
@@ -229,8 +228,7 @@ class Lucas extends Movement
     }
     int[] getPosit()
     {
-        position[0] = posit_x; position[1] = posit_y;
-        return position;
+        return this.position;
     }
     
     private long findInventoryWeight()
