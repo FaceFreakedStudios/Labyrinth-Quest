@@ -71,6 +71,39 @@ abstract class LQIS // Labyrinth Quest Input System
                    LQOS.outError("Item not in inventory");
                }
                break;
+           case "stat":
+               System.out.println("--- General ---");
+               System.out.println("HP: " + lucas.getHP());
+               System.out.println("AP: " + lucas.getAP());
+               System.out.println("XP: " + lucas.getXP());
+               System.out.println("Cash: " + lucas.getCash());
+               System.out.println("--- Location ---");
+               System.out.printf("Position (x,y): (%d,%d)\n", 
+                   lucas.getPosit()[0], lucas.getPosit()[1]);
+               System.out.println("Current block: " + lucas.current_blk);
+               System.out.println("--- Skills ---");
+               System.out.println("Strength: " + lucas.skills.get("Strength"));
+               System.out.println("Persuasion: " + lucas.skills.get("Persuasion"));
+               System.out.println("Ingenuity: " + lucas.skills.get("Ingenuity"));
+               System.out.println("Luck: " + lucas.skills.get("Luck"));
+               System.out.println("Vitality: " + lucas.skills.get("Vitality"));
+               System.out.println("Wisdom: " + lucas.skills.get("Wisdom"));
+               System.out.println("Endurance: " + lucas.skills.get("Endurance"));
+               System.out.println("Immunity: " + lucas.skills.get("Immunity"));
+               System.out.println("Stamina: " + lucas.skills.get("Stamina"));
+               System.out.println("--- Equipped ---");
+               System.out.println("Ring: " + lucas.equipped.get("Ring"));
+               System.out.println("Helm: " + lucas.equipped.get("Helm"));
+               System.out.println("Legs: " + lucas.equipped.get("Legs"));
+               System.out.println("Gaunts: " + lucas.equipped.get("Gaunts"));
+               System.out.println("Chest: " + lucas.equipped.get("Chest"));
+               System.out.println("Weapon: " + lucas.equipped.get("Weapon"));
+               System.out.println("Sheild: " + lucas.equipped.get("Sheild"));
+               System.out.println("Quick Item 0: " + lucas.equipped.get("QI0"));
+               System.out.println("Quick Item 1: " + lucas.equipped.get("QI1"));
+               System.out.println("Quick Item 2: " + lucas.equipped.get("QI2"));
+               System.out.println("Quick Item 3: " + lucas.equipped.get("QI3"));
+               System.out.println("Quick Item 4: " + lucas.equipped.get("QI4"));
        }
     }
 }
