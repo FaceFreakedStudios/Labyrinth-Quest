@@ -85,7 +85,7 @@ class Lucas extends Movement
             case "-": LQOS.outError("Cannot walk on lava"); return false;
             default: break;
         }
-        if(y > skills.get("Stamina") + 5 || x > skills.get("Stamina") + 5)
+        if(Math.abs(y) + Math.abs(x) > skills.get("Stamina") + 5)
         {
             LQOS.outError("Too far of a distance");
             return false;
