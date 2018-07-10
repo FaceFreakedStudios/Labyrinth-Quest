@@ -67,7 +67,7 @@ class Lucas extends Movement
         this.ap = ap;
     }
     
-    @Override
+    // Overloads canMove() from Movement.java
     protected boolean canMove(int x, int y)
     {
         if(this.posit_x  + x < 0 
@@ -272,5 +272,21 @@ class Lucas extends Movement
             case 3:
             default: targ.addHP(0);
         }
+    }
+    // Overloads move from Movement.java
+    protected String move(String symbol, int x, int y) throws IOException
+    {
+        if(canMove( x, -y))
+        {
+            this.last_posit_x = posit_x;
+            this.last_posit_y = posit_y;
+            this.posit_x += x;
+            this.posit_y += -y;
+        }
+        updateMapPosit(); // Map position updates with every movement
+        this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
+            this.posit_x, this.posit_y, this.last_posit_x, 
+            this.last_posit_y, symbol); // updates the current map
+        return LQCLI.stringMap(cur_map);
     }
 }

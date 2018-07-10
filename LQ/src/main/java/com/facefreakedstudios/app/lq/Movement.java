@@ -32,7 +32,7 @@ abstract class Movement
         this.current_blk_dat = map_data[posit_y][posit_x];
     }
     
-    protected boolean canMove(int x, int y)
+    protected boolean canMove(Enemy ene, int x, int y)
     {
         if(this.posit_x  + x < 0 // to stay within the array
             || this.posit_x + x > 60 
@@ -44,8 +44,16 @@ abstract class Movement
         switch(orig_map[this.posit_y + y][this.posit_x + x])
         {
             case "#": return false;
-            case "~": return false;
-            case "-": return false;
+            case "~": 
+                if(ene.getMovement()[1] == false)
+                {
+                   return false;
+                }
+            case "-":
+                if(ene.getMovement()[2] == false)
+                {
+                    return false;
+                }
             default: break;
         }
         return true;
@@ -62,9 +70,9 @@ abstract class Movement
         return LQCLI.stringMap(cur_map);
     }
     
-    protected String move(String symbol, int x, int y) throws IOException
+    protected String move(Enemy ene, String symbol, int x, int y) throws IOException
     {
-        if(this.canMove(x, -y))
+        if(canMove(ene, x, -y))
         {
             this.last_posit_x = posit_x;
             this.last_posit_y = posit_y;

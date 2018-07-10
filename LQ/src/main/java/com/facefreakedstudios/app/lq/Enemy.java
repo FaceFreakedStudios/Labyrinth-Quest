@@ -24,6 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 class Enemy extends Movement
 {
+    protected final boolean[] movement = {}; //  land, water, lava
     protected final String SYMBOL = "!";
     protected long hp, xp_drop, pop;
     protected String name, name_id;
@@ -58,6 +59,10 @@ class Enemy extends Movement
     String getNameID()
     {
         return this.name_id;
+    }
+    boolean[] getMovement()
+    {
+        return this.movement;
     }
     
     private void decrementPop()
@@ -124,7 +129,7 @@ class Enemy extends Movement
         this.last_posit_y = posit_y;
         int x = 999, y = 999; // Values start off as false for canMove()
         
-        while(canMove(x, y) == false)
+        while(canMove(this, x, y) == false)
         {
             x = ThreadLocalRandom.current().nextInt(-1,2);
             y = ThreadLocalRandom.current().nextInt(-1,2);
@@ -159,6 +164,7 @@ class Rotter extends Enemy
     static long pop; // The population of enemy type in current map
     private long xp_drop = 11, hp = 8;
     private final String name = "Rotter", name_id;
+    private final boolean[] movement = {true, false, false};
     private String[] move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
@@ -178,7 +184,11 @@ class Rotter extends Enemy
     {
         return this.hp;
     }
-    
+    @Override
+    boolean[] getMovement()
+    {
+        return this.movement;
+    }
     @Override
     long getXPDrop()
     {
