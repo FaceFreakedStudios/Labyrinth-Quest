@@ -27,6 +27,7 @@ class Enemy extends Movement
     protected final boolean[] movement = {}; //  land, water, lava
     protected final String SYMBOL = "!";
     protected long hp, xp_drop, pop;
+    protected Integer move_speed; // 2 = Slow, 4 = Normal, 8 = Fast, Null = Teleportation
     protected String name, name_id;
     protected String[] move_set;
     
@@ -47,6 +48,10 @@ class Enemy extends Movement
     long getXPDrop()
     {
         return this.xp_drop;
+    }
+    Integer getMoveSpeed()
+    {
+        return this.move_speed;
     }
     String[] getMoveSet()
     {
@@ -131,8 +136,9 @@ class Enemy extends Movement
         
         while(canMove(this, x, y) == false)
         {
-            x = ThreadLocalRandom.current().nextInt(-1,2);
-            y = ThreadLocalRandom.current().nextInt(-1,2);
+            Integer speed = getMoveSpeed();
+            x = ThreadLocalRandom.current().nextInt(-speed,speed+1);
+            y = ThreadLocalRandom.current().nextInt(-speed,speed+1);
         }
         if(nearLucas(lucas))
         {
@@ -163,6 +169,7 @@ class Rotter extends Enemy
 {
     static long pop; // The population of enemy type in current map
     private long xp_drop = 11, hp = 8;
+    private Integer move_speed = 2;
     private final String name = "Rotter", name_id;
     private final boolean[] movement = {true, false, false};
     private String[] move_set = {"Bite_4", "Gnaw_" +
@@ -193,6 +200,11 @@ class Rotter extends Enemy
     long getXPDrop()
     {
         return this.xp_drop;
+    }
+    @Override
+    Integer getMoveSpeed()
+    {
+        return this.move_speed;
     }
     @Override
     String[] getMoveSet()
