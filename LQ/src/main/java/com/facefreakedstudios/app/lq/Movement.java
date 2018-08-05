@@ -19,11 +19,12 @@ abstract class Movement
     protected int posit_x = 0, posit_y = 0, last_posit_x = 0, last_posit_y = 0;
     protected int[] position = {this.posit_x, this.posit_y};
     
-    protected void setMap(Lucas lucas, String map) throws IOException // without extensions
+    protected void setMap(Lucas lucas, String map, String location) 
+        throws IOException // without extensions
     {
         orig_map = LQCLI.fetchMap(map + ".map");
         cur_map = LQCLI.fetchMap(map + ".map");
-        map_data = LQCLI.fetchMapData(lucas, map + ".dat");
+        map_data = LQCLI.fetchMapData(lucas, map + ".dat", location);
     }
         
     protected void updateMapPosit()

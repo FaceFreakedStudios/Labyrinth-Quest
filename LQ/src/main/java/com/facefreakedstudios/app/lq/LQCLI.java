@@ -60,7 +60,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV fetchs a map's .dat file and maps its data to its .map file
-    static String[][] fetchMapData(Lucas lucas, String map_name) 
+    static String[][] fetchMapData(Lucas lucas, String map_name, String location) 
         throws IOException
     {
         File data_file = new File(map_name);
@@ -72,11 +72,17 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
             data = data_scan.nextLine().trim().split(":");
             map_data[Integer.parseInt(data[0])]
                 [Integer.parseInt(data[1])] = data[2]; // Maps data to 2D array
-            if(data[2].equals("*")) // Searchs for spawn point if one
+            if(data[2].equals("*") && location == null) // Searchs for spawn point if one
             {
-                lucas.spawn("@", Integer.parseInt(data[0]),
+                lucas.spawn(lucas.SYMBOL, Integer.parseInt(data[0]),
                     Integer.parseInt(data[1])); // sets spawn point
             }
+        }
+        if(location != null) // sets spawn point if a location is specified in .dat
+        {
+            String[] cords = location.split(";");
+            lucas.spawn(lucas.SYMBOL, Integer.parseInt(cords[0]), 
+                Integer.parseInt(cords[1]));
         }
         return map_data;
     }

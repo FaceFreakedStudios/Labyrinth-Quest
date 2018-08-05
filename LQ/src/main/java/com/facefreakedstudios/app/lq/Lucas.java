@@ -190,7 +190,12 @@ class Lucas extends Movement
     {
         if(canEnter())
         {
-            setMap(this, current_blk_dat);
+            String[] map_location = {current_blk_dat, null};
+            if(current_blk_dat.contains("@"))
+            {
+                 map_location = current_blk_dat.split("@");
+            }
+            setMap(this, map_location[0], map_location[1]);
         }
         else
         {
