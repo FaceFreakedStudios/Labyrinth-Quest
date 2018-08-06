@@ -34,7 +34,7 @@ class pot_of_healing extends Consumables
 {
     private final String name = "Potion Of Healing";
     private final long weight = 1, value = 5;
-    private static long uses = 0;
+    private static long sub_uses = 0;
     
     @Override
     String getName()
@@ -55,7 +55,7 @@ class pot_of_healing extends Consumables
     @Override
     void use(Lucas lucas)
     {
-        --this.uses;
+        --this.sub_uses;
         lucas.addHP(5);
     }
 }
@@ -65,7 +65,7 @@ class dull_thrw_knife extends Consumables
 {
     private final String name = "Dull Throwing Knife";
     private final long weight = 1, value = 2;
-    private static long uses = 0;
+    private static long sub_uses = 0;
 
     @Override
     String getName()
@@ -86,7 +86,7 @@ class dull_thrw_knife extends Consumables
     @Override
     void use(Lucas lucas)
     {
-        --this.uses;
+        --this.sub_uses;
         lucas.getTarg().addHP(-3);
     }
 }

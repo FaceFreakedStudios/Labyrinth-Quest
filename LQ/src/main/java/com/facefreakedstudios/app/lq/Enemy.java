@@ -167,18 +167,18 @@ class Enemy extends Movement
 
 class Rotter extends Enemy
 {
-    static long pop; // The population of enemy type in current map
-    private long xp_drop = 11, hp = 8;
-    private Integer move_speed = 2;
-    private final String name = "Rotter", name_id;
-    private final boolean[] movement = {true, false, false};
-    private String[] move_set = {"Bite_4", "Gnaw_" +
+    static long sub_pop; // The population of enemy type in current map
+    private long sub_xp_drop = 11, sub_hp = 8;
+    private Integer sub_move_speed = 2;
+    private final String sub_name = "Rotter", sub_name_id;
+    private final boolean[] sub_movement = {true, false, false};
+    private String[] sub_move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
     Rotter()
     {
-        ++pop;
-        this.name_id = name + pop;
+        ++sub_pop;
+        this.sub_name_id = sub_name + sub_pop;
     }
     
     @Override
@@ -189,36 +189,36 @@ class Rotter extends Enemy
     @Override
     long getHP()
     {
-        return this.hp;
+        return this.sub_hp;
     }
     @Override
     boolean[] getMovement()
     {
-        return this.movement;
+        return this.sub_movement;
     }
     @Override
     long getXPDrop()
     {
-        return this.xp_drop;
+        return this.sub_xp_drop;
     }
     @Override
     Integer getMoveSpeed()
     {
-        return this.move_speed;
+        return this.sub_move_speed;
     }
     @Override
     String[] getMoveSet()
     {
-        return this.move_set;
+        return this.sub_move_set;
     }
     @Override
     String getName()
     {
-        return this.name;
+        return this.sub_name;
     }
     @Override
     String getNameID()
     {
-        return this.name_id;
+        return this.sub_name_id;
     }
 }

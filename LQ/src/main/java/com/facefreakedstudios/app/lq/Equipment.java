@@ -161,7 +161,7 @@ abstract class Chestplate extends Equipment
 
 class wooden_helm extends Helmet
 {
-    private String name = "Wooden Helmet";
+    private final String name = "Wooden Helmet";
     private final long weight = 4, value = 3, defense = 5;
     
     @Override
