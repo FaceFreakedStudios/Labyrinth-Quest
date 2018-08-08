@@ -26,7 +26,7 @@ class Enemy extends Movement
 {
     protected final boolean[] movement = {}; //  land, water, lava
     protected final String SYMBOL = "!";
-    protected long hp, xp_drop, pop;
+    protected long hp, xp_drop, pop, follow_dist;
     protected Integer move_speed; // 2 = Slow, 4 = Normal, 8 = Fast, Null = Teleportation
     protected String name, name_id;
     protected String[] move_set;
@@ -48,6 +48,10 @@ class Enemy extends Movement
     long getXPDrop()
     {
         return this.xp_drop;
+    }
+    long getFollowDist()
+    {
+        return this.follow_dist;
     }
     Integer getMoveSpeed()
     {
@@ -80,7 +84,7 @@ class Enemy extends Movement
         int[] l_posit = lucas.getPosit();
         long distance = Math.round(Math.sqrt(Math.pow(
             this.posit_x - l_posit[0], 2) + Math.pow(this.posit_y - l_posit[1], 2)));
-        return distance <= 5;
+        return distance <= this.getFollowDist();
     }
     
     boolean isDead()
@@ -168,11 +172,11 @@ class Enemy extends Movement
 class Rotter extends Enemy
 {
     static long sub_pop; // The population of enemy type in current map
-    private long sub_xp_drop = 11, sub_hp = 8;
-    private Integer sub_move_speed = 2;
+    private final long sub_xp_drop = 11, sub_hp = 8, sub_follow_dist = 3;
+    private final Integer sub_move_speed = 2;
     private final String sub_name = "Rotter", sub_name_id;
     private final boolean[] sub_movement = {true, false, false};
-    private String[] sub_move_set = {"Bite_4", "Gnaw_" +
+    private final String[] sub_move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
     Rotter()
@@ -195,6 +199,11 @@ class Rotter extends Enemy
     boolean[] getMovement()
     {
         return this.sub_movement;
+    }
+    @Override
+    long getFollowDist()
+    {
+        return this.sub_follow_dist;
     }
     @Override
     long getXPDrop()
