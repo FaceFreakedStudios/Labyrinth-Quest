@@ -43,6 +43,7 @@ abstract class LQIS // Labyrinth Quest Input System
                break;
            case "enter": 
                lucas.enter();
+               lucas.move(lucas.SYMBOL, 0, 0); // to fix repeated enter error
                break;
            case "upgrade":
                outPrompt("Skill");
