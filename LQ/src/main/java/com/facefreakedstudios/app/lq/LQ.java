@@ -46,13 +46,13 @@ public class LQ
                 "/home/gavin18/Scripts/Java/Labyrinth-Quest"
                     + "/LQ/src/main/resources/Maps/Town", null);
         lucas.spawn(lucas.SYMBOL, 2, 2);
-        rotter.spawn(rotter.SYMBOL, 2, 10);
+//        rotter.spawn(rotter.SYMBOL, 2, 10);
         int runs = 0;
         while(true)
         {
             ++runs;
             System.out.println(runs);
-            rotter.move(lucas);
+//            rotter.move(lucas);
             LQIS.outLucas(lucas);
             System.out.println(LQCLI.stringMap(lucas.cur_map));
 //            break;
