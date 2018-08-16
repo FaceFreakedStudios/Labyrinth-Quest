@@ -22,14 +22,14 @@ abstract class LQIS // Labyrinth Quest Input System
         System.out.printf("\u001B[32m%s: \n", prompt);
     }
     
-    static String outAsk(String question)
+    static String inAsk(String question)
     {
         Scanner usr_in = new Scanner(System.in);
         System.out.printf("\n\033[2;33m%s\n---", question);
         return usr_in.nextLine();
     }
     
-    static void outLucas(Lucas lucas) throws IOException
+    static void inLucas(Lucas lucas) throws IOException
     {
        Scanner usr_in = new Scanner(System.in);
        switch(usr_in.nextLine())
