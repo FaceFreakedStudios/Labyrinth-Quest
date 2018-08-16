@@ -14,35 +14,65 @@ import java.io.IOException;
  */
 abstract class Movement
 {
+    protected int positx, posity, last_positx, last_posity;
     protected String current_blk, current_blk_dat, symbol;
     static protected String[][] orig_map, cur_map, map_data;
-    protected int posit_x = 0, posit_y = 0, last_posit_x = 0, last_posit_y = 0;
-    protected int[] position = {this.posit_x, this.posit_y};
     
-    protected void setMap(Lucas lucas, String map, String location) 
-        throws IOException // without extensions
+    void setPosit(int x, int y)
     {
-        orig_map = LQCLI.fetchMap(map + ".map");
-        cur_map = LQCLI.fetchMap(map + ".map");
-        map_data = LQCLI.fetchMapData(lucas, map + ".dat", location);
+        this.positx = x;
+        this.posity = y;
+    }
+    void setLastPosit(int last_x, int last_y)
+    {
+        this.last_positx = last_x;
+        this.last_posity = last_y;
+    }
+    void setCurrentBlk(String current_blk)
+    {
+        this.current_blk = current_blk;
+    }
+    void setCurrentBlkDat(String current_blk_dat)
+    {
+        this.current_blk_dat = current_blk_dat;
+    }
+    
+    int[] getPosit()
+    {
+        int[] position = {this.positx, this.posity};
+        return position;
+    }
+    int[] getLastPosit()
+    {
+        int[] last_position = {this.last_positx, this.last_posity};
+        return last_position;
+    }
+    String getCurrentBlk()
+    {
+        return this.current_blk;
+    }
+    String getCurrentBlkDat()
+    {
+        return this.current_blk_dat;
     }
         
     protected void updateMapPosit()
     {
-        this.current_blk = orig_map[posit_y][posit_x];
-        this.current_blk_dat = map_data[posit_y][posit_x];
+        this.setCurrentBlk(orig_map[this.getPosit()[1]][this.getPosit()[0]]);
+        this.setCurrentBlkDat(map_data[this.getPosit()[1]][this.getPosit()[0]]);
     }
     
     protected boolean canMove(Enemy ene, int x, int y)
     {
-        if(this.posit_x  + x < 0 // to stay within the array
-            || this.posit_x + x > 60 
-            || this.posit_y + y < 0 
-            || this.posit_y + y > 32)
+        positx = this.getPosit()[0]; posity = this.getPosit()[1];
+        if(this.positx  + x < 0 // to stay within the array
+            || this.positx + x > 60 
+            || this.posity + y < 0 
+            || this.posity + y > 32)
         { 
             return false;
         }
-        switch(orig_map[this.posit_y + y][this.posit_x + x])
+        switch(orig_map[this.getPosit()[1] + y][this.getPosit()[0] + x])
         {
             case "#": return false;
             case "~": 
@@ -62,12 +92,11 @@ abstract class Movement
     
     protected String spawn(String symbol, int x, int y) throws IOException
     {
-        this.posit_x = x; this.last_posit_x = x;
-        this.posit_y = y; this.last_posit_y = y;
+        this.setPosit(x, y); this.setLastPosit(x, y);
         updateMapPosit();
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
-            this.posit_x, this.posit_y, this.last_posit_x, 
-            this.last_posit_y, symbol);
+            this.getPosit()[0], this.getPosit()[1], this.getLastPosit()[0], 
+            this.getLastPosit()[1], symbol);
         return LQCLI.stringMap(cur_map);
     }
     
@@ -75,15 +104,14 @@ abstract class Movement
     {
         if(canMove(ene, x, -y))
         {
-            this.last_posit_x = posit_x;
-            this.last_posit_y = posit_y;
-            this.posit_x += x;
-            this.posit_y += -y;
+            this.positx = this.getPosit()[0]; this.posity = this.getPosit()[1];
+            this.setLastPosit(positx, posity);
+            this.setPosit(this.getPosit()[0] + x, this.getPosit()[1] + -y);
         }
         updateMapPosit(); // Map position updates with every movement
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
-            this.posit_x, this.posit_y, this.last_posit_x, 
-            this.last_posit_y, symbol); // updates the current map
+            this.getPosit()[0], this.getPosit()[1], this.getLastPosit()[0], 
+            this.getLastPosit()[1], symbol); // updates the current map
         return LQCLI.stringMap(cur_map);
     }
 }

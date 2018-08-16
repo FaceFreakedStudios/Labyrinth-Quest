@@ -70,15 +70,16 @@ class Lucas extends Movement
     // Overloads canMove() from Movement.java
     protected boolean canMove(int x, int y)
     {
-        if(this.posit_x  + x < 0 
-            || this.posit_x + x > 32 
-            || this.posit_y + y < 0 
-            || this.posit_y + y > 60)
+        positx = getPosit()[0]; posity = getPosit()[1];
+        if(this.positx  + x < 0 
+            || this.positx + x > 32 
+            || this.posity + y < 0 
+            || this.posity + y > 60)
         {
             LQOS.outError("Cannot leave the map");
             return false;
         }
-        switch(this.orig_map[this.posit_y + y][this.posit_x + x])
+        switch(this.orig_map[getPosit()[1] + y][getPosit()[0] + x])
         {
             case "#": LQOS.outError("Cannot walk on walls"); return false;
             case "~": LQOS.outError("Cannot walk on water"); return false;
@@ -146,6 +147,14 @@ class Lucas extends Movement
     void addCash(long cash)
     {
         this.cash += cash;
+    }
+    
+    void setMap(Lucas lucas, String map, String location) 
+        throws IOException // without extensions
+    {
+        super.orig_map = LQCLI.fetchMap(map + ".map");
+        super.cur_map = LQCLI.fetchMap(map + ".map");
+        super.map_data = LQCLI.fetchMapData(lucas, map + ".dat", location);
     }
     void setTarg(Enemy ene)
     {
@@ -231,9 +240,29 @@ class Lucas extends Movement
     {
         return cash;
     }
+    
+    
+    @Override
+    String getCurrentBlk()
+    {
+        return this.current_blk;
+    }
+    @Override
+    String getCurrentBlkDat()
+    {
+        return this.current_blk_dat;
+    }
+    @Override
     int[] getPosit()
     {
-        return this.position;
+        int[] posit = {this.positx, this.posity};
+        return posit;
+    }
+    @Override
+    int[] getLastPosit()
+    {
+        int[] last_posit = {this.last_positx, this.last_posity};
+        return last_posit;
     }
     
     private long findInventoryWeight()
@@ -283,15 +312,15 @@ class Lucas extends Movement
     {
         if(canMove( x, -y))
         {
-            this.last_posit_x = posit_x;
-            this.last_posit_y = posit_y;
-            this.posit_x += x;
-            this.posit_y += -y;
+            this.last_positx = positx;
+            this.last_posity = posity;
+            this.positx += x;
+            this.posity += -y;
         }
         updateMapPosit(); // Map position updates with every movement
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
-            this.posit_x, this.posit_y, this.last_posit_x, 
-            this.last_posit_y, symbol); // updates the current map
+            this.positx, this.posity, this.last_positx, 
+            this.last_posity, symbol); // updates the current map
         return LQCLI.stringMap(cur_map);
     }
 }

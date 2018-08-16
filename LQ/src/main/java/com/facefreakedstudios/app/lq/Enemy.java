@@ -37,10 +37,18 @@ class Enemy extends Movement
         this.hp += hp;
     }
     
+    @Override
     int[] getPosit()
     {
-        return this.position;
+        int[] position = {this.positx, this.posity};
+        return position;
     }
+    @Override
+    int[] getLastPosit()
+    {
+        int[] last_position = {this.last_positx, this.last_posity};
+        return last_position;
+   }
     long getHP()
     {
         return this.hp;
@@ -82,8 +90,9 @@ class Enemy extends Movement
     boolean nearLucas(Lucas lucas)
     {
         int[] l_posit = lucas.getPosit();
+        int[] i_posit = this.getPosit();
         long distance = Math.round(Math.sqrt(Math.pow(
-            this.posit_x - l_posit[0], 2) + Math.pow(this.posit_y - l_posit[1], 2)));
+            i_posit[0] - l_posit[0], 2) + Math.pow(i_posit[1] - l_posit[1], 2)));
         return distance <= this.getFollowDist();
     }
     
@@ -100,23 +109,23 @@ class Enemy extends Movement
     void follow(Lucas lucas)
     {
         int[] l_posit = lucas.getPosit();
+        positx = this.getPosit()[0]; posity = this.getPosit()[1];
+        if(this.positx > l_posit[0]) // Enemy is east of Lucas
+        {
+            this.setPosit(positx - 1, posity);
+        }
+        else if(this.positx < l_posit[0]) // Enemy is west of Lucas
+        {
+            this.setPosit(positx + 1, posity);
+        }
         
-        if(this.posit_x > l_posit[0]) // Enemy is east of Lucas
+        if(this.posity > l_posit[1]) // Enemy is north of Lucas
         {
-            this.posit_x +=  -1;
+            this.setPosit(getPosit()[0], posity - 1);
         }
-        else if(this.posit_x < l_posit[0]) // Enemy is west of Lucas
+        else if(this.posity < l_posit[1]) // Enemy is south of Lucas
         {
-            this.posit_x += 1;
-        }
-        
-        if(this.posit_y > l_posit[1]) // Enemy is north of Lucas
-        {
-            this.posit_y += -1;
-        }
-        else if(this.posit_y < l_posit[1]) // Enemy is south of Lucas
-        {
-            this.posit_y += 1;
+            this.setPosit(getPosit()[0], posity + 1);
         }
     }
     
@@ -134,8 +143,7 @@ class Enemy extends Movement
      // Overloads Movement.java
     String move(Lucas lucas) throws IOException
     {
-        this.last_posit_x = posit_x;
-        this.last_posit_y = posit_y;
+        this.setLastPosit(getPosit()[0], getPosit()[1]);
         int x = 999, y = 999; // Values start off as false for canMove()
         
         while(canMove(this, x, y) == false)
@@ -150,12 +158,11 @@ class Enemy extends Movement
         }
         else
         {
-            this.posit_x += x;
-            this.posit_y += y;
+            this.setPosit(getPosit()[0] + x, getPosit()[1] + y);
         }
         updateMapPosit(); // Map position updates with every movement
-        cur_map = LQCLI.updateMap(cur_map, orig_map, posit_x, posit_y, 
-            last_posit_x, last_posit_y, SYMBOL); // updates the current map
+        cur_map = LQCLI.updateMap(cur_map, orig_map, getPosit()[0], getPosit()[1], 
+            getLastPosit()[0], getLastPosit()[1], SYMBOL); // updates the current map
         return LQCLI.stringMap(cur_map);
     }
     
@@ -188,8 +195,15 @@ class Rotter extends Enemy
     @Override
     int[] getPosit()
     {
-        return this.position;
+        int[] position = {this.positx, this.posity};
+        return position;
     }
+    @Override
+    int[] getLastPosit()
+    {
+        int[] last_position = {this.last_positx, this.last_posity};
+        return last_position;
+   }
     @Override
     long getHP()
     {
