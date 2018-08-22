@@ -26,11 +26,11 @@ class Enemy extends Movement
 {
     protected final boolean[] movement = {}; //  land, water, lava
     protected final String SYMBOL = "!";
-    protected long hp, xp_drop, follow_dist;
+    protected long hp, xp_drop, pop, follow_dist;
     protected Integer move_speed; // 2 = Slow, 4 = Normal, 8 = Fast, Null = Teleportation
-    protected String name;
+    protected String name, name_id;
     protected String[] move_set;
-    
+       
     void addHP(long hp)
     {
         LQOS.outStat(getName(), getHP(), "HP");
@@ -73,10 +73,20 @@ class Enemy extends Movement
     {
         return this.name;
     }
+    String getNameID()
+    {
+        return this.name_id;
+    }
     boolean[] getMovement()
     {
         return this.movement;
     }
+    
+    private void decrementPop()
+    {
+        --this.pop;
+    }
+    
     boolean nearLucas(Lucas lucas)
     {
         int[] l_posit = lucas.getPosit();
@@ -90,6 +100,7 @@ class Enemy extends Movement
     {
         if(getHP() <= 0)
         {
+            decrementPop();
             return true;
         }
         return false;
@@ -170,14 +181,15 @@ class Rotter extends Enemy
     static long sub_pop; // The population of enemy type in current map
     private final long sub_xp_drop = 11, sub_hp = 8, sub_follow_dist = 3;
     private final Integer sub_move_speed = 2;
-    private final String sub_name;
+    private final String sub_name = "Rotter", sub_name_id;
     private final boolean[] sub_movement = {true, false, false};
     private final String[] sub_move_set = {"Bite_4", "Gnaw_" +
         Long.toString(ThreadLocalRandom.current().nextLong(4, 8 + 1))};
     
-    Rotter(String name)
+    Rotter()
     {
-        this.sub_name = name;
+        ++sub_pop;
+        this.sub_name_id = sub_name + sub_pop;
     }
     
     @Override
@@ -226,5 +238,10 @@ class Rotter extends Enemy
     String getName()
     {
         return this.sub_name;
+    }
+    @Override
+    String getNameID()
+    {
+        return this.sub_name_id;
     }
 }
