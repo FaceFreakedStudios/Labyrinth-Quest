@@ -63,6 +63,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     static String[][] fetchMapData(Lucas lucas, String map_name, String location) 
         throws IOException
     {
+        Enemy_Map ene_map = new Enemy_Map();
         File data_file = new File(map_name);
         Scanner data_scan = new Scanner(data_file);
         String[][] map_data = new String[32][60];
@@ -76,6 +77,11 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
             {
                 lucas.spawn(lucas.SYMBOL, Integer.parseInt(data[0]),
                     Integer.parseInt(data[1])); // sets spawn point
+            }
+            if(data[2].contains("!"))
+            {
+                ene_map.addEnemy(Integer.parseInt(data[0]), Integer.parseInt(data[1]),
+                    data[2].substring(1));
             }
         }
         if(location != null) // sets spawn point if a location is specified in .dat
