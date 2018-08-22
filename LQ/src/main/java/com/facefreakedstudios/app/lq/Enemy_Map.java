@@ -20,33 +20,25 @@ package com.facefreakedstudios.app.lq;
  * @author gavin18
  */
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 class Enemy_Map
-{
-    Rotter rotter0 = new Rotter("Rotter0");
-    Rotter rotter1 = new Rotter("Rotter1");
-    
+{ 
     long pop;
-    final Map<String, Enemy> ene_map = 
-        new HashMap<>(); // Contains all the enemies that can be spawn in the game
     final Map<String, Enemy> cur_enes = 
         new HashMap<>(); // Contains all the enemies that are currently spawned
     
-    Enemy_Map()
-    {
-        ene_map.put("rotter0", rotter0);
-        ene_map.put("rotter1", rotter1);
-    }
-    
-    void addEnemy(int positx, int posity, String ene_type)
+    void addEnemy(int positx, int posity, String ene_type) throws IOException
     {
         switch(ene_type)
         {
             case "rotter":
                 for(pop = 0; cur_enes.containsKey("rotter" + pop); ++pop);
-                cur_enes.put("rotter" + pop, ene_map.get("rotter" + pop));
+                cur_enes.put("rotter" + pop, new Rotter());
+                cur_enes.get("rotter" + pop).spawn(cur_enes.get(
+                    "rotter" + pop).SYMBOL, positx, posity);
         }
     }
     
