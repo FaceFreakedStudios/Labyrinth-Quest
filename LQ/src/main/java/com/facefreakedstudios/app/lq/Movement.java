@@ -93,7 +93,6 @@ abstract class Movement
     protected String spawn(String symbol, int x, int y) throws IOException
     {
         this.setPosit(x, y); this.setLastPosit(x, y);
-        updateMapPosit();
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
             this.getPosit()[0], this.getPosit()[1], this.getLastPosit()[0], 
             this.getLastPosit()[1], symbol);
