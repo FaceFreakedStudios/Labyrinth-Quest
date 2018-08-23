@@ -45,9 +45,11 @@ public class LQ
                 "/home/gavin18/Scripts/Java/Labyrinth-Quest"
                     + "/LQ/src/main/resources/Maps/Town", null);
         int runs = 0;
-        while(true)
+        lucas.spawn(lucas.SYMBOL, 4, 4);
+        while(!lucas.isDead())
         {
             ++runs;
+            Turns.next(lucas);
             LQIS.inLucas(lucas);
             System.out.println(LQCLI.stringMap(lucas.cur_map));
 //            break;
