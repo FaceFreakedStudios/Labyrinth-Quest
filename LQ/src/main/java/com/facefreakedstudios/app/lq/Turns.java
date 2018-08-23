@@ -19,13 +19,23 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin18
  */
-abstract class Turns
+
+import java.io.IOException;
+import java.util.Map;
+
+abstract class Turns // Keeps track of turn cycles and what they do
 {
     static long turn_count = 0;
     
-    static void next()
+    static void next(Lucas lucas) throws IOException
     {
         ++turn_count;
-        // .....
+        
+        for(Map.Entry<String, Enemy> entry:
+            Enemy_Map.CUR_ENES.entrySet())
+        {
+            entry.getValue().move(lucas);
+        }
+        Enemy_Map.derefEnemies();
     }
 }
