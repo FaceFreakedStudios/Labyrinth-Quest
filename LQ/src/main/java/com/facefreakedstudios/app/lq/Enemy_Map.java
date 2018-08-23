@@ -27,7 +27,7 @@ import java.util.Map;
 class Enemy_Map
 { 
     long pop;
-    final Map<String, Enemy> cur_enes = 
+    static final Map<String, Enemy> CUR_ENES = 
         new HashMap<>(); // Contains all the enemies that are currently spawned
     
     void addEnemy(int positx, int posity, String ene_type) throws IOException
@@ -35,27 +35,36 @@ class Enemy_Map
         switch(ene_type)
         {
             case "rotter":
-                for(pop = 0; cur_enes.containsKey("rotter" + pop); ++pop);
-                cur_enes.put("rotter" + pop, new Rotter());
-                cur_enes.get("rotter" + pop).spawn(cur_enes.get(
+                for(pop = 0; CUR_ENES.containsKey("rotter" + pop); ++pop);
+                CUR_ENES.put("rotter" + pop, new Rotter());
+                CUR_ENES.get("rotter" + pop).spawn(CUR_ENES.get(
                     "rotter" + pop).SYMBOL, positx, posity);
         }
     }
     
-    void derefEnemies()
+    static void derefEnemies()
     {
         for(Map.Entry<String, Enemy> entry: 
-            cur_enes.entrySet()) // Searches for spawned enemies who are dead
+            CUR_ENES.entrySet()) // Searches for spawned enemies who are dead
         {
             if(entry.getValue().isDead())
             {
-                cur_enes.remove(entry.getKey());
+                CUR_ENES.remove(entry.getKey());
             }
+        }
+    }
+    
+    static void forceDerefEnemies() // Just dereferences all enemies
+    {
+        for(Map.Entry<String, Enemy> entry: 
+            CUR_ENES.entrySet())
+        {
+                CUR_ENES.remove(entry.getKey());
         }
     }
     
     boolean allDead()
     {
-        return cur_enes.isEmpty();
+        return CUR_ENES.isEmpty();
     }
 }
