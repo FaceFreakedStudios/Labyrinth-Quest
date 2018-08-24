@@ -35,6 +35,10 @@ abstract class Turns // Keeps track of turn cycles and what they do
             Enemy_Map.CUR_ENES.entrySet())
         {
             entry.getValue().move(lucas);
+            if(entry.getValue().onLucas(lucas))
+            {
+                entry.getValue().attack(lucas);
+            }
         }
         Enemy_Map.derefEnemies();
     }
