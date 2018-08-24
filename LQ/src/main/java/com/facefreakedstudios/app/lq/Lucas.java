@@ -125,7 +125,7 @@ class Lucas extends Movement
     void addHP(long hp)
     {
         LQOS.outStat(NAME, hp, "HP");
-        this.hp = hp;
+        this.hp += hp;
     }
     void addXP(long xp)
     {
