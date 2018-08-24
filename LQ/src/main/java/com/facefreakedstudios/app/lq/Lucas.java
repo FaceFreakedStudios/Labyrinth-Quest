@@ -152,6 +152,7 @@ class Lucas extends Movement
     void setMap(Lucas lucas, String map, String location) 
         throws IOException // without extensions
     {
+        Enemy_Map.forceDerefEnemies();
         super.orig_map = LQCLI.fetchMap(map + ".map");
         super.cur_map = LQCLI.fetchMap(map + ".map");
         super.map_data = LQCLI.fetchMapData(lucas, map + ".dat", location);
