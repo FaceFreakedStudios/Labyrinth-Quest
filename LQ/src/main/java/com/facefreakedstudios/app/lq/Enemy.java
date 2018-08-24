@@ -129,6 +129,12 @@ class Enemy extends Movement
         }
     }
     
+    boolean onLucas(Lucas lucas)
+    {
+        int[] l_posit = lucas.getPosit(), i_posit = this.getPosit();
+        return l_posit[0] == i_posit[0] && l_posit[1] == i_posit[1];
+    }
+    
     void attack(Lucas lucas)
     {
        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
