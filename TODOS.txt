@@ -1,5 +1,4 @@
 IMMEDIATE TODOS:
-* Regenerative healing
 * Init class or add in the parameter
 * Figure out stats, scaling, etc.
 * Move abstracts classes to one file?
@@ -10,8 +9,6 @@ IMMEDIATE TODOS:
 * Combat symbol?
 * Add autobattle mechanic
 * Look at canMove() in movement
-* Print map after every action
-* Turn mechanic
 * Turn switch() in Enemy_Map to function
 * Check if an item is equipped upon equipping to trigger its effects
 * Formulas for damage/upgrades
@@ -21,6 +18,7 @@ IMMEDIATE TODOS:
 * Make item maps like enemy maps
 
 NOT-SO-IMMEDIATE TODOS:
+* Separate Maps and their data files
 * Turn scratch.txt to TODO file and push
 * Look over overriding fields
 * Add working updateMapPosit() to spawn() in Movement.java
