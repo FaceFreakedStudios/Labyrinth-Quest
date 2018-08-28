@@ -97,6 +97,10 @@ class Lucas extends Movement
     {
         return hp <= 0;
     }
+    boolean inCombat()
+    {
+        return false; // come back to this later
+    }
     private boolean noAP()
     {
         if(ap <= 0)
@@ -280,6 +284,11 @@ class Lucas extends Movement
     Enemy getTarg()
     {
         return targ;
+    }
+    
+    void regenHP()
+    {
+        addHP(skills.get("Vitality") + 1);
     }
     
     void attack(int atk)
