@@ -31,15 +31,23 @@ abstract class Turns // Keeps track of turn cycles and what they do
     {
         ++turn_count;
         
+        // Enemy Cycle //
         for(Map.Entry<String, Enemy> entry:
             Enemy_Map.CUR_ENES.entrySet())
         {
-            entry.getValue().move(lucas);
+            entry.getValue().move(lucas); // Moves
             if(entry.getValue().onLucas(lucas))
             {
-                entry.getValue().attack(lucas);
+                entry.getValue().attack(lucas); // Attacks
             }
         }
         Enemy_Map.derefEnemies();
+        
+        // Lucas Cycle //
+        lucas.regenHP(); // Regenrates HP
+        if(!lucas.inCombat()) // Prints map if Lucas isn't in combat    
+        {
+            System.out.println(LQCLI.stringMap(lucas.cur_map));
+        }
     }
 }
