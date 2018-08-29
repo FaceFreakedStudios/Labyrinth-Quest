@@ -31,6 +31,7 @@ class Lucas extends Movement
     private long cash = 5; // Starting value
     private long xp_point = 0; // used for upgrading skills
     private long lvl_cap = 10; // the amount of xp needed for an upgrade
+    private long hp_cap; // the starting HP limit
     private long atk_pow = 0; // the dmg bonus, strength
     private long inv_weight = 20; // inventory weight, strength
     private long[] dmg_apdrain;
@@ -63,7 +64,7 @@ class Lucas extends Movement
         equipped.put("QI2", null);
         equipped.put("QI3", null);
         equipped.put("QI4", null);
-        this.hp = hp;
+        this.hp = hp; this.hp_cap = hp;
         this.ap = ap;
     }
     
@@ -288,7 +289,14 @@ class Lucas extends Movement
     
     void regenHP()
     {
-        addHP(skills.get("Vitality") + 1);
+        if(this.hp >= this.hp_cap)
+        {
+            this.hp = this.hp_cap; // so HP doesn't exceed cap when regenerating
+        }
+        else
+        {
+            addHP(skills.get("Vitality") + 1);
+        }
     }
     
     void attack(int atk)
