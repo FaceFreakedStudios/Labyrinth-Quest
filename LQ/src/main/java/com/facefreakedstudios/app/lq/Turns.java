@@ -47,7 +47,7 @@ abstract class Turns // Keeps track of turn cycles and what they do
         lucas.regenHP(); // Regenrates HP
         if(!lucas.inCombat()) // Prints map if Lucas isn't in combat    
         {
-            System.out.println(LQCLI.stringMap(lucas.cur_map));
+            System.out.println("\n" + LQCLI.stringMap(lucas.cur_map));
         }
     }
 }
