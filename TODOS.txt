@@ -3,6 +3,9 @@ IMMEDIATE TODOS:
 * Figure out stats, scaling, etc.
 * Move abstracts classes to one file?
 * Fix various display glitches
+- clearterm glitch
+- enemy movement delay
+- color errorrs
 * Make movement in steps, not pseudo-teleportation
 * Add following length?
 * Armor condition is half of damage
@@ -16,9 +19,11 @@ IMMEDIATE TODOS:
 * Default weight for items (constants)
 * Broken weapons and armor don't work
 * Make item maps like enemy maps
+* For loop on regen HP for vitality upon upgrade
 
 NOT-SO-IMMEDIATE TODOS:
 * Separate Maps and their data files
+* Shield called Aegis
 * Turn scratch.txt to TODO file and push
 * Look over overriding fields
 * Add working updateMapPosit() to spawn() in Movement.java
