@@ -127,7 +127,6 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     // VVV converts 2d string array of map into a string representation
     static String stringMap(String[][] map)
     {
-        LQCLI.clearTerm(); // Clears previous map
         String map_str = "";
         for(String[] map_row: map)
         {
