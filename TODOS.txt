@@ -2,11 +2,10 @@ IMMEDIATE TODOS:
 * Init class or add in the parameter
 * Figure out stats, scaling, etc.
 * Move abstracts classes to one file?
+* Make display take up more of the screen, not just one side
 * Fix various display glitches
-- clearterm glitch
-- enemy movement delay
-- color errorrs
-* Make movement in steps, not pseudo-teleportation
+-? enemy movement delay
+-? color errors
 * Add following length?
 * Armor condition is half of damage
 * Combat symbol?
