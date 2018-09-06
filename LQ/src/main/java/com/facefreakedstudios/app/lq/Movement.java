@@ -62,6 +62,101 @@ abstract class Movement
         this.setCurrentBlkDat(map_data[this.getPosit()[1]][this.getPosit()[0]]);
     }
     
+    protected boolean canMove(Lucas lucas, int x, int y)
+    {
+        positx = getPosit()[0]; posity = getPosit()[1];
+        if(this.positx  + x < 0 
+            || this.positx + x > 32 
+            || this.posity + y < 0 
+            || this.posity + y > 60)
+        {
+            LQOS.outError("Cannot leave the map");
+            return false;
+        }
+        if(x >= 0) // X moves first
+        {
+            for(int i = 0; i < x + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + 0][this.getPosit()[0] + i])
+                {
+                    case "#":
+                        LQOS.outError("Cannot walk on walls");
+                        return false;
+                    case "~": 
+                        LQOS.outError("Cannot walk on water");
+                        return false;
+                    case "-": 
+                        LQOS.outError("Cannot walk on lava");
+                        return false;
+                    default: break;
+                }
+            }
+        }
+        else if(x < 0)
+        {
+            for(int i = 0; i < Math.abs(x) + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + 0][this.getPosit()[0] - i])
+                {
+                    case "#": 
+                        LQOS.outError("Cannot walk on walls");
+                        return false;
+                    case "~": 
+                        LQOS.outError("Cannot walk on water");
+                        return false;
+                    case "-": 
+                        LQOS.outError("Cannot walk on lava");
+                        return false;
+                    default: break;
+                }
+            }
+        }
+        if(y >= 0)
+        {
+            for(int i = 0; i < y + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + i][this.getPosit()[0] + x])
+                {
+                    case "#":
+                        LQOS.outError("Cannot walk on walls");
+                        return false;
+                    case "~":
+                        LQOS.outError("Cannot walk on water");
+                        return false;
+                    case "-":
+                        LQOS.outError("Cannot walk on lava");
+                        return false;
+                    default: break;
+                }
+            }
+        }
+        else if(y < 0)
+        {
+            for(int i = 0; i < Math.abs(y) + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] - i][this.getPosit()[0] + x])
+                {
+                    case "#": 
+                        LQOS.outError("Cannot walk on walls");
+                        return false;
+                    case "~": 
+                        LQOS.outError("Cannot walk on water");
+                        return false;
+                    case "-":
+                        LQOS.outError("Cannot walk on lava");
+                        return false;
+                    default: break;
+                }
+            }
+        }
+        if(Math.abs(y) + Math.abs(x) > lucas.skills.get("Stamina") + 5)
+        {
+            LQOS.outError("Too far of a distance");
+            return false;
+        }
+        return true;
+    }
+    
     protected boolean canMove(Enemy ene, int x, int y)
     {
         positx = this.getPosit()[0]; posity = this.getPosit()[1];
@@ -72,20 +167,89 @@ abstract class Movement
         { 
             return false;
         }
-        switch(orig_map[this.getPosit()[1] + y][this.getPosit()[0] + x])
+        if(x >= 0) // X moves first
         {
-            case "#": return false;
-            case "~": 
-                if(ene.getMovement()[1] == false)
+            for(int i = 0; i < x + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + 0][this.getPosit()[0] + i])
                 {
-                   return false;
+                    case "#": return false;
+                    case "~": 
+                        if(ene.getMovement()[1] == false)
+                        {
+                            return false;
+                        }
+                    case "-":
+                        if(ene.getMovement()[2] == false)
+                        {
+                            return false;
+                        }
+                    default: break;
                 }
-            case "-":
-                if(ene.getMovement()[2] == false)
+            }
+        }
+        else if(x < 0)
+        {
+            for(int i = 0; i < Math.abs(x) + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + 0][this.getPosit()[0] - i])
                 {
-                    return false;
+                    case "#": return false;
+                    case "~": 
+                        if(ene.getMovement()[1] == false)
+                        {
+                            return false;
+                        }
+                    case "-":
+                        if(ene.getMovement()[2] == false)
+                        {
+                            return false;
+                        }
+                    default: break;
                 }
-            default: break;
+            }
+        }
+        if(y >= 0)
+        {
+            for(int i = 0; i < y + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] + i][this.getPosit()[0] + x])
+                {
+                    case "#": return false;
+                    case "~": 
+                        if(ene.getMovement()[1] == false)
+                        {
+                            return false;
+                        }
+                    case "-":
+                        if(ene.getMovement()[2] == false)
+                        {
+                            return false;
+                        }
+                    default: break;
+                }
+            }
+        }
+        else if(y < 0)
+        {
+            for(int i = 0; i < Math.abs(y) + 1; ++i)
+            {
+                switch(orig_map[this.getPosit()[1] - i][this.getPosit()[0] + x])
+                {
+                    case "#": return false;
+                    case "~": 
+                        if(ene.getMovement()[1] == false)
+                        {
+                            return false;
+                        }
+                    case "-":
+                        if(ene.getMovement()[2] == false)
+                        {
+                            return false;
+                        }
+                    default: break;
+                }
+            }
         }
         return true;
     }
