@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadLocalRandom;
 class Enemy extends Movement
 {
     protected final boolean[] movement = {}; //  land, water, lava
-    protected final String SYMBOL = "!";
+    protected final String SYMBOL = "!", BATTLE_SYMBOL = "\u001B[31mX\u001B[0m";
     protected long hp, xp_drop, pop, follow_dist;
     protected Integer move_speed; // 2 = Slow, 4 = Normal, 8 = Fast, Null = Teleportation
     protected String name, name_id;

@@ -38,6 +38,8 @@ abstract class Turns // Keeps track of turn cycles and what they do
             entry.getValue().move(lucas); // Moves
             if(entry.getValue().onLucas(lucas))
             {
+                entry.getValue().move(entry.getValue(), entry.getValue().
+                    BATTLE_SYMBOL, 0, 0);
                 entry.getValue().attack(lucas); // Attacks
             }
         }
