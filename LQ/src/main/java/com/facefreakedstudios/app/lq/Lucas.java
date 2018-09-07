@@ -128,9 +128,13 @@ class Lucas extends Movement
         throws IOException // without extensions
     {
         Enemy_Map.forceDerefEnemies();
-        super.orig_map = LQCLI.fetchMap(map + ".map");
-        super.cur_map = LQCLI.fetchMap(map + ".map");
-        super.map_data = LQCLI.fetchMapData(lucas, map + ".dat", location);
+        super.orig_map = LQCLI.fetchMap("/home/gavin18/Scripts/Java/Labyrinth-Quest"
+                    + "/LQ/src/main/resources/Maps/" + map + ".map");
+        super.cur_map = LQCLI.fetchMap("/home/gavin18/Scripts/Java/Labyrinth-Quest"
+                    + "/LQ/src/main/resources/Maps/" + map + ".map");
+        super.map_data = LQCLI.fetchMapData(lucas, "/home/gavin18/Scripts/Java"
+            + "/Labyrinth-Quest/LQ/src/main/resources/Map_Data/"
+            + map + ".dat", location);
     }
     void setTarg(Enemy ene)
     {

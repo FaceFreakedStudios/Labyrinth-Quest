@@ -41,9 +41,7 @@ public class LQ
     public static void main(String[] args) throws IOException
     {
         Lucas lucas = new Lucas(60,60);
-        lucas.setMap(lucas, 
-                "/home/gavin18/Scripts/Java/Labyrinth-Quest"
-                    + "/LQ/src/main/resources/Maps/Town", null);
+        lucas.setMap(lucas, "Town", null);
         int runs = 0;
         lucas.spawn(lucas.SYMBOL, 4, 4);
         while(!lucas.isDead())
