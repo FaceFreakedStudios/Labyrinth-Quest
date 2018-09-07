@@ -50,8 +50,6 @@ public class LQ
         {
             ++runs;
             Turns.next(lucas);
-            LQIS.inLucas(lucas);
-            System.out.println(LQCLI.stringMap(lucas.cur_map));
 //            break;
         }
     }
