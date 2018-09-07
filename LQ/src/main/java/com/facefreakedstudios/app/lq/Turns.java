@@ -42,7 +42,7 @@ abstract class Turns // Keeps track of turn cycles and what they do
                     BATTLE_SYMBOL, 0, 0);
                 System.out.println("\n" + LQCLI.stringMap(lucas.cur_map));
             }
-            while(entry.getValue().onLucas(lucas))
+            while(entry.getValue().onLucas(lucas) && !lucas.isDead())
             {
                 entry.getValue().attack(lucas); // Attacks
                 lucas.regenHP(); // Regenrates HP
