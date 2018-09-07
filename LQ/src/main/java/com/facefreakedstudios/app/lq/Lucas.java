@@ -72,10 +72,6 @@ class Lucas extends Movement
     {
         return hp <= 0;
     }
-    boolean inCombat()
-    {
-        return false; // come back to this later
-    }
     private boolean noAP()
     {
         if(ap <= 0)

@@ -64,7 +64,18 @@ abstract class Movement
     
     protected boolean canMove(Lucas lucas, int x, int y)
     {
+        int e_positx = 999, e_posity = 999; // unreachable values
+        if(lucas.getTarg() != null)
+        {
+            e_positx = lucas.getTarg().getPosit()[0]; 
+            e_posity = lucas.getTarg().getPosit()[1];
+        }
         positx = getPosit()[0]; posity = getPosit()[1];
+        if(positx == e_positx && posity == e_posity)
+        {
+            LQOS.outError("Cannot move during combat");
+            return false;
+        }
         if(this.positx  + x < 0 
             || this.positx + x > 32 
             || this.posity + y < 0 
