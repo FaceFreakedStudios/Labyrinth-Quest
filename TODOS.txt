@@ -3,13 +3,13 @@ IMMEDIATE TODOS:
 * Figure out stats, scaling, etc.
 * Move abstracts classes to one file?
 * Make display take up more of the screen, not just one side
+* Is movement exact?
+* Tinker with Lucas's combat system
 * Fix various display glitches
 -? enemy movement delay
 -? color errors
 * Add following length?
 * Armor condition is half of damage
-* Combat symbol?
-* Add autobattle mechanic
 * Look at canMove() in movement
 * Turn switch() in Enemy_Map to function
 * Check if an item is equipped upon equipping to trigger its effects
@@ -21,7 +21,6 @@ IMMEDIATE TODOS:
 * For loop on regen HP for vitality upon upgrade
 
 NOT-SO-IMMEDIATE TODOS:
-* Separate Maps and their data files
 * Shield called Aegis
 * Turn scratch.txt to TODO file and push
 * Look over overriding fields
