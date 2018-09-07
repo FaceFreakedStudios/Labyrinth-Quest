@@ -4,7 +4,7 @@
   <groupId>facefreakedstudios</groupId>
   <artifactId>Labyrinth-Quest.jar</artifactId>
   <packaging>jar</packaging>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.5-SNAPSHOT</version>
   <name>Labyrinth-Quest</name>
   <url>https://github.com/GavinDes/Labyrinth-Quest</url>
   <description> Work in progress rouge-like for the terminal. </description>
