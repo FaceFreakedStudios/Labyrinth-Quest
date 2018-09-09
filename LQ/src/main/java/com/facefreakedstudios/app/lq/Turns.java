@@ -51,9 +51,12 @@ abstract class Turns // Keeps track of turn cycles and what they do
             }
         }
         Enemy_Map.derefEnemies();
-        
+        Item_Map.derefItems(lucas);
         // Lucas Cycle //
-        LQIS.inLucas(lucas);
-        System.out.println("\n" + LQCLI.stringMap(lucas.cur_map));
+       if(!lucas.isDead())
+       {
+           LQIS.inLucas(lucas);
+           System.out.println("\n" + LQCLI.stringMap(lucas.cur_map));
+       }
     }
 }

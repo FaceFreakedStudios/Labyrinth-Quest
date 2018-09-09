@@ -59,19 +59,19 @@ abstract class LQIS // Labyrinth Quest Input System
                int y = usr_in.nextInt();
                lucas.move(Lucas.SYMBOL, x, y);
                break;
-           case "equip": 
-               outPrompt("Equip");
-               String to_equip = usr_in.nextLine();
-               Weighted to_equip_obj = item_map.imap.get(to_equip);
-               if(lucas.inventory.containsValue(to_equip_obj))
-               {
-                   lucas.equip(to_equip_obj);
-               }
-               else
-               {
-                   LQOS.outError("Item not in inventory");
-               }
-               break;
+//           case "equip": 
+//               outPrompt("Equip");
+//               String to_equip = usr_in.nextLine();
+//               Weighted to_equip_obj = item_map.imap.get(to_equip);
+//               if(lucas.inventory.containsValue(to_equip_obj))
+//               {
+//                   lucas.equip(to_equip_obj);
+//               }
+//               else
+//               {
+//                   LQOS.outError("Item not in inventory");
+//               }
+//               break;
            case "stat":
                System.out.println("--- General ---");
                System.out.println("HP: " + lucas.getHP());

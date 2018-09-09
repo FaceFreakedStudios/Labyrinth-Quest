@@ -9,8 +9,12 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-abstract class Weighted
+abstract class Weighted extends Movement
 {
+    
+    protected static final String SYMBOL = "i";
+    protected boolean picked_up = false; // Starting status
+    
     String getType()
     {
         return null;
@@ -29,5 +33,15 @@ abstract class Weighted
     Long getValue()
     {
         return null;
+    }
+    
+    protected boolean isPicked()
+    {
+        return picked_up;
+    }
+    
+    void setPicked(boolean picked_up)
+    {
+        this.picked_up = picked_up;
     }
 }

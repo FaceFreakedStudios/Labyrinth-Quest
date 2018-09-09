@@ -22,10 +22,10 @@ package com.facefreakedstudios.app.lq;
 class Equipment extends Weighted
 {
     protected long condition = 200; // Starting condition       
-
+    
     void setCondition(long condition)
     {
-        if(broken())
+        if(isBroken())
         {
             this.condition = 0;
         }
@@ -41,13 +41,13 @@ class Equipment extends Weighted
             }
         }
     }
-    
+        
     Long getCondition()
     {
         return null;
     }
     
-    protected boolean broken()
+    protected boolean isBroken()
     {
         return condition <= 0;
     }
@@ -55,7 +55,7 @@ class Equipment extends Weighted
 
 abstract class Weapon extends Equipment
 {
-   protected final static String TYPE = "Weapon";
+   protected final static String TYPE = "weapon";
     
    @Override
    String getType()
@@ -85,7 +85,7 @@ abstract class Weapon extends Equipment
 }
 abstract class Helmet extends Equipment
 {
-    protected final static String TYPE = "Helmet";
+    protected final static String TYPE = "helmet";
 
     @Override
     String getType()
@@ -100,7 +100,7 @@ abstract class Helmet extends Equipment
 }
 abstract class Ring extends Equipment
 {
-   protected final static String TYPE = "Ring";
+   protected final static String TYPE = "ring";
     
    @Override
    String getType()
@@ -115,7 +115,7 @@ abstract class Ring extends Equipment
 }
 abstract class Leggings extends Equipment
 {
-   protected final static String TYPE = "Leggings";
+   protected final static String TYPE = "leggings";
    
    @Override
    String getType()
@@ -130,7 +130,7 @@ abstract class Leggings extends Equipment
 }
 abstract class Gauntlets extends Equipment
 {
-    protected final static String TYPE = "Gauntlets";
+    protected final static String TYPE = "gauntlets";
    
     @Override
     String getType()
@@ -145,7 +145,7 @@ abstract class Gauntlets extends Equipment
 }
 abstract class Chestplate extends Equipment
 {
-    protected final static String TYPE = "Chestplate";
+    protected final static String TYPE = "chestplate";
     
     @Override
     String getType()
@@ -161,7 +161,7 @@ abstract class Chestplate extends Equipment
 
 class wooden_helm extends Helmet
 {
-    private final String name = "Wooden Helmet";
+    private final String name = "wooden helmet";
     private final long weight = 4, value = 3, defense = 5;
     
     @Override
@@ -194,7 +194,7 @@ class wooden_helm extends Helmet
 
 class bulk_ring extends Ring
 {
-    private final String name = "Bulk Ring";
+    private final String name = "bulk ring";
     private final long weight = 1, value = 5;
     
     @Override
@@ -228,7 +228,7 @@ class bulk_ring extends Ring
 class mortifer extends Weapon
 {
    private final String[] move_names = {"Slash", "Thrust", "Special"};
-   private final String name = "Mortifer";
+   private final String name = "mortifer";
    private final long weight = 8, value = 9;
    
     @Override

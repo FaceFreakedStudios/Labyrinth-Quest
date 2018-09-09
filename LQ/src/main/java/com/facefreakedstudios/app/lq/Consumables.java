@@ -32,7 +32,7 @@ class Consumables extends Weighted
 /// Potions ///
 class pot_of_healing extends Consumables
 {
-    private final String name = "Potion Of Healing";
+    private final String name = "potion of healing";
     private final long weight = 1, value = 5;
     private static long sub_uses = 0;
     
@@ -63,7 +63,7 @@ class pot_of_healing extends Consumables
 /// Throwables ///
 class dull_thrw_knife extends Consumables
 {
-    private final String name = "Dull Throwing Knife";
+    private final String name = "dull throwing knife";
     private final long weight = 1, value = 2;
     private static long sub_uses = 0;
 

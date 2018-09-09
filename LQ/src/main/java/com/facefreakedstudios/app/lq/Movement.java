@@ -16,6 +16,7 @@ abstract class Movement
 {
     protected int positx, posity, last_positx, last_posity;
     protected String current_blk, current_blk_dat, symbol;
+    static protected String map;
     static protected String[][] orig_map, cur_map, map_data;
     
     void setPosit(int x, int y)
