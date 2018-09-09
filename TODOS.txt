@@ -2,14 +2,17 @@ IMMEDIATE TODOS:
 * Init class or add in the parameter
 * Figure out stats, scaling, etc.
 * Move abstracts classes to one file?
-* Make display take up more of the screen, not just one side
 * Is movement exact?
 * Tinker with Lucas's combat system
 * Fix various display glitches
 -? enemy movement delay
 -? color errors
-* Add following length?
+* Add doors
+* Add equipped/discarded to equipment
+* Work on equip and inventory
+* Enemy drop items
 * Armor condition is half of damage
+* Can't enter during combat?
 * Look at canMove() in movement
 * Turn switch() in Enemy_Map to function
 * Check if an item is equipped upon equipping to trigger its effects
@@ -21,7 +24,9 @@ IMMEDIATE TODOS:
 * For loop on regen HP for vitality upon upgrade
 
 NOT-SO-IMMEDIATE TODOS:
+* Make display take up more of the screen, not just one side
 * Shield called Aegis
+* Organize cases in Item_Map
 * Turn scratch.txt to TODO file and push
 * Look over overriding fields
 * Add working updateMapPosit() to spawn() in Movement.java
@@ -55,6 +60,7 @@ NOT-SO-IMMEDIATE TODOS:
 * Follow Java conventions
 * Make one move() and canMove() in Movement.java?
 * Profile program
+* Verify commits
 
 POST-PRODUCTION TODOS:
 * Random enemy spawn points
