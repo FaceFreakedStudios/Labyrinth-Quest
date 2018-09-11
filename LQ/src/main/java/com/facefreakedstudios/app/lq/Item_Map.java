@@ -72,7 +72,7 @@ class Item_Map
     {
         for(Map.Entry<String, Weighted> entry: CUR_ITEMS.entrySet())
         {
-            if(entry.getValue().isPicked())
+            if(entry.getValue().isPicked() || entry.getValue().isDiscarded())
             {
                 CUR_ITEMS.remove(entry.getKey());
                 ArrayList<String> file_copy = new ArrayList<>();

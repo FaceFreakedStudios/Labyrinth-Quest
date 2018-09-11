@@ -13,35 +13,55 @@ abstract class Weighted extends Movement
 {
     
     protected static final String SYMBOL = "i";
-    protected boolean picked_up = false; // Starting status
+    protected boolean picked_up = false, discarded = false, equipped = false;
     
-    String getType()
+    protected String getType()
     {
         return null;
     }
     
-    String getName()
+    protected String getName()
     {
         return null;
     }
     
-    Long getWeight()
+    protected Long getWeight()
     {
         return null;
     }
     
-    Long getValue()
+    protected Long getValue()
     {
         return null;
     }
     
     protected boolean isPicked()
     {
-        return picked_up;
+        return this.picked_up;
     }
     
-    void setPicked(boolean picked_up)
+    protected boolean isDiscarded()
+    {
+        return this.discarded;
+    }
+    
+    protected boolean isEquipped()
+    {
+        return this.equipped;
+    }
+    
+    protected void setPicked(boolean picked_up)
     {
         this.picked_up = picked_up;
+    }
+    
+    protected void setDiscarded(boolean discarded)
+    {
+        this.discarded = discarded;
+    }
+    
+    protected void setEquipped(boolean equipped)
+    {
+        this.equipped = equipped;
     }
 }

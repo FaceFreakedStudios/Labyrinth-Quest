@@ -37,23 +37,41 @@ class pot_of_healing extends Consumables
     private static long sub_uses = 0;
     
     @Override
-    String getName()
+    protected boolean isPicked()
+    {
+        return this.picked_up;
+    }
+    
+    @Override
+    protected boolean isDiscarded()
+    {
+        return this.discarded;
+    }
+    
+    @Override
+    protected boolean isEquipped()
+    {
+        return this.equipped;
+    }
+    
+    @Override
+    protected String getName()
     {
         return this.name;
     }
     @Override
-    Long getWeight()
+    protected Long getWeight()
     {
         return this.weight;
     }
     @Override
-    Long getValue()
+    protected Long getValue()
     {
         return this.value;
     }
     
     @Override
-    void use(Lucas lucas)
+    protected void use(Lucas lucas)
     {
         --this.sub_uses;
         lucas.addHP(5);
@@ -68,17 +86,35 @@ class dull_thrw_knife extends Consumables
     private static long sub_uses = 0;
 
     @Override
-    String getName()
+    protected boolean isPicked()
+    {
+        return this.picked_up;
+    }
+    
+    @Override
+    protected boolean isDiscarded()
+    {
+        return this.discarded;
+    }
+    
+    @Override
+    protected boolean isEquipped()
+    {
+        return this.equipped;
+    }
+    
+    @Override
+    protected String getName()
     {
         return this.name;
     }
     @Override
-    Long getWeight()
+    protected Long getWeight()
     {
         return this.weight;
     }
     @Override
-    Long getValue()
+    protected Long getValue()
     {
         return this.value;
     }

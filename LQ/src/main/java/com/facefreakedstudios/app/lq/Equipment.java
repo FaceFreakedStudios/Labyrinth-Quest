@@ -58,7 +58,7 @@ abstract class Weapon extends Equipment
    protected final static String TYPE = "weapon";
     
    @Override
-   String getType()
+   protected String getType()
    {
        return TYPE;
    }
@@ -88,7 +88,7 @@ abstract class Helmet extends Equipment
     protected final static String TYPE = "helmet";
 
     @Override
-    String getType()
+    protected String getType()
     {
         return TYPE;
     }
@@ -103,7 +103,7 @@ abstract class Ring extends Equipment
    protected final static String TYPE = "ring";
     
    @Override
-   String getType()
+   protected String getType()
    {
        return TYPE;
    }
@@ -118,7 +118,7 @@ abstract class Leggings extends Equipment
    protected final static String TYPE = "leggings";
    
    @Override
-   String getType()
+   protected String getType()
    {
        return TYPE;
    }
@@ -133,7 +133,7 @@ abstract class Gauntlets extends Equipment
     protected final static String TYPE = "gauntlets";
    
     @Override
-    String getType()
+    protected String getType()
     {
         return TYPE;
     }
@@ -148,7 +148,7 @@ abstract class Chestplate extends Equipment
     protected final static String TYPE = "chestplate";
     
     @Override
-    String getType()
+    protected String getType()
     {
         return TYPE;
     }
@@ -165,13 +165,13 @@ class wooden_helm extends Helmet
     private final long weight = 4, value = 3, defense = 5;
     
     @Override
-    String getName()
+    protected String getName()
     {
         return this.name;
     }
     
     @Override
-    Long getWeight()
+    protected Long getWeight()
     {
         return this.weight;
     }
@@ -186,7 +186,7 @@ class wooden_helm extends Helmet
         return this.defense;
     }
     @Override
-    Long getValue()
+    protected Long getValue()
     {
         return this.value;
     }
@@ -198,13 +198,31 @@ class bulk_ring extends Ring
     private final long weight = 1, value = 5;
     
     @Override
-    String getName()
+    protected boolean isPicked()
+    {
+        return this.picked_up;
+    }
+    
+    @Override
+    protected boolean isDiscarded()
+    {
+        return this.discarded;
+    }
+    
+    @Override
+    protected boolean isEquipped()
+    {
+        return this.equipped;
+    }
+    
+    @Override
+    protected String getName()
     {
         return this.name;
     }
     
     @Override
-    Long getWeight()
+    protected Long getWeight()
     {
         return this.weight;
     }
@@ -219,7 +237,7 @@ class bulk_ring extends Ring
         return 4L;
     }
     @Override
-    Long getValue()
+    protected Long getValue()
     {
         return this.value;
     }
@@ -232,13 +250,31 @@ class mortifer extends Weapon
    private final long weight = 8, value = 9;
    
     @Override
-    String getName()
+    protected boolean isPicked()
+    {
+        return this.picked_up;
+    }
+    
+    @Override
+    protected boolean isDiscarded()
+    {
+        return this.discarded;
+    }
+    
+    @Override
+    protected boolean isEquipped()
+    {
+        return this.equipped;
+    }
+   
+    @Override
+    protected String getName()
     {
         return this.name;
     }
     
     @Override
-    Long getWeight()
+    protected Long getWeight()
     {
         return this.weight;
     }
@@ -248,7 +284,7 @@ class mortifer extends Weapon
         return this.condition;
     }
     @Override
-    Long getValue()
+    protected Long getValue()
     {
         return this.value;
     }
