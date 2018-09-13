@@ -86,6 +86,7 @@ class Lucas extends Movement
         switch(current_blk)
         {
             case "o": return true;
+            case "P": return true;
             case "L": return true;
             case "^": return true;
             case "$": return true;

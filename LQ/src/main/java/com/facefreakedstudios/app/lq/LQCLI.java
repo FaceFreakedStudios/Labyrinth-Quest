@@ -38,6 +38,7 @@ class map_objects
     String store = "$";
     String building = "^";
     String trap = ",";
+    String path = "P";
     String sign = "=";
     String labyrinth = "L";
     String item = "i";
