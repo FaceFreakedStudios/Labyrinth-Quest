@@ -19,7 +19,7 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-class Equipment extends Weighted
+class Equipment extends Weighted_Object
 {
     protected long condition = 200; // Starting condition       
     

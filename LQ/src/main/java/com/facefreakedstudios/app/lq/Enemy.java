@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author gavin17
  */
-class Enemy extends Movement
+class Enemy extends Map_Object
 {
     protected final boolean[] movement = {}; //  land, water, lava
     protected final String SYMBOL = "!", BATTLE_SYMBOL = "\u001B[31mX\u001B[0m";

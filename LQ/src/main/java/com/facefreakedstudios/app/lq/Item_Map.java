@@ -19,58 +19,48 @@ import java.util.ArrayList;
 class Item_Map
 {
     long pop;
-    static final Map<String, Weighted> CUR_ITEMS = new HashMap<>();
+    static final Map<String, Weighted_Object> CUR_ITEMS = new HashMap<>();
     
     void addItem(int positx, int posity, String item_type) throws IOException
     {
         switch(item_type)
         {
             case "wooden helmet":
-                for(pop = 0; CUR_ITEMS.containsKey("Wooden Helm" + pop); ++pop)
-                {
-                    CUR_ITEMS.put("wooden helmet" + pop, new wooden_helm());
-                    CUR_ITEMS.get("wooden helmet" + pop).spawn(
-                        CUR_ITEMS.get("wooden helmet" + pop).SYMBOL, 
-                        positx, posity);
-                }
+                for(pop = 0; CUR_ITEMS.containsKey("wooden helmet" + pop); ++pop);
+                CUR_ITEMS.put("wooden helmet" + pop, new wooden_helm());
+                CUR_ITEMS.get("wooden helmet" + pop).spawn(
+                    CUR_ITEMS.get("wooden helmet" + pop).SYMBOL, 
+                    positx, posity);
             case "potion of healing":
-                for(pop = 0; CUR_ITEMS.containsKey("potion of healing" + pop); ++pop)
-                {
-                    CUR_ITEMS.put("potion of healing" + pop, new pot_of_healing());
-                    CUR_ITEMS.get("potion of healing" + pop).spawn(
-                        CUR_ITEMS.get("potion of healing" + pop).SYMBOL, 
-                        positx, posity);
-                }
+                for(pop = 0; CUR_ITEMS.containsKey("potion of healing" + pop); ++pop);
+                CUR_ITEMS.put("potion of healing" + pop, new pot_of_healing());
+                CUR_ITEMS.get("potion of healing" + pop).spawn(
+                    CUR_ITEMS.get("potion of healing" + pop).SYMBOL, 
+                    positx, posity);
             case "dull throwing knife":
-                for(pop = 0; CUR_ITEMS.containsKey("dull throwing knife" + pop); ++pop)
-                {
-                    CUR_ITEMS.put("dull throwing knife" + pop, new dull_thrw_knife());
-                    CUR_ITEMS.get("dull throwing knife" + pop).spawn(
-                        CUR_ITEMS.get("dull throwing knife" + pop).SYMBOL, 
-                        positx, posity);
-                }
+                for(pop = 0; CUR_ITEMS.containsKey("dull throwing knife" + pop); ++pop);
+                CUR_ITEMS.put("dull throwing knife" + pop, new dull_thrw_knife());
+                CUR_ITEMS.get("dull throwing knife" + pop).spawn(
+                    CUR_ITEMS.get("dull throwing knife" + pop).SYMBOL, 
+                    positx, posity);
             case "bulk ring":
-                for(pop = 0; CUR_ITEMS.containsKey("bulk ring" + pop); ++pop)
-                {
-                    CUR_ITEMS.put("bulk ring" + pop, new bulk_ring());
-                    CUR_ITEMS.get("bulk ring" + pop).spawn(
-                        CUR_ITEMS.get("bulk ring" + pop).SYMBOL, 
-                        positx, posity);
-                }
+                for(pop = 0; CUR_ITEMS.containsKey("bulk ring" + pop); ++pop);
+                CUR_ITEMS.put("bulk ring" + pop, new bulk_ring());
+                CUR_ITEMS.get("bulk ring" + pop).spawn(
+                    CUR_ITEMS.get("bulk ring" + pop).SYMBOL, 
+                    positx, posity);
              case "mortifer":
-                for(pop = 0; CUR_ITEMS.containsKey("mortifer" + pop); ++pop)
-                {
-                    CUR_ITEMS.put("mortifer" + pop, new mortifer());
-                    CUR_ITEMS.get("mortifer" + pop).spawn(
-                        CUR_ITEMS.get("mortifer" + pop).SYMBOL, 
-                        positx, posity);
-                }
+                for(pop = 0; CUR_ITEMS.containsKey("mortifer" + pop); ++pop);
+                CUR_ITEMS.put("mortifer" + pop, new mortifer());
+                CUR_ITEMS.get("mortifer" + pop).spawn(
+                    CUR_ITEMS.get("mortifer" + pop).SYMBOL, 
+                    positx, posity);
         }
     }
     
     static void derefItems(Lucas lucas) throws FileNotFoundException, IOException
     {
-        for(Map.Entry<String, Weighted> entry: CUR_ITEMS.entrySet())
+        for(Map.Entry<String, Weighted_Object> entry: CUR_ITEMS.entrySet())
         {
             if(entry.getValue().isPicked() || entry.getValue().isDiscarded())
             {
@@ -105,7 +95,7 @@ class Item_Map
     
     static void forceDerefItems()
     {
-        for(Map.Entry<String, Weighted> entry: CUR_ITEMS.entrySet())
+        for(Map.Entry<String, Weighted_Object> entry: CUR_ITEMS.entrySet())
         {
             CUR_ITEMS.remove(entry.getKey());
         }

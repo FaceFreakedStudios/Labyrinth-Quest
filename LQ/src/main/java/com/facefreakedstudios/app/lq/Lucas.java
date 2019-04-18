@@ -23,7 +23,7 @@ import java.util.HashMap;
  *
  * @author gavin17
  */
-class Lucas extends Movement
+class Lucas extends Map_Object
 {
     final static String SYMBOL = "@";
     final static String NAME = "Lucas";
@@ -37,8 +37,8 @@ class Lucas extends Movement
     private long[] dmg_apdrain;
     private final Weapon weap = new mortifer(); // temp field
     private Enemy targ;
-    final Map<String, Weighted> inventory = new HashMap<>();
-    final Map<String, Weighted> equipped = new HashMap<>();
+    final Map<String, Weighted_Object> inventory = new HashMap<>();
+    final Map<String, Weighted_Object> equipped = new HashMap<>();
     final Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap) throws IOException
@@ -125,24 +125,11 @@ class Lucas extends Movement
         this.cash += cash;
     }
     
-    void setMap(Lucas lucas, String map, String location) 
-        throws IOException // without extensions
-    {
-        Enemy_Map.forceDerefEnemies();
-        super.map = map;
-        super.orig_map = LQCLI.fetchMap("/home/gavin18/Scripts/Java/Labyrinth-Quest"
-                    + "/LQ/src/main/resources/Maps/" + map + ".map");
-        super.cur_map = LQCLI.fetchMap("/home/gavin18/Scripts/Java/Labyrinth-Quest"
-                    + "/LQ/src/main/resources/Maps/" + map + ".map");
-        super.map_data = LQCLI.fetchMapData(lucas, "/home/gavin18/Scripts/Java"
-            + "/Labyrinth-Quest/LQ/src/main/resources/Map_Data/"
-            + map + ".dat", location);
-    }
     void setTarg(Enemy ene)
     {
         this.targ = ene;
     }
-    void addInventory(Weighted obj)
+    void addInventory(Weighted_Object obj)
     {
         if(findInventoryWeight() < inv_weight)
         {
@@ -154,7 +141,7 @@ class Lucas extends Movement
         }
     }
   
-    void equip(Weighted equipment)
+    void equip(Weighted_Object equipment)
     {
         equipped.put(equipment.getType(), equipment);
         LQOS.outAny("%s equipped".format(equipment.getName()));
@@ -250,9 +237,9 @@ class Lucas extends Movement
     private long findInventoryWeight()
     {
         long total_weight = 0;
-        for(Map.Entry<String, Weighted> entry : inventory.entrySet()) 
+        for(Map.Entry<String, Weighted_Object> entry : inventory.entrySet()) 
         {
-            Weighted obj = entry.getValue();
+            Weighted_Object obj = entry.getValue();
             total_weight += obj.getWeight();
         }
         return total_weight;

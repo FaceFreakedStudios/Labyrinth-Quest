@@ -57,12 +57,12 @@ abstract class LQIS // Labyrinth Quest Input System
                int x = usr_in.nextInt();
                outPrompt("Y");
                int y = usr_in.nextInt();
-               lucas.move(Lucas.SYMBOL, x, y);
+               lucas.move(Lucas.SYMBOL, -y, -x);
                break;
 //           case "equip": 
 //               outPrompt("Equip");
 //               String to_equip = usr_in.nextLine();
-//               Weighted to_equip_obj = item_map.imap.get(to_equip);
+//               Weighted_Object to_equip_obj = item_map.imap.get(to_equip);
 //               if(lucas.inventory.containsValue(to_equip_obj))
 //               {
 //                   lucas.equip(to_equip_obj);
