@@ -15,6 +15,7 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import com.facefreakedstudios.app.lq_engine.LQTS;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -47,7 +48,7 @@ public class LQ
         while(!lucas.isDead())
         {
             ++runs;
-            Turns.next(lucas);
+            LQTS.next(lucas);
 //            break;
         }
     }

@@ -6,6 +6,8 @@
 
 package com.facefreakedstudios.app.lq;
 
+import com.facefreakedstudios.app.lq_engine.LQCLI;
+import com.facefreakedstudios.app.lq_engine.LQOS;
 import java.io.IOException;
 
 /**
@@ -14,10 +16,10 @@ import java.io.IOException;
  */
 abstract class Map_Object
 {
-    protected int positx, posity, last_positx, last_posity;
-    protected String current_blk, current_blk_dat, symbol;
-    static protected String map;
-    static protected String[][] orig_map, cur_map, map_data;
+    public int positx, posity, last_positx, last_posity;
+    public String current_blk, current_blk_dat, symbol;
+    static public String map;
+    public static String[][] orig_map, cur_map, map_data;
     
     static void setMap(Lucas lucas, String new_map, String location) 
         throws IOException // without extensions
@@ -280,7 +282,7 @@ abstract class Map_Object
         return true;
     }
     
-    protected String spawn(String symbol, int x, int y) throws IOException
+    public String spawn(String symbol, int x, int y) throws IOException
     {
         this.setPosit(x, y); this.setLastPosit(x, y);
         this.cur_map = LQCLI.updateMap(this.cur_map, this.orig_map, 
@@ -289,7 +291,7 @@ abstract class Map_Object
         return LQCLI.stringMap(cur_map);
     }
     
-    protected String move(Enemy ene, String symbol, int x, int y) throws IOException
+    public String move(Enemy ene, String symbol, int x, int y) throws IOException
     {
         if(canMove(ene, x, -y))
         {

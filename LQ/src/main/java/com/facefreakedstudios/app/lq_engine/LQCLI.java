@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package com.facefreakedstudios.app.lq;
+package com.facefreakedstudios.app.lq_engine;
 
 /**
  *
  * @author gavin17
  */
 
+import com.facefreakedstudios.app.lq.Enemy_Map;
+import com.facefreakedstudios.app.lq.Item_Map;
+import com.facefreakedstudios.app.lq.Lucas;
 import java.io.IOException;
 import java.io.File;
 import java.util.Scanner;
@@ -51,7 +54,7 @@ class map_objects
     
 }
 
-abstract class LQCLI // Labyrinth Quest Command Line Interface
+public abstract class LQCLI // Labyrinth Quest Command Line Interface
 {
     
     static void clearTerm() // Clears the terminal
@@ -61,7 +64,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV fetchs a map's .dat file and maps its data to its .map file
-    static String[][] fetchMapData(Lucas lucas, String map_name, String location) 
+    public static String[][] fetchMapData(Lucas lucas, String map_name, String location) 
         throws IOException
     {
         Enemy_Map ene_map = new Enemy_Map(); Item_Map it_map = new Item_Map();
@@ -100,7 +103,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV fetchs a .map file and loads it as a 2d string array
-    static String[][] fetchMap(String map_name) throws IOException
+    public static String[][] fetchMap(String map_name) throws IOException
     {
         File map_file = new File(map_name); // Map to load
         Scanner map_scan = new Scanner(map_file);
@@ -121,7 +124,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV updates the map from Lucas movement
-    static String[][] updateMap(String[][] cur_map, String[][] orig_map ,int x, int y,
+    public static String[][] updateMap(String[][] cur_map, String[][] orig_map ,int x, int y,
         int last_x, int last_y, String symbol) throws IOException
     {
         cur_map[last_x][last_y] =
@@ -131,7 +134,7 @@ abstract class LQCLI // Labyrinth Quest Command Line Interface
     }
     
     // VVV converts 2d string array of map into a string representation
-    static String stringMap(String[][] map)
+    public static String stringMap(String[][] map)
     {
         String map_str = "";
         for(String[] map_row: map)

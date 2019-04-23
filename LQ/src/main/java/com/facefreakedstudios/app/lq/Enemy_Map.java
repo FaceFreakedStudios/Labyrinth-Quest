@@ -24,13 +24,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-class Enemy_Map
+public class Enemy_Map
 { 
     long pop;
-    static final Map<String, Enemy> CUR_ENES = 
+    public static final Map<String, Enemy> CUR_ENES = 
         new HashMap<>(); // Contains all the enemies that are currently spawned
     
-    void addEnemy(int positx, int posity, String ene_type) throws IOException
+    public void addEnemy(int positx, int posity, String ene_type) throws IOException
     {
         switch(ene_type)
         {
@@ -42,7 +42,7 @@ class Enemy_Map
         }
     }
     
-    static void derefEnemies()
+    public static void derefEnemies()
     {
         for(Map.Entry<String, Enemy> entry: 
             CUR_ENES.entrySet()) // Searches for spawned enemies who are dead

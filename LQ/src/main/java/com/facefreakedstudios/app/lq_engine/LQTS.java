@@ -13,21 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facefreakedstudios.app.lq;
+package com.facefreakedstudios.app.lq_engine;
 
 /**
  *
  * @author gavin18
  */
 
+import com.facefreakedstudios.app.lq.Enemy;
+import com.facefreakedstudios.app.lq.Enemy_Map;
+import com.facefreakedstudios.app.lq.Item_Map;
+import com.facefreakedstudios.app.lq.Lucas;
+import com.facefreakedstudios.app.lq_engine.LQCLI;
+import com.facefreakedstudios.app.lq_engine.LQIS;
 import java.io.IOException;
 import java.util.Map;
 
-abstract class Turns // Keeps track of turn cycles and what they do
+public abstract class LQTS // Keeps track of turn cycles and what they do
 {
-    static long turn_count = 0;
+    public static long turn_count = 0;
     
-    static void next(Lucas lucas) throws IOException
+    public static void next(Lucas lucas) throws IOException
     {
         ++turn_count;
         

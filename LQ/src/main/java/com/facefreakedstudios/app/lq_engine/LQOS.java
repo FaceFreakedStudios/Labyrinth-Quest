@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.facefreakedstudios.app.lq;
+package com.facefreakedstudios.app.lq_engine;
 
 /**
  *
@@ -25,41 +25,41 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.File;
 
-abstract class LQOS // Labyrinth Quest Output System (with sound)
+public abstract class LQOS // Labyrinth Quest Output System (with sound)
 {
     
-    static void outDMG(String name, String dmg_name, long dmg)
+    public static void outDMG(String name, String dmg_name, long dmg)
     {
         
         System.out.printf("\n\u001B[1m%s\u001B[0m: used %s, "
             + "\u001B[31m%d damage dealt\u001B[0m\n\u001B[32m---", name, dmg_name, dmg);
     }
     
-    static void outDia(String name, String dialog)
+    public static void outDia(String name, String dialog)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: %s"
             + "\u001B[0m\n\u001B[32m---", name, dialog);
     }
     
-    static void outStat(String name, long stat_num, String stat_name)
+    public static void outStat(String name, long stat_num, String stat_name)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: now has "
             + "\033[0;34m%d %s\u001B[0m\n\u001B[32m---", name, stat_num, stat_name);
     }
-    static void outDie(String name, long xp_drop)
+    public static void outDie(String name, long xp_drop)
     {
         System.out.printf("\n\u001B[1m%s\u001B[0m: died, \033[0;34m%d XP"
             + "\u001B[0m dropped\n\u001B[32m---", name, xp_drop);
     }
-    static void outError(String error)
+    public static void outError(String error)
     {
         System.out.printf("\n\u001B[31m!!! %s !!!\u001B[0m\n\u001B[32m---", error);
     }
-    static void outAny(String anything)
+    public static void outAny(String anything)
     {
         System.out.printf("\n%s\n\u001B[32m---", anything);
     }
-    static void outSign(String sign)
+    public static void outSign(String sign)
     {
         String sign_symbols = "";
         long char_count = sign.length(); // sign scales with message
@@ -70,7 +70,7 @@ abstract class LQOS // Labyrinth Quest Output System (with sound)
         System.out.printf("\n%s\n=  %s  =\n%1$s\n", sign_symbols, sign);
     }
     
-    static void outSound(String file_path, boolean flag) throws // only .wav
+    public static void outSound(String file_path, boolean flag) throws // only .wav
         UnsupportedAudioFileException, IOException, LineUnavailableException
     {
         File file = new File(file_path);

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.facefreakedstudios.app.lq;
+package com.facefreakedstudios.app.lq_engine;
 
+import com.facefreakedstudios.app.lq.Item_Map;
+import com.facefreakedstudios.app.lq.Lucas;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,10 +14,10 @@ import java.util.Scanner;
  *
  * @author gavin18
  */
-abstract class LQIS // Labyrinth Quest Input System
+public abstract class LQIS // Labyrinth Quest Input System
 {
     
-    static Item_Map item_map = new Item_Map();
+    public static Item_Map item_map = new Item_Map();
     
     static void outPrompt(String prompt)
     {
@@ -29,7 +31,7 @@ abstract class LQIS // Labyrinth Quest Input System
         return usr_in.nextLine();
     }
     
-    static void inLucas(Lucas lucas) throws IOException
+    public static void inLucas(Lucas lucas) throws IOException
     {
        Scanner usr_in = new Scanner(System.in);
        switch(usr_in.nextLine())

@@ -16,12 +16,12 @@ import java.util.ArrayList;
  * @author gavin17
  */
 
-class Item_Map
+public class Item_Map
 {
     long pop;
     static final Map<String, Weighted_Object> CUR_ITEMS = new HashMap<>();
     
-    void addItem(int positx, int posity, String item_type) throws IOException
+    public void addItem(int positx, int posity, String item_type) throws IOException
     {
         switch(item_type)
         {
@@ -58,7 +58,7 @@ class Item_Map
         }
     }
     
-    static void derefItems(Lucas lucas) throws FileNotFoundException, IOException
+    public static void derefItems(Lucas lucas) throws FileNotFoundException, IOException
     {
         for(Map.Entry<String, Weighted_Object> entry: CUR_ITEMS.entrySet())
         {

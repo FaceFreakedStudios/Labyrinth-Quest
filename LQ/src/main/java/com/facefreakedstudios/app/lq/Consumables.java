@@ -9,7 +9,7 @@ package com.facefreakedstudios.app.lq;
  *
  * @author gavin17
  */
-class Consumables extends Weighted_Object
+public class Consumables extends Weighted_Object
 {
     protected static long uses;
     

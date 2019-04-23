@@ -15,6 +15,8 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import com.facefreakedstudios.app.lq_engine.LQOS;
+
 /**
  *
  * @author gavin17

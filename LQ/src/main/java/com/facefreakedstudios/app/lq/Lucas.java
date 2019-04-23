@@ -15,6 +15,8 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import com.facefreakedstudios.app.lq_engine.LQCLI;
+import com.facefreakedstudios.app.lq_engine.LQOS;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
@@ -23,10 +25,10 @@ import java.util.HashMap;
  *
  * @author gavin17
  */
-class Lucas extends Map_Object
+public class Lucas extends Map_Object
 {
-    final static String SYMBOL = "@";
-    final static String NAME = "Lucas";
+    final public static String SYMBOL = "@";
+    final public static String NAME = "Lucas";
     private long hp, ap, xp;
     private long cash = 5; // Starting value
     private long xp_point = 0; // used for upgrading skills
@@ -37,9 +39,9 @@ class Lucas extends Map_Object
     private long[] dmg_apdrain;
     private final Weapon weap = new mortifer(); // temp field
     private Enemy targ;
-    final Map<String, Weighted_Object> inventory = new HashMap<>();
-    final Map<String, Weighted_Object> equipped = new HashMap<>();
-    final Map<String, Long> skills = new HashMap<>(); // Skill tree
+    public final Map<String, Weighted_Object> inventory = new HashMap<>();
+    public final Map<String, Weighted_Object> equipped = new HashMap<>();
+    public final Map<String, Long> skills = new HashMap<>(); // Skill tree
     
     Lucas(long hp, long ap) throws IOException
     { // Skills also have in game special effects (like lifting boulders)
@@ -68,7 +70,7 @@ class Lucas extends Map_Object
         this.ap = ap;
     }
     
-    boolean isDead()
+    public boolean isDead()
     {
         return hp <= 0;
     }
@@ -125,7 +127,7 @@ class Lucas extends Map_Object
         this.cash += cash;
     }
     
-    void setTarg(Enemy ene)
+    public void setTarg(Enemy ene)
     {
         this.targ = ene;
     }
@@ -147,7 +149,7 @@ class Lucas extends Map_Object
         LQOS.outAny("%s equipped".format(equipment.getName()));
     }
 
-    void upgradeSkill(String skill, long xp_points)
+    public void upgradeSkill(String skill, long xp_points)
     {
         if(xp_points < xp_point)
         {
@@ -164,7 +166,7 @@ class Lucas extends Map_Object
         
     }
   
-    void enter() throws IOException
+    public void enter() throws IOException
     {
         if(canEnter())
         {
@@ -181,7 +183,7 @@ class Lucas extends Map_Object
         }
     }
     
-    void read()
+    public void read()
     {
         if(canRead())
         {
@@ -193,19 +195,19 @@ class Lucas extends Map_Object
         }
     }
     
-    long getHP()
+    public long getHP()
     {
         return hp;
     }
-    long getAP()
+    public long getAP()
     {
         return ap;
     }
-    long getXP()
+    public long getXP()
     {
         return xp;
     }
-    long getCash()
+    public long getCash()
     {
         return cash;
     }
@@ -222,7 +224,7 @@ class Lucas extends Map_Object
         return this.current_blk_dat;
     }
     @Override
-    int[] getPosit()
+    public int[] getPosit()
     {
         int[] posit = {this.positx, this.posity};
         return posit;
@@ -250,7 +252,7 @@ class Lucas extends Map_Object
         return targ;
     }
     
-    void regenHP()
+    public void regenHP()
     {
         if(this.hp >= this.hp_cap)
         {
@@ -262,7 +264,7 @@ class Lucas extends Map_Object
         }
     }
     
-    void attack(int atk)
+    public void attack(int atk)
     {
         ap -= 8;
         if(noAP()) // return no damage if no AP
@@ -289,7 +291,7 @@ class Lucas extends Map_Object
         }
     }
     // Overloads move from Movement.java
-    protected String move(String symbol, int x, int y) throws IOException
+    public String move(String symbol, int x, int y) throws IOException
     {
         if(canMove(this, x, -y))
         {

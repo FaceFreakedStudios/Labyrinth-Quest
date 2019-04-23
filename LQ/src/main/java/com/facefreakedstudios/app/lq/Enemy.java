@@ -15,6 +15,8 @@
  */
 package com.facefreakedstudios.app.lq;
 
+import com.facefreakedstudios.app.lq_engine.LQCLI;
+import com.facefreakedstudios.app.lq_engine.LQOS;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -22,10 +24,10 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author gavin17
  */
-class Enemy extends Map_Object
+public class Enemy extends Map_Object
 {
     protected final boolean[] movement = {}; //  land, water, lava
-    protected final String SYMBOL = "!", BATTLE_SYMBOL = "\u001B[31mX\u001B[0m";
+    public final String SYMBOL = "!", BATTLE_SYMBOL = "\u001B[31mX\u001B[0m";
     protected long hp, xp_drop, pop, follow_dist;
     protected Integer move_speed; // 2 = Slow, 4 = Normal, 8 = Fast, Null = Teleportation
     protected String name, name_id;
@@ -129,13 +131,13 @@ class Enemy extends Map_Object
         }
     }
     
-    boolean onLucas(Lucas lucas)
+    public boolean onLucas(Lucas lucas)
     {
         int[] l_posit = lucas.getPosit(), i_posit = this.getPosit();
         return l_posit[0] == i_posit[0] && l_posit[1] == i_posit[1];
     }
     
-    void attack(Lucas lucas)
+    public void attack(Lucas lucas)
     {
        String dmgWithName = getMoveSet()[ThreadLocalRandom.current().nextInt(0, 
            getMoveSet().length)]; // Call a random move
@@ -147,7 +149,7 @@ class Enemy extends Map_Object
     }
     
      // Overloads Movement.java
-    String move(Lucas lucas) throws IOException
+    public String move(Lucas lucas) throws IOException
     {
         this.setLastPosit(getPosit()[0], getPosit()[1]);
         int x = 999, y = 999; // Values start off as false for canMove()
